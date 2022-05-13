@@ -5,6 +5,7 @@ import BarraPrincipal from "./Components/BarraPrincipal";
 import BarraSecundaria from './Components/BarraSecundaria';
 import OrdenesActivas from './Components/OrdenesActivas';
 import HistorialTransac from './Components/HistorialTransac';
+import Activos from './Components/Activos';
  
  export default function App(){
   return(
@@ -15,21 +16,16 @@ import HistorialTransac from './Components/HistorialTransac';
       <div className='grid-usuario2'>
         <BarraSecundaria />
       </div>
-
-      
-      
       <h3 className='grid-usuario3'>Perfil Usuario</h3>
-
-
       <div className='grid-usuario4'>
         <OrdenesActivas />
       </div>
       <div className='grid-usuario5'>
         <HistorialTransac />
       </div>
-
-
-      
+      <div className='grid-usuario6'>
+        <Activos />
+      </div>
     </div>
     
   );

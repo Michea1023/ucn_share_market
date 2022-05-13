@@ -3,6 +3,7 @@ import HistorialState from "./HistorialState";
 
 export default function HistorialTransac(){
     return(
+        
         <div className="grid-historial-transacciones">
             <h4 className="item-h1">Historial de transacciones</h4>
             <div className="grid-parametros-historial">
@@ -22,6 +23,7 @@ export default function HistorialTransac(){
                 <HistorialState />
                 <HistorialState />
                 <HistorialState />
+                
                 
             </div>
         </div>
