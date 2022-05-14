@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "../img/logo.png";
-import cierre_sesion from "../img/logo-cierre-sesion.png"
+import logo from "../../img/logo.png";
+import cierre_sesion from "../../img/logo-cierre-sesion.png"
 
 export default function BarraPrincipal() {
     return (
