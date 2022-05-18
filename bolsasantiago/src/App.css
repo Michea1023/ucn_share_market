@@ -350,4 +350,163 @@ header{
   margin: 20px;
 }
 
+/* desde aqui pipetinha la caga*/
+/* login  */
+
+.grid-login{
+  display:flex;
+  flex-direction: column;
+  
+  
+  width: 100vw;
+
+}
+
+/*.grid-login1{
+  display: grid;
+  justify-items: center;
+  justify-content: center;
+
+  
+  background-color: #E1F1F9 ;
+  margin: 30px 30vw;
+  border-radius: 20px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
+  min-height: 300px;
+
+  
+}*/
+.grid-login1{
+  width: 380px;
+  height: 490px;
+  background:#E1F1F9 ;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  padding: 70px 30px ;
+  border-radius: 20px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
+}
+
+.avatar{
+  width: 100px;
+  height: 120px;
+  position:absolute;
+  top: -50px; 
+  left: calc(50% - 50px);
+  
+
+}
+.grid-login1 h1{
+  margin: 0;
+  padding:0 0 20px ;
+  text-align: center;
+  font-size: 22px;
+}
+
+.grid-login1 label{
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  display: block;
+
+}
+
+.grid-login1 input{
+  width: 100%;
+  margin-bottom: 50px;
+
+}
+
+.grid-login1 input[type="text"],
+.grid-login1 input[type="password"]{
+  border: none;
+  border-bottom: 1px solid ;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: black;
+  font-size:16px ;
+
+}
+.grid-login1 input[type="submit"]{
+  border: none;
+  outline: none;
+  height: 40px;
+  width: 100%;
+  background: blue;
+  color: white;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+.grid-login1 a{
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 20px;
+  color: blue;
+}
+
+.grid-login1 a:hover{
+  color: aquamarine;
+}
+
+/* pipeta parte registro*/
+
+
+.grid-Register{
+  width: 380px;
+  height: 490px;
+  background:#E1F1F9 ;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  padding: 70px 30px ;
+  border-radius: 20px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
+}
+
+.grid-Register h4{
+  font-size: 22px;
+  margin-bottom: 22px;
+}
+
+.controls{
+  width: 100%;
+  background: #E1F1F9 ;
+  padding: 10px;
+  border-radius: 4;
+  margin-bottom: 16px;
+  border: 1px solid rgb(51, 145, 192);
+  font-family: "calibri";
+  font-size: 18px;
+
+}
+
+.grid-Register p{
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+
+}
+.grid-Register a:hover{
+  color:white;
+  text-decoration: none;
+
+}
+
+.grid-Register .boton{
+  width: 100%;
+  background: blue;
+  border: none ;
+  padding: 12px ;
+  color: white;
+  margin: 16px 0;
+  font-size: 16px;
+
+}
+
 
