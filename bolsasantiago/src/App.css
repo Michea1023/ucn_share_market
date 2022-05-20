@@ -340,15 +340,54 @@ header{
   grid-column: 2;
   grid-row: 3;
 }
-
+/*Estilo HomePage */
 .acciones-precios{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #E1F1F9;
-  margin: 20px;
+  background-color: #A7CDD9;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
+  margin:30px;
+  padding-top: 20px;
+  border-radius: 20px;
 }
+.parametro-acciones-precios{
+  display: grid;
+  grid-template-columns: 20% 20% 40% 30%;
+  grid-template-rows: 30px;
+  background-color: #E1F1F9;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
+  border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 30px;
+  width: 44vw;
+}
+.title-acciones{
+  margin: 15px;
+}
+.acciones-p{
+  width: 44vw;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.comp-acciones-precios{
+  display: grid;
+  grid-template-columns: 20% 20% 40% 30%;
+  grid-template-rows: 30px;
+}
+/* Acciones y Precios */
+
+.resumen-usuario{
+  padding: 15px;  
+}
+.resumen-usuario-width{
+  width: 20vw;
+}
+
+
 
 /* desde aqui pipetinha la caga*/
 /* login  */
