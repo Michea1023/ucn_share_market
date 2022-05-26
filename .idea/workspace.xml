@@ -26,11 +26,25 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/src/components" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
-  <component name="RunManager" selected="Python.manage">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\.datos\python\ucn_share_market\frontend\src\components" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\.datos\python\ucn_share_market\frontend" />
+      <recent name="D:\.datos\python\ucn_share_market\frontend\template" />
+      <recent name="D:\.datos\python\ucn_share_market\frontend\public" />
+      <recent name="D:\.datos\python\ucn_share_market\frontend\public\frontend" />
+      <recent name="D:\.datos\python\ucn_share_market\frontend\templates" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.dev">
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ucn_share_market" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -77,9 +91,19 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.manage" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -100,10 +124,20 @@
       <workItem from="1652932952469" duration="357000" />
       <workItem from="1653009007031" duration="440000" />
       <workItem from="1653174354333" duration="139000" />
+      <workItem from="1653259779367" duration="139000" />
+      <workItem from="1653259960137" duration="2018000" />
+      <workItem from="1653265375750" duration="1063000" />
+      <workItem from="1653354003381" duration="9000" />
+      <workItem from="1653426609377" duration="5700000" />
+      <workItem from="1653513115489" duration="12000" />
+      <workItem from="1653513532191" duration="79000" />
+      <workItem from="1653513622587" duration="264000" />
+      <workItem from="1653520653650" duration="2178000" />
+      <workItem from="1653522862842" duration="9675000" />
     </task>
     <servers />
   </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ucn_share_market$manage.coverage" NAME="manage Coverage Results" MODIFIED="1652933212498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
