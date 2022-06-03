@@ -4,7 +4,7 @@ from .models import *
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ('id', 'user', 'mail', 'type_account', 'name', 'last_name', 'career', 'is_blocked')
+        fields = ('user', 'mail', 'type_account', 'name', 'last_name', 'career', 'is_blocked')
 
 
 class ShareSerializer(serializers.ModelSerializer):

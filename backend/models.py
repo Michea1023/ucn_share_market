@@ -13,7 +13,7 @@ CAREER_CHOICES = (
 
 # Create your models here.
 class Account(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
     mail = models.CharField(max_length=30, null=True, unique=True)
     type_account = models.CharField(choices=ACCOUNT_CHOICES, max_length=1, null=True)
     name = models.TextField(null=True)

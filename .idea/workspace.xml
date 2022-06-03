@@ -26,6 +26,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/src/components" />
@@ -135,6 +136,11 @@
       <workItem from="1653520653650" duration="2178000" />
       <workItem from="1653522862842" duration="9675000" />
       <workItem from="1653610354510" duration="2508000" />
+      <workItem from="1653866629136" duration="7658000" />
+      <workItem from="1653948926180" duration="8000" />
+      <workItem from="1653953814534" duration="1318000" />
+      <workItem from="1653967548764" duration="327000" />
+      <workItem from="1654118721779" duration="10000" />
     </task>
     <servers />
   </component>
