@@ -3,14 +3,16 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
-
 //import UserProfile from './Pages/UserProfile';
 
 //import HomePage from './Pages/HomePage';
 
-
+//import CompraVenta from "./Pages/CompraVenta";
 import Login from './Pages/Login';
 import Register from './Pages/Register';
+import HomePage from "./Pages/HomePage";
+//import PageNotFound from "./Pages/PageNotFound";
+
 
 
 export default class App extends Component {
@@ -22,13 +24,17 @@ export default class App extends Component {
         return (
             <Router>
                 <Switch>
-                    <Route exact path="/"><h1>Hola que tal</h1></Route>
-                    <Route path="/home" component={Register} />
+                    <Route path="/" exact component={Login} />
+                    <Route path="/register" exact component={Register} />
+                    <Route path="/home" exact component ={HomePage} />
                 </Switch>
             </Router>
         );
     }
   }
 
-const appDiv = document.getElementById("app")
-render(<App />, appDiv)
+
+
+
+const appDiv = document.getElementById("app");
+render(<App />, appDiv);
