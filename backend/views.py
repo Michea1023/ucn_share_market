@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User, auth
+from django.contrib import messages
 from rest_framework import generics, status
 from .serializers import *
 from rest_framework.views import APIView
@@ -38,6 +40,15 @@ class CreateShareView(APIView):
                 share.save(update_fields=['name'])
 
             return Response(ShareSerializer(share).data, status=status.HTTP_200_OK)
+
+
+class UserRegisterView(APIView):
+    serializer_class = AccountSerializer
+
+    def post(self, request, format=None):
+        serializer = self.serializer_class(data=request.data)
+        print(serializer.data)
+
 
 class GetShare(APIView):
     serializer_class = ShareSerializer
