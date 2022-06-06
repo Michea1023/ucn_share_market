@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-ro
 
 import Login from './Pages/Login';
 import Register from './Pages/Register';
-
+import BarraSecundaria from "./components/NavBar/BarraSecundaria";
 
 export default class App extends Component {
     constructor(props) {
@@ -23,7 +23,7 @@ export default class App extends Component {
             <Router>
                 <Switch>
                     <Route exact path="/"><h1>Hola que tal</h1></Route>
-                    <Route path="/home" component={Register} />
+                    <Route path="/home" component={BarraSecundaria} />
                 </Switch>
             </Router>
         );
