@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6fb466c-4ebd-48de-a7cc-678aea3155db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/Pages/CompraVenta.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/Pages/PageNotFound.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Buscador.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Rentabilidad.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Saldo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/CompraVenta.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/BuySell.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/node_modules_web-vitals_dist_web-vitals_js.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/node_modules_web-vitals_dist_web-vitals_js.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/node_modules_web-vitals_dist_web-vitals_js.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/node_modules_web-vitals_dist_web-vitals_js.js.LICENSE.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +90,9 @@
       <workItem from="1654041812707" duration="3512000" />
       <workItem from="1654045422629" duration="320000" />
       <workItem from="1654264963810" duration="2957000" />
-      <workItem from="1654268061361" duration="2971000" />
+      <workItem from="1654268061361" duration="3435000" />
+      <workItem from="1654273150377" duration="193000" />
+      <workItem from="1654391428610" duration="12081000" />
     </task>
     <servers />
   </component>
