@@ -2,12 +2,8 @@
 //import "../static/css/AppMobile.css"
 import React, { Component } from "react";
 import { render } from "react-dom";
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
-//import UserProfile from './Pages/UserProfile';
+import {BrowserRouter as Router, Switch, Route, Link, Redirect, BrowserRouter} from "react-router-dom";
 
-//import HomePage from './Pages/HomePage';
-
-//import BuySell from "./Pages/BuySell";
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import HomePage from "./Pages/HomePage";
@@ -24,15 +20,15 @@ export default class App extends Component {
 
     render() {
         return (
-            <Router>
+            <BrowserRouter>
                 <Switch>
                     <Route path="/" exact component={Login} />
                     <Route path="/register" exact component={Register} />
                     <Route path="/home" exact component ={HomePage} />
                     <Route path="/buysell" exact component={BuySell} />
-                    <Route path="/user" exact component ={UserProfile} />
+
                 </Switch>
-            </Router>
+            </BrowserRouter>
         );
     }
   }
