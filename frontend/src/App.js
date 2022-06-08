@@ -10,7 +10,7 @@ import HomePage from "./Pages/HomePage";
 import BuySell from "./Pages/BuySell";
 import UserProfile from "./Pages/UserProfile";
 //import PageNotFound from "./Pages/PageNotFound";
-
+import Admin from "./Pages/Admin";
 
 
 export default class App extends Component {
@@ -26,7 +26,8 @@ export default class App extends Component {
                     <Route path="/register" exact component={Register} />
                     <Route path="/home" exact component ={HomePage} />
                     <Route path="/buysell" exact component={BuySell} />
-                    <Route path="/admin" exact component={} />
+                    <Route path="/admin" exact component={Admin} />
+
 
                 </Switch>
             </BrowserRouter>

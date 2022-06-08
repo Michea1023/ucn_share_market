@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b67009f1-bc42-45ea-922b-c840e6100911" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Compra.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Venta.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Styled.js" afterDir="false" />
+    <list default="true" id="251093bc-1a89-49d0-a81b-87c9b9e194b1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ucn_share_market.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ucn_share_market.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/BuySell.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/BuySell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Buscador.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Buscador.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Rentabilidad.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Rentabilidad.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Saldo.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Saldo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/NavBar/BarraPrincipal.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NavBar/BarraPrincipal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/NavBar/BarraSecundaria.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NavBar/BarraSecundaria.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePage/AccionesPrecios.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePage/AccionesPrecios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePage/CompAccionesPrecios.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePage/CompAccionesPrecios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePage/ResumenUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePage/ResumenUsuario.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/node_modules_web-vitals_dist_web-vitals_js.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/node_modules_web-vitals_dist_web-vitals_js.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/node_modules_web-vitals_dist_web-vitals_js.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/node_modules_web-vitals_dist_web-vitals_js.js.LICENSE.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JavaScript File" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,7 +29,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2ACglcEczxubYw3g0MdbNH0tNiz" />
+  <component name="ProjectId" id="2AI7MhTY9RG90tX3I4BbH8TAEcX" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -49,9 +39,9 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PyCharm 2022.1.1\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external"
+    "nodejs_package_manager_path": "npm"
   }
 }]]></component>
   <component name="RunManager">
@@ -82,14 +72,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b67009f1-bc42-45ea-922b-c840e6100911" name="Changes" comment="" />
-      <created>1654519133098</created>
+      <changelist id="251093bc-1a89-49d0-a81b-87c9b9e194b1" name="Changes" comment="" />
+      <created>1654685199427</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1654519133098</updated>
-      <workItem from="1654519167710" duration="3859000" />
-      <workItem from="1654523083931" duration="32000" />
-      <workItem from="1654525468086" duration="18534000" />
+      <updated>1654685199427</updated>
+      <workItem from="1654685205582" duration="1824000" />
     </task>
     <servers />
   </component>
