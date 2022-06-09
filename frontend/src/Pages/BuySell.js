@@ -5,6 +5,8 @@ import BarraSecundaria from "../components/NavBar/BarraSecundaria";
 import Buscador from "../components/BuySell/Buscador";
 import Saldos from "../components/BuySell/Saldo";
 import Rentabilidad from "../components/BuySell/Rentabilidad";
+import Compra from "../components/BuySell/Compra"
+import Venta from "../components/BuySell/Venta"
 
 const GridPrincipal = styled.div`
     display: grid;
@@ -39,6 +41,7 @@ const Grid5 = styled.div`
 `;
 const Grid6 = styled.div`
     grid-area: Area4;
+    justify-self:center;
 `;
 
 export default class BuySell extends Component{
@@ -63,10 +66,11 @@ export default class BuySell extends Component{
                     <Saldos/>
                 </Grid4>
                 <Grid5>
+                    <h3>Rentabilidad</h3>
                     <Rentabilidad />
                 </Grid5>
                 <Grid6>
-                    <h3>Form</h3>
+                    <Venta />
                 </Grid6>
 
 

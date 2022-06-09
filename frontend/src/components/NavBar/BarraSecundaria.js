@@ -35,7 +35,7 @@ export default class BarraSecundaria extends Component{
             </Navbarbutton>
             <Navbarbutton>
                 <Buttonnavbar>Compra/Venta</Buttonnavbar>
-            </Navbarbutton>v>
+            </Navbarbutton>
         </Navbarsecundario>
     )
     }

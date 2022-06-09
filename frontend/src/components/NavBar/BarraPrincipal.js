@@ -1,14 +1,8 @@
 import React, {Component} from "react";
 import {scryRenderedComponentsWithType} from "react-dom/test-utils";
 
-//import logo from "../../../static/images/logo.png";
-//import cierre_sesion from "../../../static/images/logo-cierre-sesion.png"
-//este iba en el primer div linea 20
-//<img className="navbar-img" src= {logo}></img>
-//este iba en el div linea 28
-//<img className="navbar-img cierre" src={cierre_sesion}></img>
-//import {Gridcontainer, griditem1, griditem3 ,griditem2,navbarusuario,navbartitle} from "./PrincipalElements"
-
+import logo from "../../../static/images/logo.png";
+import cierre_sesion from "../../../static/images/logo-cierre-sesion.png"
 
 import styled from "styled-components";
 
@@ -36,10 +30,8 @@ const Gridcontainer = styled.header`
 
 `;
 
- const Navbartitle = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 60px;
+ const Navbartitle = styled.h2`
+  justify-content: center;
 
 
 `;
@@ -48,25 +40,26 @@ const Gridcontainer = styled.header`
   grid-row: 1;
   grid-column: 3;
   display:flex;
-  justify-content:flex-end;
+  flex-direction:reverse-row;
+  justify-content:end;
   align-items:center;
 
 
 `;
+ const Img = styled.img`
+    height: 90%;
+    width: auto;
+    margin-left: 20px;
+    margin-right: 10px;
+ `;
+ const Img2 = styled.img`
+    height: 70%;
+    width: auto;
+    margin-left: 20px;
+    margin-right: 10px;
+ `;
 
- const Navbarusuario = styled.div`
-  display: flex;
-   
-  p{
-    &:nth-child(1)={
-        font-size: 1.5rem;
-        font-weight: 500;
-    }
-  
-  
-  }
 
-`;
 
 
 
@@ -80,17 +73,15 @@ export default class BarraPrincipal extends Component {
         return (
         <Gridcontainer>
             <Griditem1>
-
+                    <Img src={logo}/>
             </Griditem1>
             <Griditem2>
                 <Navbartitle>Bolsa de Santiago</Navbartitle>
             </Griditem2>
             <Griditem3>
-                <Navbarusuario>
-                    <p>NOMBRE DE USUARIO</p>
+                    <p>Nombre usuario</p>
+                    <Img2 src={cierre_sesion}/>
 
-
-                </Navbarusuario>
             </Griditem3>
 
         </Gridcontainer>

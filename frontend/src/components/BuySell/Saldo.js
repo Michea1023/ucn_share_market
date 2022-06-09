@@ -25,12 +25,13 @@ export default  class Saldos extends Component{
     render(){
         return(
             <GridSaldos>
+
                 <A>
-                    <h4>Saldo Total:</h4>
+                    <h4>Saldo total:</h4>
                     <p>$0</p>
                 </A>
                 <A>
-                    <h4>Saldo Disponible:</h4>
+                    <h4>Saldo disponible:</h4>
                     <p>$0</p>
                 </A>
 

@@ -22,16 +22,17 @@ export default class Rentabilidad extends Component{
     render(){
         return(
             <GridRentabilidad>
+
                 <A>
-                    <h4>30 dias</h4>
+                    <h4>30 días</h4>
                     <p>10%</p>
                 </A>
                 <A>
-                    <h4>90 dias:</h4>
+                    <h4>90 días:</h4>
                     <p>50%</p>
                 </A>
                 <A>
-                    <h4>365 dias</h4>
+                    <h4>365 días</h4>
                     <p>-100%</p>
                 </A>
 

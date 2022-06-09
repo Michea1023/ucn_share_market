@@ -26,6 +26,7 @@ export default class App extends Component {
                     <Route path="/register" exact component={Register} />
                     <Route path="/home" exact component ={HomePage} />
                     <Route path="/buysell" exact component={BuySell} />
+                    <Route path="/admin" exact component={} />
 
                 </Switch>
             </BrowserRouter>
