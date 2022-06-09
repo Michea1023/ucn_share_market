@@ -46,8 +46,9 @@ class UserRegisterView(APIView):
     serializer_class = AccountSerializer
 
     def post(self, request, format=None):
-        serializer = self.serializer_class(data=request.data)
-        print(serializer.data)
+        serializer1 = User(data=request.data)
+        if serializer1.is_valid():
+            print(serializer1)
 
 
 class GetShare(APIView):
