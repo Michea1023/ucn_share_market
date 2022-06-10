@@ -3,6 +3,36 @@ import AccionesPrecios from "../components/HomePage/AccionesPrecios";
 import ResumenUsuario from "../components/HomePage/ResumenUsuario";
 import BarraPrincipal from "../components/NavBar/BarraPrincipal";
 import BarraSecundaria from "../components/NavBar/BarraSecundaria";
+import styled from "styled-components";
+
+const GridPrincipal = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 60px 60px 60vh 60vh;
+    grid-template-areas: 
+    "nav nav"
+    "nav2 nav2"
+    "Acciones1 Resumen2"
+    
+`;
+const Grid1 = styled.div`
+    grid-area: nav;
+`;
+const Grid2 = styled.div`
+    grid-area: nav2;
+`;
+const Grid3 = styled.div`
+    grid-area: Acciones1;   
+    justify-self:center;
+    align-self:center;
+`;
+const Grid4 = styled.div`
+    grid-area: Resumen2;
+    justify-self:center;
+    align-self:center;
+`;
+
+
 
 export default class HomePage extends Component{
     constructor(props) {
@@ -10,21 +40,21 @@ export default class HomePage extends Component{
     }
     render() {
         return(
-            <div className="grid-home-page">
-                <div className="grid-home-page1">
+            <GridPrincipal>
+                <Grid1>
                     <BarraPrincipal />
-                </div>
-                <div className="grid-home-page2">
+                </Grid1>
+                <Grid2>
                     <BarraSecundaria />
-                </div>
-                <div className="grid-home-page3">
+                </Grid2>
+                <Grid3>
                     <AccionesPrecios />
-                </div>
-                <div className="grid-home-page4">
+                </Grid3>
+                <Grid4>
                     <ResumenUsuario />
-                </div>
+                </Grid4>
 
-            </div>
+            </GridPrincipal>
         )
     }
 
