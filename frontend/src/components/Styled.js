@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+
+export const Titulo = styled.h4`
+    justify-self: center;
+`;
+
+
 export const Form = styled.form`
     display: table;
 `;

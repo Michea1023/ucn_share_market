@@ -8,9 +8,9 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import HomePage from "./Pages/HomePage";
 import BuySell from "./Pages/BuySell";
-import UserProfile from "./Pages/UserProfile";
 //import PageNotFound from "./Pages/PageNotFound";
 import Admin from "./Pages/Admin";
+import UserProfile from "./Pages/UserProfile";
 
 
 export default class App extends Component {
@@ -27,6 +27,7 @@ export default class App extends Component {
                     <Route path="/home" exact component ={HomePage} />
                     <Route path="/buysell" exact component={BuySell} />
                     <Route path="/admin" exact component={Admin} />
+                    <Route path="/profile" exact component={UserProfile}/>
 
 
                 </Switch>

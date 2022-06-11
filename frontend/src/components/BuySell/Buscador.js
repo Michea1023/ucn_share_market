@@ -24,6 +24,14 @@ const Input = styled.input`
     border:0;
     background-image: url(../../../static/images/1086933.png)  scroll 7px 7px;
 `;
+const Option = styled.option`
+    width: 50px;
+`;
+const Datalist = styled.datalist`
+    width:50px;
+`;
+
+
 
 export default class Buscador extends Component{
     constructor (props){
@@ -42,8 +50,8 @@ export default class Buscador extends Component{
                     </B>
                     <B>
                        <datalist id = "acciones">
-                            <option>LTM</option>
-                            <option>CGE</option>
+                            <Option>LTM</Option>
+                            <Option>CGE</Option>
                         </datalist>
                         <Input type= "text" list = "acciones"/>
                     </B>
