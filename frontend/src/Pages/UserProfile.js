@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, {Component} from "react";
+import styled from "styled-components";
 import BarraPrincipal from "../components/NavBar/BarraPrincipal";
 // todo esto es por mientras
 import BarraSecundaria from '../components/NavBar/BarraSecundaria';
@@ -7,25 +7,62 @@ import OrdenesActivas from '../components/UserPage/OrdenesActivas';
 import HistorialTransac from '../components/UserPage/HistorialTransac';
 import Activos from '../components/UserPage/Activos';
 
-export default function UserProfile(){
-    return(
-        <div className='grid-usuario'>
-            <div className='grid-usuario1'>
+const GridUsuario = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 60px 60px 60px 70vh;
+    grid-template-areas:
+    "nav nav nav"
+    "nav2 nav2 nav2"
+    "titulo titulo titulo"
+    "area1 area2 area3";
+`;
+const GridNav = styled.div`
+    grid-area: nav;
+`;
+const GridNavS = styled.div`
+    grid-area: nav2;
+`;
+const GridTitulo = styled.h3`
+    grid-area: titulo;
+    justify-self:center;
+`;
+const GridArea1 = styled.div`
+    grid-area: area1;
+    
+`;
+const GridArea2 = styled.div`
+    grid-area: area2;
+`;
+const GridArea3 = styled.div`
+    grid-area: area3;
+`;
+
+
+
+
+export default class UserProfile extends Component{
+    render(){
+        return(
+        <GridUsuario>
+            <GridNav>
                 <BarraPrincipal />
-            </div>
-            <div className='grid-usuario2'>
+            </GridNav>
+            <GridNavS>
                 <BarraSecundaria />
-            </div>
-            <h3 className='grid-usuario3'>Perfil Usuario</h3>
-            <div className='grid-usuario4'>
-                <OrdenesActivas />
-            </div>
-            <div className='grid-usuario5'>
-                <HistorialTransac />
-            </div>
-            <div className='grid-usuario6'>
-                <Activos />
-            </div>
-        </div>
+            </GridNavS>
+            <GridTitulo>Perfil Usuario</GridTitulo>
+            <GridArea1>
+                <Activos/>
+            </GridArea1>
+            <GridArea2>
+                <p>Hola</p>
+            </GridArea2>
+            <GridArea3>
+                <p>Hola</p>
+            </GridArea3>
+        </GridUsuario>
     )
+    }
+
 }

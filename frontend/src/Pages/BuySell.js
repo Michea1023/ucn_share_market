@@ -70,7 +70,7 @@ export default class BuySell extends Component{
                     <Rentabilidad />
                 </Grid5>
                 <Grid6>
-                    <Venta />
+                    <Compra/>
                 </Grid6>
 
 

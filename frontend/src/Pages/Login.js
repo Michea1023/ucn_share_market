@@ -25,7 +25,7 @@ const avatar  = styled.div`
 
 const Gridlogin1 = styled.div`
   width: 380px;
-  height: 490px;
+  height: 50vh;
   background:#E1F1F9 ;
   top: 50%;
   left: 50%;
@@ -100,7 +100,7 @@ const Submit1 = styled.input`
   border: none;
   outline: none;
   height: 40px;
-  
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
   background: blue;
   color: white;
   font-size: 18px;
@@ -138,7 +138,7 @@ export default class Login extends Component{
 
                     <H1>Inicio de sesión</H1>
                     <form>
-                        <Label1>Nombre de usuario</Label1>
+                        <Label1>Rut de usuario</Label1>
                         <Text1 placeholder="Ingrese usuario"></Text1>
 
                         <Label1>Contraseña</Label1>
