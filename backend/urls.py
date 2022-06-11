@@ -6,4 +6,5 @@ urlpatterns = [
     path('create-share', CreateShareView.as_view()),
     path('get-share', GetShare.as_view()),
     path('create-user', UserRegisterView.as_view()),
+    path('services', ExternalApi.as_view())
 ]

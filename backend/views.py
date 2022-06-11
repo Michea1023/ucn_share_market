@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
@@ -5,6 +6,8 @@ from rest_framework import generics, status
 from .serializers import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from bolsa.consultas import ConsultasAPI
+import json
 
 # Create your views here.
 class AccountView(generics.ListAPIView):
@@ -63,3 +66,17 @@ class GetShare(APIView):
                 return Response(data, status=status.HTTP_200_OK)
             return Response({'Room Not Found': 'Invalid Room Code'}, status=status.HTTP_404_NOT_FOUND)
         return Response({'Bad Request': 'Code parameter not found in request'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ExternalApi(APIView):
+    # cargar la api key desde las variables de entorno del sistma
+    api_key = 'CC50A4DF46274CE79682FEA8A1A5B0F3'  #os.environ['API_BS']
+
+    # Creación de la instancia que manipulara las solicitudes a la API
+    con_bs = ConsultasAPI(token=api_key)
+
+    resp = con_bs.get_transacciones_rv()
+    print(resp)
+
+
+
