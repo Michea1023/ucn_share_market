@@ -1,12 +1,29 @@
-import React from "react";
+import React,{Component} from "react";
+import styled from "styled-components";
 
-export default function CompAccionesPrecios(){
-    return(
-        <div className="comp-acciones-precios">
+const Compaccionesprecios1= styled.div`
+  display: grid;
+  grid-template-columns: 20% 20% 40% 30%;
+  grid-template-rows: 30px;
+  height: 50px;
+
+`;
+export default class CompAccionesPrecios extends Component{
+
+    constructor(props) {
+        super(props);
+    }
+
+    render(){
+        return(
+        <Compaccionesprecios1>
             <p>LTM</p>
             <p>$127</p>
             <p>10%</p>
             <p>-150%</p>
-        </div>
+        </Compaccionesprecios1>
     )
+    }
+
+
 }

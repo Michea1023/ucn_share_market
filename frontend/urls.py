@@ -8,4 +8,6 @@ urlpatterns = [
     path('home', index),
     path('buysell', index),
     path('user', index),
+    path('profile', index),
+    path('admin', index)
 ]

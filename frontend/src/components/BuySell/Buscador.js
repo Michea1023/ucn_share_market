@@ -1,32 +1,37 @@
 import React,{Component} from "react";
 import styled from "styled-components";
+import buscar from "../../../static/images/1086933.png"
 
 const GridBuscador = styled.div`
-    width: 35vw;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas:
-    "area1 area1"
-    "area2 area3"
-    
+    width: 35vw;   
 `;
 const T1 = styled.div`
-    grid-area: area1;
-    align-self:center;
-    
-    
+    height:35px;  
 `;
-const T2 = styled.div`
-    grid-area: area2;
-    align-self:center;
+const T2 = styled.div`   
+    display:table-row;
+`;
+const B = styled.div`
+    display:table-cell;   
+`;
+const Input = styled.input`
+    display: table-cell;
+    margin: 10px;
+    border-radius:10px;
+    padding-top:10px;
+    padding-left:30px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
+    border:0;
+    background-image: url(../../../static/images/1086933.png)  scroll 7px 7px;
+`;
+const Option = styled.option`
+    width: 50px;
+`;
+const Datalist = styled.datalist`
+    width:50px;
 `;
 
-const T3 = styled.div`
-    grid-area: area3;
-    align-self:center;
-    
-`;
+
 
 export default class Buscador extends Component{
     constructor (props){
@@ -36,22 +41,22 @@ export default class Buscador extends Component{
     render(){
         return(
             <GridBuscador>
-
                 <T1>
                     <h2>Buscardor de acciones</h2>
                 </T1>
                 <T2>
-                    <p>Seleccione una accion</p>
+                    <B>
+                        <p>Seleccione una acción</p>
+                    </B>
+                    <B>
+                       <datalist id = "acciones">
+                            <Option>LTM</Option>
+                            <Option>CGE</Option>
+                        </datalist>
+                        <Input type= "text" list = "acciones"/>
+                    </B>
+
                 </T2>
-                <T3>
-                    <datalist id = "acciones">
-                        <option>LTM</option>
-                        <option>CGE</option>
-                    </datalist>
-                    <input type= "text" list = "acciones"/>
-                </T3>
-
-
             </GridBuscador>
         )
     }

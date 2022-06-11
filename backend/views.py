@@ -10,10 +10,6 @@ from bolsa.consultas import ConsultasAPI
 import json
 
 # Create your views here.
-class AccountView(generics.ListAPIView):
-    queryset = Account.objects.all()
-    serializer_class = AccountSerializer
-
 class ShareView(generics.CreateAPIView):
     queryset = Share.objects.all()
     serializer_class = ShareSerializer
@@ -26,8 +22,10 @@ class ShareView(generics.CreateAPIView):
             out[data['code']] = data
         return Response(out, status=status.HTTP_200_OK)
 
+
 class CreateShareView(APIView):
     serializer_class = ShareSerializer
+
     def post(self, request, format=None):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
@@ -43,14 +41,6 @@ class CreateShareView(APIView):
                 share.save(update_fields=['name'])
 
             return Response(ShareSerializer(share).data, status=status.HTTP_200_OK)
-
-
-class UserRegisterView(APIView):
-    serializer_class = AccountSerializer
-
-    def post(self, request, format=None):
-        serializer = self.serializer_class(data=request.data)
-        print(serializer.data)
 
 
 class GetShare(APIView):

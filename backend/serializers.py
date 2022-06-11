@@ -1,8 +1,9 @@
 from rest_framework import serializers
+from django.contrib.auth.models import User
 from .models import *
 
 # Model Serializer
-class AccountSerializer(serializers.ModelSerializer):
+"""class AccountSerializer(serializers.ModelSerializer):
     type_account = serializers.SerializerMethodField()
     career = serializers.SerializerMethodField()
 
@@ -15,7 +16,7 @@ class AccountSerializer(serializers.ModelSerializer):
 
     def get_career(self, obj):
         return obj.get_career_display()
-
+"""
 
 class ShareSerializer(serializers.ModelSerializer):
     class Meta:
@@ -36,7 +37,7 @@ class ShareAccountSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ('id', 'is_active', 'start_date', 'end_date')
+        fields = ('id', 'is_active', 'start_date', 'end_date', 'days_vigency')
 
 
 class OrderAccountSerializer(serializers.ModelSerializer):
@@ -56,6 +57,8 @@ class OrderAccountSerializer(serializers.ModelSerializer):
 
     def get_type_order(self, obj):
         return obj.get_type_order_display()
+
+
 
 # Creators
 """
