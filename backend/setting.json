@@ -1,0 +1,6 @@
+{
+  "maximum_value_transfer": 5000000,
+  "maximum_init_value": 20000000,
+  "variable_commission": 0.05,
+  "fixed_commission": 2500
+}
