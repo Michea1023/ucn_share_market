@@ -11,7 +11,7 @@ const Accionesprecios1 = styled.div`
   background-color: #A7CDD9;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
   margin:30px;
-  width: 50%; 
+  width: 100%; 
   padding-top: 20px ;
   border-radius: 20px;
     

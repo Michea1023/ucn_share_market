@@ -3,20 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="251093bc-1a89-49d0-a81b-87c9b9e194b1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/BuySell.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/BuySell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/UserProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Buscador.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Buscador.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/NavBar/BarraSecundaria.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NavBar/BarraSecundaria.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Styled.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Styled.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/ActivoAccion.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/ActivoAccion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/Activos.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/Activos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePage/AccionesPrecios.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePage/AccionesPrecios.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/node_modules_web-vitals_dist_web-vitals_js.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/node_modules_web-vitals_dist_web-vitals_js.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/node_modules_web-vitals_dist_web-vitals_js.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/node_modules_web-vitals_dist_web-vitals_js.js.LICENSE.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +68,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1654685199427</updated>
-      <workItem from="1654685205582" duration="1824000" />
+      <workItem from="1654685205582" duration="5184000" />
+      <workItem from="1654819770264" duration="9053000" />
     </task>
     <servers />
   </component>
