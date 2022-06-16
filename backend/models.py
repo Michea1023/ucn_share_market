@@ -4,11 +4,6 @@ from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager
 )
 
-ACCOUNT_CHOICES = (
-    ('A', 'admin'),
-    ('N', "normal"),
-)
-
 CAREER_CHOICES = (
     ('ICCI', "Ingenieria Civil en Informatica"),
     ('ICI', "Ingenieria Civil Industrial"),
@@ -92,9 +87,10 @@ class Share(models.Model):
 
 class Order(models.Model):
     is_active   = models.BooleanField(default=True)
+    waiting_share   = models.ForeignKey(Share, on_delete=models.CASCADE, null=True)
+    waiting_amount  = models.FloatField(null=True)
     start_date  = models.DateTimeField(auto_now_add=True)
     end_date    = models.DateTimeField(default=None)
-    vigency     = models.DateTimeField(default=None)
 
 
 class OrderAccount(models.Model):
@@ -105,6 +101,7 @@ class OrderAccount(models.Model):
     fixed_com   = models.FloatField(null=True) # Pesos
     variabl_com = models.FloatField(null=True) # Pesos
     type_order  = models.CharField(choices=ORDER_CHOICES, max_length=2, null=False)
+    vigency     = models.DateTimeField(default=None)
 
 
 class ShareAccount(models.Model):

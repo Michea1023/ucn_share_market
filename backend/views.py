@@ -1,6 +1,7 @@
 import os
-from django.shortcuts import render
-from django.contrib.auth.models import User, auth
+
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from rest_framework import generics, status
 from .serializers import *
@@ -10,6 +11,60 @@ from bolsa.consultas import ConsultasAPI
 import json
 
 # Create your views here.
+class RegisterView(APIView):
+    serializer_class = RegisterSerializer
+
+    def post(self, request, format=None):
+        data = request.POST
+        rut = data.get('rut')
+        password = data.get('password')
+        password2 = data.get('password2')
+        email = data.get('email')
+        full_name = data.get('full_name')
+        career = data.get('career')
+        if password == password2:
+            if Account.objects.filter(rut=rut).exists():
+                messages.info(request, 'Rut Already Used')
+                return redirect('../')
+            elif Account.objects.filter(email=email).exists():
+                messages.info(request, 'Email Already Used')
+                return redirect('../')
+            else:
+                user = Account.objects.create_user(rut, email, full_name, career=career, password=password)
+                user.save()
+                return Response(data, status=status.HTTP_201_CREATED)
+
+
+
+class LoginView(APIView):
+    serializer_class = LoginSerializer
+
+    def post(self, request, format=None):
+        rut = request.POST.get('rut')
+        password = request.POST.get('password')
+        user = authenticate(request, rut=rut, password=password)
+        if user is not None:
+            data = Account.objects.filter(rut=rut)[0]
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            return Response({"exception": "aaa"}, status=status.HTTP_404_NOT_FOUND)
+
+
+class SellView(APIView):
+    serializer_class = SellSerializer
+
+    def post(self, request, format=None):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            share   = serializer.data.get('share')
+            account = serializer.data.get('account')
+            amount  = serializer.data.get('amount')
+            vigency = serializer.data.get('vigency')
+            wtshare = serializer.data.get('waiting_share')
+            wtamnt  = serializer.data.get('waiting_amount')
+
+
+"""
 class ShareView(generics.CreateAPIView):
     queryset = Share.objects.all()
     serializer_class = ShareSerializer
@@ -67,6 +122,4 @@ class ExternalApi(APIView):
 
     resp = con_bs.get_transacciones_rv()
     print(resp)
-
-
-
+"""

@@ -3,20 +3,28 @@ from django.contrib.auth.models import User
 from .models import *
 
 # Model Serializer
-"""class AccountSerializer(serializers.ModelSerializer):
-    type_account = serializers.SerializerMethodField()
-    career = serializers.SerializerMethodField()
+class RegisterSerializer(serializers.ModelSerializer):
+    password2   = serializers.CharField(style={'input_type': 'password'}, write_only=True)
 
     class Meta:
-        model = Account
-        fields = ('user', 'mail', 'type_account', 'name', 'last_name', 'career', 'is_blocked')
+        model   = Account
+        fields  = ('rut', 'password', 'password2', 'email', 'full_name', 'career', 'timestamp')
+        extra_kwargs    = {
+            'password': {'write_only': True}
+        }
 
-    def get_type_account(self, obj):
-        return obj.get_type_account_display()
+class LoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model   = Account
+        fields  = ('rut', 'password')
 
-    def get_career(self, obj):
-        return obj.get_career_display()
-"""
+class SellSerializer(serializers.ModelSerializer):
+    waiting_share   = serializers.CharField(max_length=15)
+    waiting_amount  = serializers.FloatField()
+
+    class Meta:
+        model   = OrderAccount
+        fields  = ('id', 'share', 'account', 'amount', 'vigency', 'waiting_share', 'waiting_amount')
 
 class ShareSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,45 +33,18 @@ class ShareSerializer(serializers.ModelSerializer):
 
 
 class ShareAccountSerializer(serializers.ModelSerializer):
-    share = serializers.SerializerMethodField()
-
     class Meta:
         model = ShareAccount
         fields = ('id', 'account', 'share', 'code', 'amount')
 
-    def get_share(self, obj):
-        return ShareSerializer(obj.item).data
 
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ('id', 'is_active', 'start_date', 'end_date', 'days_vigency')
+        fields = ('id', 'is_active', 'transfer_date')
 
 
 class OrderAccountSerializer(serializers.ModelSerializer):
-    order = serializers.SerializerMethodField()
-    share = serializers.SerializerMethodField()
-    type_order = serializers.SerializerMethodField()
-
     class Meta:
         model = OrderAccount
         fields = ('id', 'order', 'share', 'account', 'amount', 'type_order')
-
-    def get_order(self, obj):
-        return OrderSerializer(obj.order).data
-
-    def get_share(self, obj):
-        return ShareSerializer(obj.item).data
-
-    def get_type_order(self, obj):
-        return obj.get_type_order_display()
-
-
-
-# Creators
-"""
-class CreateAccountSerializer(serializers.ModelSerializer):
-    class Meta:
-        
-    
-"""
