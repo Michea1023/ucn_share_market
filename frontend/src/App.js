@@ -1,5 +1,4 @@
-//import '../static/css/App.css';
-//import "../static/css/AppMobile.css"
+
 import React, { Component } from "react";
 import { render } from "react-dom";
 import {BrowserRouter as Router, Switch, Route, Link, Redirect, BrowserRouter} from "react-router-dom";
@@ -11,6 +10,8 @@ import BuySell from "./Pages/BuySell";
 //import PageNotFound from "./Pages/PageNotFound";
 import Admin from "./Pages/Admin";
 import UserProfile from "./Pages/UserProfile";
+import {AuthProvider} from "./context/AuthContext";
+import BarraPrincipal from "./components/NavBar/BarraPrincipal";
 
 
 export default class App extends Component {
@@ -20,8 +21,9 @@ export default class App extends Component {
 
     render() {
         return (
-            <BrowserRouter>
-                <Switch>
+            <Router>
+                <AuthProvider>
+                    <Switch>
                     <Route path="/" exact component={Login} />
                     <Route path="/register" exact component={Register} />
                     <Route path="/home" exact component ={HomePage} />
@@ -29,9 +31,10 @@ export default class App extends Component {
                     <Route path="/admin" exact component={Admin} />
                     <Route path="/profile" exact component={UserProfile}/>
 
+                    </Switch>
+                </AuthProvider>
 
-                </Switch>
-            </BrowserRouter>
+            </Router>
         );
     }
   }
