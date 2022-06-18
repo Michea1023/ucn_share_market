@@ -3,7 +3,7 @@ from .views import *
 
 urlpatterns = [
     #path('share', ShareView.as_view()),
-    #path('create-share', CreateShareView.as_view()),
+    path('create-share', CreateShareView.as_view()),
     #path('get-share', GetShare.as_view()),
     path('create-user', RegisterView.as_view()),
     path('sell-share', SellView.as_view()),

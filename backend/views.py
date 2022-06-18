@@ -1,14 +1,19 @@
 import os
-
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from rest_framework import generics, status
+from .settings import *
 from .serializers import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from bolsa.consultas import ConsultasAPI
 import json
+
+def share_account_code(share: str, account: str) -> str:
+    return str(share)+str(account)
+
+
 
 # Create your views here.
 class RegisterView(APIView):
@@ -22,6 +27,7 @@ class RegisterView(APIView):
         email = data.get('email')
         full_name = data.get('full_name')
         career = data.get('career')
+        staff = data.get('staff')
         if password == password2:
             if Account.objects.filter(rut=rut).exists():
                 messages.info(request, 'Rut Already Used')
@@ -30,9 +36,31 @@ class RegisterView(APIView):
                 messages.info(request, 'Email Already Used')
                 return redirect('../')
             else:
-                user = Account.objects.create_user(rut, email, full_name, career=career, password=password)
-                user.save()
-                return Response(data, status=status.HTTP_201_CREATED)
+                if (staff):
+                    user = Account.objects.create_staffuser(rut, email, full_name, password=password)
+                else:
+                    user = Account.objects.create_user(rut, email, full_name, career=career, password=password)
+                share = Share.objects.filter(code='CLP')[0]
+                account_share = ShareAccount(
+                    account=user,
+                    share=share,
+                    code=lambda rut: share_account_code('CLP', rut),
+                    amount=MAXIMUM_INIT_VALUE
+                )
+                account_share.save()
+                response = {
+                    'rut': rut,
+                    'email': email,
+                    'full_name': full_name,
+                    'career': user.career
+                        if career is not None or career != '' else None,
+                    'staff': staff if staff else None,
+                    'active': True,
+                    'share': {
+                        account_share.share.code: account_share.amount
+                    } if not staff else None
+                }
+                return Response(response, status=status.HTTP_201_CREATED)
 
 
 
@@ -44,10 +72,24 @@ class LoginView(APIView):
         password = request.POST.get('password')
         user = authenticate(request, rut=rut, password=password)
         if user is not None:
-            data = Account.objects.filter(rut=rut)[0]
-            return Response(data, status=status.HTTP_200_OK)
+            account = Account.objects.filter(rut=rut)[0]
+            account_share = ShareAccount.objects.filter(account=account).values_list('share', 'amount')
+            response = {
+                'rut': account.rut,
+                'email': account.email,
+                'full_name': account.full_name,
+                'career': account.career
+                if account.career is not None or account.career != '' else None,
+                'staff': account.staff if account.staff else None,
+                'active': True,
+                'share': [
+                    [Share.objects.get(id=share).code, amount] for share, amount in account_share
+                ] if not account.staff else None
+            }
+
+            return Response(response, status=status.HTTP_200_OK)
         else:
-            return Response({"exception": "aaa"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"exception": "User not registered"}, status=status.HTTP_404_NOT_FOUND)
 
 
 class SellView(APIView):
@@ -55,6 +97,7 @@ class SellView(APIView):
 
     def post(self, request, format=None):
         serializer = self.serializer_class(data=request.data)
+        print(serializer)
         if serializer.is_valid():
             share   = serializer.data.get('share')
             account = serializer.data.get('account')
@@ -62,6 +105,13 @@ class SellView(APIView):
             vigency = serializer.data.get('vigency')
             wtshare = serializer.data.get('waiting_share')
             wtamnt  = serializer.data.get('waiting_amount')
+            response = {
+                'share': share,
+                'amount': amount,
+                'waiting_share': wtshare,
+                'waiting_amount': wtamnt
+            }
+            return Response(response, status=status.HTTP_200_OK)
 
 
 """
@@ -77,7 +127,7 @@ class ShareView(generics.CreateAPIView):
             out[data['code']] = data
         return Response(out, status=status.HTTP_200_OK)
 
-
+"""
 class CreateShareView(APIView):
     serializer_class = ShareSerializer
 
@@ -96,7 +146,7 @@ class CreateShareView(APIView):
                 share.save(update_fields=['name'])
 
             return Response(ShareSerializer(share).data, status=status.HTTP_200_OK)
-
+"""
 
 class GetShare(APIView):
     serializer_class = ShareSerializer
