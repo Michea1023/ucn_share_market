@@ -3,6 +3,9 @@ import requests
 from typing import Dict
 import logging
 
+from rest_framework.views import APIView
+
+
 class ConsultasAPI(object):
     """
   MARKET DATA
@@ -70,7 +73,8 @@ class ConsultasAPI(object):
 
         if resp.status_code == 200:
             if 'listaResult' in resp.json().keys():
-                return resp.json()['listaResult'][0]['price']
+                print(type(resp),"xd")
+                return resp.json()['listaResult']
             else:
                 return resp.json()
         else:
@@ -173,3 +177,16 @@ class ConsultasAPI(object):
 
         self.__endpoint_builder("ClienteMD/getTransaccionesRV")
         return self.__handle_response()
+
+
+class ExternalApi(APIView):
+    # cargar la api key desde las variables de entorno del sistma
+    api_key = '4A9C8F3D75CB4D48AE30E620A7FFF5BE'  # os.environ['API_BS']
+
+    # Creación de la instancia que manipulara las solicitudes a la API
+    con_bs = ConsultasAPI(token=api_key)
+    resp = con_bs.get_transacciones_rv()
+    for sub in resp:
+        for key,value in sub.items():
+            if(key == 'amount'):
+                print(value)

@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from bolsa.consultas import ConsultasAPI
 import json
 
+
 # Create your views here.
 class RegisterView(APIView):
     serializer_class = RegisterSerializer
@@ -35,7 +36,6 @@ class RegisterView(APIView):
                 return Response(data, status=status.HTTP_201_CREATED)
 
 
-
 class LoginView(APIView):
     serializer_class = LoginSerializer
 
@@ -56,12 +56,12 @@ class SellView(APIView):
     def post(self, request, format=None):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
-            share   = serializer.data.get('share')
+            share = serializer.data.get('share')
             account = serializer.data.get('account')
-            amount  = serializer.data.get('amount')
+            amount = serializer.data.get('amount')
             vigency = serializer.data.get('vigency')
             wtshare = serializer.data.get('waiting_share')
-            wtamnt  = serializer.data.get('waiting_amount')
+            wtamnt = serializer.data.get('waiting_amount')
 
 
 """
@@ -111,15 +111,8 @@ class GetShare(APIView):
                 return Response(data, status=status.HTTP_200_OK)
             return Response({'Room Not Found': 'Invalid Room Code'}, status=status.HTTP_404_NOT_FOUND)
         return Response({'Bad Request': 'Code parameter not found in request'}, status=status.HTTP_400_BAD_REQUEST)
-
-
-class ExternalApi(APIView):
-    # cargar la api key desde las variables de entorno del sistma
-    api_key = 'CC50A4DF46274CE79682FEA8A1A5B0F3'  #os.environ['API_BS']
-
-    # Creación de la instancia que manipulara las solicitudes a la API
-    con_bs = ConsultasAPI(token=api_key)
-
-    resp = con_bs.get_transacciones_rv()
-    print(resp)
 """
+
+
+
+
