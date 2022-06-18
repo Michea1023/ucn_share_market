@@ -30,7 +30,7 @@ class AccountManager(BaseUserManager):
         user_obj.career = career
         user_obj.staff  = is_staff
         user_obj.admin  = is_admin
-        user_obj.active = is_active
+        user_obj.active = is_active #Blocked
         user_obj.save(using=self.db)
         return user_obj
 
@@ -81,13 +81,15 @@ class Account(AbstractBaseUser):
 
 
 class Share(models.Model):
-    code        = models.CharField(max_length=15, null=False, unique=True, primary_key=True)
+    code        = models.CharField(max_length=15, null=False, unique=True)
     name        = models.TextField(null=True)
+
 
 
 class Order(models.Model):
     is_active   = models.BooleanField(default=True)
     waiting_share   = models.ForeignKey(Share, on_delete=models.CASCADE, null=True)
+    waiting_price   = models.FloatField(null=True)
     waiting_amount  = models.FloatField(null=True)
     start_date  = models.DateTimeField(auto_now_add=True)
     end_date    = models.DateTimeField(default=None)
@@ -97,7 +99,8 @@ class OrderAccount(models.Model):
     order       = models.ForeignKey(Order, on_delete=models.CASCADE)
     share       = models.ForeignKey(Share, on_delete=models.CASCADE)
     account     = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
-    amount      = models.FloatField()
+    price_unary = models.FloatField(null=True)
+    amount      = models.FloatField(null=True)
     fixed_com   = models.FloatField(null=True) # Pesos
     variabl_com = models.FloatField(null=True) # Pesos
     type_order  = models.CharField(choices=ORDER_CHOICES, max_length=2, null=False)

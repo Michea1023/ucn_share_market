@@ -8,7 +8,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model   = Account
-        fields  = ('rut', 'password', 'password2', 'email', 'full_name', 'career', 'timestamp')
+        fields  = ('rut', 'password', 'password2', 'email', 'full_name', 'career', 'staff', 'timestamp')
         extra_kwargs    = {
             'password': {'write_only': True}
         }
