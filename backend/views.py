@@ -30,11 +30,13 @@ class RegisterView(APIView):
         staff = data.get('staff')
         if password == password2:
             if Account.objects.filter(rut=rut).exists():
-                messages.info(request, 'Rut Already Used')
-                return redirect('../')
+                return Response({
+                    "exception": "Rut already used"
+                }, status=status.HTTP_406_NOT_ACCEPTABLE)
             elif Account.objects.filter(email=email).exists():
-                messages.info(request, 'Email Already Used')
-                return redirect('../')
+                return Response({
+                    "exception": "Email already used"
+                }, status=status.HTTP_406_NOT_ACCEPTABLE)
             else:
                 if (staff):
                     user = Account.objects.create_staffuser(rut, email, full_name, password=password)
@@ -53,7 +55,7 @@ class RegisterView(APIView):
                     'email': email,
                     'full_name': full_name,
                     'career': user.career
-                        if career is not None or career != '' else None,
+                        if career is not None and career != '' else None,
                     'staff': staff if staff else None,
                     'active': True,
                     'share': {
@@ -73,21 +75,29 @@ class LoginView(APIView):
         user = authenticate(request, rut=rut, password=password)
         if user is not None:
             account = Account.objects.filter(rut=rut)[0]
-            account_share = ShareAccount.objects.filter(account=account).values_list('share', 'amount')
-            response = {
-                'rut': account.rut,
-                'email': account.email,
-                'full_name': account.full_name,
-                'career': account.career
-                if account.career is not None or account.career != '' else None,
-                'staff': account.staff if account.staff else None,
-                'active': True,
-                'share': [
-                    [Share.objects.get(id=share).code, amount] for share, amount in account_share
-                ] if not account.staff else None
-            }
+            if account.active:
+                account_share = ShareAccount.objects.filter(account=account).values_list('share', 'amount')
+                response = {
+                    'rut': account.rut,
+                    'email': account.email,
+                    'full_name': account.full_name,
+                    'career': account.career
+                    if account.career is not None and account.career != '' else None,
+                    'staff': account.staff if account.staff else None,
+                    'active': True,
+                    'share': {
+                        {
+                            "code": Share.objects.get(id=share).code,
+                            "amount": amount
+                        } for share, amount in account_share
+                    } if not account.staff else None
+                }
 
-            return Response(response, status=status.HTTP_200_OK)
+                return Response(response, status=status.HTTP_200_OK)
+            else:
+                return Response({
+                    "exception": "User is blocked"
+                }, status=status.HTTP_406_NOT_ACCEPTABLE)
         else:
             return Response({"exception": "User not registered"}, status=status.HTTP_404_NOT_FOUND)
 
@@ -112,6 +122,20 @@ class SellView(APIView):
                 'waiting_amount': wtamnt
             }
             return Response(response, status=status.HTTP_200_OK)
+
+class BlockView(APIView):
+    serializer_class = BlockSerializer
+
+    def post(self, request, format=None):
+        rut     = request.POST.get('rut')
+        block   = request.POST.get('block')
+        account = Account.objects.filter(rut=rut)[0]
+        account.active = not block
+        return Response({
+            "response": "blocked"
+        }, status=status.HTTP_200_OK)
+
+
 
 
 """
