@@ -127,19 +127,14 @@ class BlockView(APIView):
     serializer_class = BlockSerializer
 
     def post(self, request, format=None):
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            rut     = serializer.data.get('rut')
-            block   = serializer.data.get('block')
-            account = Account.objects.get(rut=rut)
-            account.active = not block
-            return Response({
-                "response": "blocked"
-            }, status=status.HTTP_200_OK)
-        else:
-            return Response({
-                "exception": "the request is invalid"
-            },)
+        rut     = request.POST.get('rut')
+        block   = request.POST.get('block')
+        account = Account.objects.filter(rut=rut)[0]
+        account.active = not block
+        return Response({
+            "response": "blocked"
+        }, status=status.HTTP_200_OK)
+
 
 
 

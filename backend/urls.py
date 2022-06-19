@@ -9,7 +9,7 @@ urlpatterns = [
     path('create-user', RegisterView.as_view()),
     path('sell-share', SellView.as_view()),
     path('login', LoginView.as_view()),
-    path('block-user', BlockView.as_view())
+    path('block-user', BlockView.as_view()),
     #path('get-share-by-account', ShareAccountView.as_view()),
     path('services', ExternalApi.as_view()),
 ]
