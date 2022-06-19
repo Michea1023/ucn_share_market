@@ -26,6 +26,14 @@ class SellSerializer(serializers.ModelSerializer):
         model   = OrderAccount
         fields  = ('id', 'share', 'account', 'amount', 'vigency', 'waiting_share', 'waiting_amount')
 
+class BlockSerializer(serializers.ModelSerializer):
+    block   = serializers.BooleanField() #Blockear == True, Desbloquear == False
+
+    class Meta:
+        model   = Account
+        fields  = ('rut', 'block')
+
+
 class ShareSerializer(serializers.ModelSerializer):
     class Meta:
         model = Share
