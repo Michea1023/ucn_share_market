@@ -26,26 +26,32 @@ export const AuthProvider = ({children}) => {
 
 
     const registerUser = async (rut, password, password2, email, full_name, career) => {
+        const data = {
+            rut,
+            password,
+            password2,
+            email,
+            full_name,
+            career
+        }
+
+        console.log(JSON.stringify(data))
+
+
         const response = await fetch("http://127.0.0.1:8000/api/create-user", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                rut,
-                password,
-                password2,
-                email,
-                full_name,
-                career
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Success:", data);
             })
-        });
-
-        if (response.status === 201) {
-            history.push("/login");
-        } else {
-            alert(response);
-        }
+            .catch((error) => {
+                console.log("Error:",(error))
+            })
     };
 
 

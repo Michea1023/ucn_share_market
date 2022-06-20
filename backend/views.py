@@ -20,7 +20,7 @@ class RegisterView(APIView):
     serializer_class = RegisterSerializer
 
     def post(self, request, format=None):
-        data = request.POST
+        data = json.loads(request.body.decode('utf-8'))
         rut = data.get('rut')
         password = data.get('password')
         password2 = data.get('password2')

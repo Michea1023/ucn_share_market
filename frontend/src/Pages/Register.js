@@ -99,14 +99,17 @@ export default function Register(){
                 <BarraPrincipal></BarraPrincipal>
             </div>
             <Gridregister>
-                <H4>Formulario Registro</H4>
+                <H4>Crear cuenta</H4>
                 <Form onSubmit={handleSubmit}>
-                    <Controls type="text" name="rut" id="rut" placeholder="Ingrese su rut" onChange={e => setRut(e.target.value)}></Controls>
-                    <Controls type="text" name="nombres" id="nombres" placeholder="Ingrese el nombre completo" onChange={e => setFull_name(e.target.value)}></Controls>
-                    <Controls type="text" name="carrera" id="career" placeholder="Ingrese su carrera" onChange={e => setCareer(e.target.value)}></Controls>
-                    <Controls type="email" name="correo" id="email" placeholder="Ingrese el correo institucional" onChange={e => setEmail(e.target.value)}></Controls>
-                    <Controls type="password" name="contraseña" id="password" placeholder="Ingrese su contraseña" onChange={e => setPassword(e.target.value)}></Controls>
-                    <Controls type="password" name="contraseña" id="password2" placeholder="Reingrese su contraseña" onChange={e => setPassword2(e.target.value)}></Controls>
+                    <Controls type="text" name="rut" id="rut" placeholder="Rut" onChange={e => setRut(e.target.value)} required></Controls>
+                    <Controls type="text" name="nombres" id="nombres" placeholder="Nombre completo" onChange={e => setFull_name(e.target.value)} required></Controls>
+                    <Controls type="text" name="carrera" id="career" placeholder="Carrera" onChange={e => setCareer(e.target.value)} required></Controls>
+                    <Controls type="email" name="correo" id="email" placeholder="Correo institucional" onChange={e => setEmail(e.target.value)} required></Controls>
+                    <Controls type="password" name="contraseña" id="password" placeholder="Contraseña" onChange={e => setPassword(e.target.value)} required></Controls>
+                    <>
+                        <Controls type="password" name="contraseña" id="password2" placeholder="Repetir contraseña" onChange={e => setPassword2(e.target.value)} required></Controls>
+                        <p>{password2 !== password ? "xd" : ""}</p>
+                    </>
 
 
                     <Submit1 type ="submit" value ="Registrarse"></Submit1>
