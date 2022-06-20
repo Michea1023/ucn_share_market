@@ -58,9 +58,12 @@ class RegisterView(APIView):
                         if career is not None and career != '' else None,
                     'staff': staff if staff else None,
                     'active': True,
-                    'share': {
-                        account_share.share.code: account_share.amount
-                    } if not staff else None
+                    'share': [
+                        {
+                            'code': account_share.share.code,
+                            'amount': account_share.amount
+                        }
+                    ] if not staff else None
                 }
                 return Response(response, status=status.HTTP_201_CREATED)
 
@@ -85,12 +88,12 @@ class LoginView(APIView):
                     if account.career is not None and account.career != '' else None,
                     'staff': account.staff if account.staff else None,
                     'active': True,
-                    'share': {
+                    'share': [
                         {
                             "code": Share.objects.get(id=share).code,
                             "amount": amount
                         } for share, amount in account_share
-                    } if not account.staff else None
+                    ] if not account.staff else None
                 }
 
                 return Response(response, status=status.HTTP_200_OK)
