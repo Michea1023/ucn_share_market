@@ -24,6 +24,28 @@ export const AuthProvider = ({children}) => {
 
     const history = useHistory();
 
+    const loginUser = async (username, password) => {
+        const response = await fetch("http://127.0.0.1:8000/api/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+             },
+            body: JSON.stringify({
+                username,
+                password
+            })
+        });
+        const data = await response.json();
+
+        if (response.status === 200) {
+            setAuthTokens(data);
+            setUser(jwt_decode(data.access));
+            localStorage.setItem("authTokens", JSON.stringify(data));
+            history.push("/home");
+        } else {
+            alert("Ups!");
+        }
+    };
 
     const registerUser = async (rut, password, password2, email, full_name, career) => {
         const data = {
@@ -37,7 +59,6 @@ export const AuthProvider = ({children}) => {
 
         console.log(JSON.stringify(data))
 
-
         const response = await fetch("http://127.0.0.1:8000/api/create-user", {
             method: "POST",
             headers: {
@@ -47,14 +68,13 @@ export const AuthProvider = ({children}) => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log("Success:", data);
+                alert("Registro exitoso")
+                history.push("/")
             })
             .catch((error) => {
                 console.log("Error:",(error))
             })
     };
-
-
 
     useEffect(() => {
         if (authTokens) {
@@ -69,6 +89,7 @@ export const AuthProvider = ({children}) => {
         authTokens,
         setAuthTokens,
         registerUser,
+        loginUser
     };
 
     return (
@@ -76,7 +97,6 @@ export const AuthProvider = ({children}) => {
           {loading ? null : children}
         </AuthContext.Provider>
     );
-
 };
 
 

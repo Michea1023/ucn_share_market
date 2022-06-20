@@ -2,6 +2,7 @@ import React, {Component, useContext, useState} from "react";
 import BarraPrincipal from "../components/NavBar/BarraPrincipal";
 import styled from "styled-components";
 import AuthContext from "../context/AuthContext";
+import {Submit1} from "../components/Styled";
 
 const GridPrincipal = styled.div`
     display:grid;
@@ -22,7 +23,7 @@ const Gridregister = styled.div`
   border-radius: 20px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
   a:hover{
-  color:white;
+  color:black;
   text-decoration: none;
   display:flex;
   flex-direction: column;
@@ -57,23 +58,18 @@ const P1 = styled.p`
   align-self: center;
 `;
 
-const Submit1 = styled.input`
-  width: 80%;
-  margin-bottom: 50px;
-  border: none;
-  outline: none;
-  height: 40px;
-  align-self: center;
-  background: blue;
-  color: white;
-  font-size: 18px;
-  border-radius: 20px;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
-`;
+
 
 const Form = styled.form`
     display: flex;
     flex-direction: column; 
+`
+
+const P = styled.p`
+    align-self: center;
+    color: red;
+    margin-top:0;
+    margin-button:25px;
 `;
 // Aca va las variables para el registro con la respectiva funcion
 
@@ -103,18 +99,26 @@ export default function Register(){
                 <Form onSubmit={handleSubmit}>
                     <Controls type="text" name="rut" id="rut" placeholder="Rut" onChange={e => setRut(e.target.value)} required></Controls>
                     <Controls type="text" name="nombres" id="nombres" placeholder="Nombre completo" onChange={e => setFull_name(e.target.value)} required></Controls>
-                    <Controls type="text" name="carrera" id="career" placeholder="Carrera" onChange={e => setCareer(e.target.value)} required></Controls>
+                    <>
+                        <datalist id="carreras">
+                            <option value="ICCI">Ingenieria Civil en Computacion e Informatica</option>
+                            <option value="ICI">Ingenieria Civil Industrial</option>
+                        </datalist>
+                        <Controls list="carreras"  type="text" name="carrera" id="career" placeholder="Carrera" onChange={e => setCareer(e.target.value)} required></Controls>
+                    </>
+
+
                     <Controls type="email" name="correo" id="email" placeholder="Correo institucional" onChange={e => setEmail(e.target.value)} required></Controls>
                     <Controls type="password" name="contraseña" id="password" placeholder="Contraseña" onChange={e => setPassword(e.target.value)} required></Controls>
                     <>
                         <Controls type="password" name="contraseña" id="password2" placeholder="Repetir contraseña" onChange={e => setPassword2(e.target.value)} required></Controls>
-                        <p>{password2 !== password ? "xd" : ""}</p>
+                        <P>{password2 !== password ? "Las contraseñas no coinciden" : ""}</P>
                     </>
 
 
                     <Submit1 type ="submit" value ="Registrarse"></Submit1>
                 </Form>
-                <P1><a href ="#">¿Ya tengo cuenta?</a></P1>
+                <P1><a href ="/">¿Ya tengo cuenta?</a></P1>
             </Gridregister>
 
 

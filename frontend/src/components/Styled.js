@@ -42,3 +42,28 @@ export const Button = styled.button`
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
     margin:10px;
 `;
+
+export const Submit1 = styled.input`
+  width: 80%;
+  margin-bottom: 50px;
+  border: none;
+  outline: none;
+  height: 40px;
+  align-self: center;
+  background: #A7CDD9;
+  color: #000000;
+  font-size: 18px;
+  border-radius: 20px;
+  text-align: center;
+  justify-self: center;
+  justify-items: center;
+  align-content: center;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
+  &:hover{
+    color: #4F5256;
+    cursor: pointer;
+  }
+  &:active{
+     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.262);
+  }
+`;
