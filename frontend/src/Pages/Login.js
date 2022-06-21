@@ -1,15 +1,16 @@
-import React, {Component} from "react";
+import React, {Component, useContext} from "react";
 import BarraPrincipal from "../components/NavBar/BarraPrincipal";
 //import logoucn from "../../static/images/logo-ucn.png";
 // iba en la linea 24
 //<!--<img className="avatar" src={logoucn} /*src="/img/logo-ucn.png"*/ alt="Logo de ucn"/>-->
 import styled from "styled-components";
+import {Submit1} from "../components/Styled";
+import AuthContext from "../context/AuthContext";
 
 const Gridlogin = styled.div`
-  display:flex;
-  flex-direction: column;
-  
-  
+  display:grid;
+  grid-template-columns: 1fr;
+  grid-templates-rows: 60px auto;
   width: 100vw;
 
 `;
@@ -24,13 +25,22 @@ const avatar  = styled.div`
 `;
 
 const Gridlogin1 = styled.div`
-  width: 380px;
+  grid-row: 2;
+  width: 30vw;
   height: 50vh;
   background:#E1F1F9 ;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%,-50%);
+  
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 70px auto;
+  grid-template-areas:
+  "a1"
+  "a2"
+  "a3";
+  
+  
+  justify-self: center;
+  margin:40px;
   padding: 70px 30px ;
   border-radius: 20px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
@@ -54,6 +64,7 @@ const H1 = styled.h1`
   padding:0 0 20px ;
   text-align: center;
   font-size: 22px;
+  grid-area: a1;
 
 `;
 
@@ -94,18 +105,6 @@ const Password1= styled.input`
   color: black;
   font-size:16px ;
 `;
-const Submit1 = styled.input`
-  width: 100%;
-  margin-bottom: 50px;
-  border: none;
-  outline: none;
-  height: 40px;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
-  background: blue;
-  color: white;
-  font-size: 18px;
-  border-radius: 20px;
-`;
 
 const A1 = styled.a`
   text-decoration: none;
@@ -118,46 +117,63 @@ const A1 = styled.a`
 }
 `;
 
-export default class Login extends Component{
-    constructor(props) {
-        super(props);
-    }
+const  Form = styled.form`
+    grid-area: a2;
+    text-align: center;
+`;
 
-    render(){
-        return (
-        <Gridlogin>
-            <div >
-                    <BarraPrincipal/>
+const B = styled.div`
+    grid-area: a3;
+`;
 
+export default function Login(){
 
-            </div>
-
-            <Gridlogin1>
-                    {/* <h1>Bienvenido UCN-SHARE-MARKET</h1> */}
-
-
-                    <H1>Inicio de sesión</H1>
-                    <form>
-                        <Label1>Rut de usuario</Label1>
-                        <Text1 placeholder="Ingrese usuario"></Text1>
-
-                        <Label1>Contraseña</Label1>
-                        <Password1 type ="password" placeholder="Ingrese contraseña"></Password1>
-
-                        <Submit1 type ="submit" value ="Iniciar sesión"></Submit1>
-
-                        <A1 href="#">¿Olvidastes tu contraseña?</A1><br>
-                        </br>
-                        <A1 href="#">¿No tienes una cuenta?</A1>
+    const { loginUser } = useContext(AuthContext);
+    const handleSubmit = e => {
+        e.preventDefault();
+        const rut = e.target.rut.value;
+        const password = e.target.password.value;
+        rut.length > 0 && loginUser(rut, password);
+    };
 
 
-                    </form>
-            </Gridlogin1>
 
 
-        </Gridlogin>
-    )
-    }
+    return (
+            <Gridlogin>
+                <div >
+                        <BarraPrincipal/>
 
 
+                </div>
+
+                <Gridlogin1>
+                        {/* <h1>Bienvenido UCN-SHARE-MARKET</h1> */}
+
+
+                        <H1>Inicio de sesión</H1>
+                        <Form>
+                            <Label1>Rut de usuario</Label1>
+                            <Text1 placeholder="Ingrese usuario" id="rut"></Text1>
+
+                            <Label1>Contraseña</Label1>
+                            <Password1 type ="password" placeholder="Ingrese contraseña" id="password"></Password1>
+
+                            <Submit1 type ="submit" value ="Iniciar sesión"></Submit1>
+
+
+
+
+                        </Form>
+                        <B>
+                            <A1 href="#">¿Olvidastes tu contraseña?</A1><br>
+                            </br>
+                            <A1 href="/register">¿No tienes una cuenta?</A1>
+                        </B>
+
+                </Gridlogin1>
+
+
+            </Gridlogin>
+        )
 }
