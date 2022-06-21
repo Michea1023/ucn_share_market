@@ -13,5 +13,9 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
+    <data-source name="db [2]" uuid="438ecad1-77d8-454e-ae72-7a00e37617c2">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" exact-version="0" />
+      <schema-mapping />
+    </data-source>
   </component>
 </project>

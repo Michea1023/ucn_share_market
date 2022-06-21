@@ -95,7 +95,6 @@ class LoginView(APIView):
                         } for share, amount in account_share
                     ] if not account.staff else None
                 }
-
                 return Response(response, status=status.HTTP_200_OK)
             else:
                 return Response({
@@ -105,26 +104,17 @@ class LoginView(APIView):
             return Response({"exception": "User not registered"}, status=status.HTTP_404_NOT_FOUND)
 
 
-class SellView(APIView):
-    serializer_class = SellSerializer
+class TransactionView(APIView):
+    serializer_class = TransactionSerializer
 
     def post(self, request, format=None):
         serializer = self.serializer_class(data=request.data)
-        print(serializer)
         if serializer.is_valid():
             share   = serializer.data.get('share')
             account = serializer.data.get('account')
             amount  = serializer.data.get('amount')
             vigency = serializer.data.get('vigency')
-            wtshare = serializer.data.get('waiting_share')
-            wtamnt  = serializer.data.get('waiting_amount')
-            response = {
-                'share': share,
-                'amount': amount,
-                'waiting_share': wtshare,
-                'waiting_amount': wtamnt
-            }
-            return Response(response, status=status.HTTP_200_OK)
+
 
 class BlockView(APIView):
     serializer_class = BlockSerializer
@@ -134,14 +124,12 @@ class BlockView(APIView):
         block   = request.POST.get('block')
         account = Account.objects.filter(rut=rut)[0]
         account.active = not block
+        account.save(update_fields=['active'])
         return Response({
-            "response": "blocked"
+            "response": "blocked" if block else "unblocked"
         }, status=status.HTTP_200_OK)
 
 
-
-
-"""
 class ShareView(generics.CreateAPIView):
     queryset = Share.objects.all()
     serializer_class = ShareSerializer
@@ -154,7 +142,7 @@ class ShareView(generics.CreateAPIView):
             out[data['code']] = data
         return Response(out, status=status.HTTP_200_OK)
 
-"""
+
 class CreateShareView(APIView):
     serializer_class = ShareSerializer
 
@@ -173,8 +161,33 @@ class CreateShareView(APIView):
                 share.save(update_fields=['name'])
 
             return Response(ShareSerializer(share).data, status=status.HTTP_200_OK)
-"""
 
+
+class CreateTransTableView(APIView):
+    serializer_class = TransTableSerializer
+
+    def post(self, request, format=None):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            share_buy = serializer.data.get('share_buy')
+            share_sell = serializer.data.get('share_sell')
+            queryset = TransactionTable.objects.filter(share_buy=share_buy, share_sell=share_sell)
+            qs_shb = Share.objects.filter(code=share_buy)
+            qs_shs = Share.objects.filter(code=share_sell)
+            if not queryset.exists() and qs_shb.exists() and qs_shs.exists():
+                trans_table = TransactionTable(share_buy=share_buy, share_sell=share_sell)
+                trans_table.save()
+            elif not qs_shb.exists() or not qs_shb.exists():
+                return Response({
+                    "exception": "No existe esa Accion"
+                }, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response({
+                "exception": "Envio mal su consulta"
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+"""
 class GetShare(APIView):
     serializer_class = ShareSerializer
     lookup_url_kwarg = 'code'
@@ -188,15 +201,4 @@ class GetShare(APIView):
                 return Response(data, status=status.HTTP_200_OK)
             return Response({'Room Not Found': 'Invalid Room Code'}, status=status.HTTP_404_NOT_FOUND)
         return Response({'Bad Request': 'Code parameter not found in request'}, status=status.HTTP_400_BAD_REQUEST)
-
-
-class ExternalApi(APIView):
-    # cargar la api key desde las variables de entorno del sistma
-    api_key = 'CC50A4DF46274CE79682FEA8A1A5B0F3'  #os.environ['API_BS']
-
-    # Creación de la instancia que manipulara las solicitudes a la API
-    con_bs = ConsultasAPI(token=api_key)
-
-    resp = con_bs.get_transacciones_rv()
-    print(resp)
 """

@@ -178,7 +178,7 @@ class ConsultasAPI(object):
         self.__endpoint_builder("ClienteMD/getTransaccionesRV")
         return self.__handle_response()
 
-
+"""
 class ExternalApi(APIView):
     # cargar la api key desde las variables de entorno del sistma
     api_key = '4A9C8F3D75CB4D48AE30E620A7FFF5BE'  # os.environ['API_BS']
@@ -190,3 +190,4 @@ class ExternalApi(APIView):
         for key,value in sub.items():
             if(key == 'amount'):
                 print(value)
+"""

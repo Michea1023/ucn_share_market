@@ -15,14 +15,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "nodejs_package_manager_path": "npm"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="ucn_share_market" type="Python.DjangoServer" factoryName="Django server">
       <module name="ucn_share_market" />
@@ -57,7 +58,9 @@
       <option name="presentableId" value="Default" />
       <updated>1655601003382</updated>
       <workItem from="1655601007143" duration="1108000" />
-      <workItem from="1655682961308" duration="297000" />
+      <workItem from="1655682961308" duration="5074000" />
+      <workItem from="1655689163460" duration="1250000" />
+      <workItem from="1655767622727" duration="4812000" />
     </task>
     <servers />
   </component>
