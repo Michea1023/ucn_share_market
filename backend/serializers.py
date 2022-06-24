@@ -18,12 +18,18 @@ class LoginSerializer(serializers.ModelSerializer):
         model   = Account
         fields  = ('rut', 'password')
 
+class AccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model   = Account
+        fields  = ('rut', 'full_name', 'career')
+
 class TransactionSerializer(serializers.ModelSerializer):
     share_buy   = serializers.CharField(max_length=15)
     share_sell  = serializers.CharField(max_length=15)
+    rut         = serializers.CharField(max_length=15)
     class Meta:
         model   = Transaction
-        fields  = ('account', 'trans_table', 'price', 'amount', 'type_order', 'vigency', 'share_buy', 'share_sell')
+        fields  = ('rut', 'price', 'amount', 'type_order', 'vigency', 'share_buy', 'share_sell')
 
 class BlockSerializer(serializers.ModelSerializer):
     block   = serializers.BooleanField() #Blockear == True, Desbloquear == False
@@ -37,12 +43,10 @@ class TransTableSerializer(serializers.ModelSerializer):
         model   = TransactionTable
         fields  = ('id', 'share_buy', 'share_sell')
 
-
 class ShareSerializer(serializers.ModelSerializer):
     class Meta:
         model = Share
         fields = ('code', 'name')
-
 
 class ShareAccountSerializer(serializers.ModelSerializer):
     class Meta:

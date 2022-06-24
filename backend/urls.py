@@ -9,8 +9,8 @@ urlpatterns = [
     path('create-user', RegisterView.as_view()),
     path('transaction', TransactionView.as_view()),
     path('login', LoginView.as_view()),
-    path('block-user', BlockView.as_view()),
     path('create-table', CreateTransTableView.as_view()),
+    path('control-users', ControlUsersView.as_view()),
     #path('get-share-by-account', ShareAccountView.as_view()),
     #path('services', ExternalApi.as_view()),
 ]

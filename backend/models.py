@@ -96,6 +96,7 @@ class TransactionTable(models.Model):
     def __str__(self):
         return f"{self.share_buy} - {self.share_sell}"
 
+
 class Transaction(models.Model):
     share   = models.ForeignKey(Share, on_delete=models.CASCADE, null=True)
     account = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
@@ -108,8 +109,8 @@ class Transaction(models.Model):
     variabl_com = models.FloatField(null=True)
     type_order  = models.CharField(choices=ORDER_CHOICES, max_length=2, null=False)
     start_date  = models.DateTimeField(auto_now_add=True)
-    vigency     = models.DateTimeField(default=None)
-    end_date    = models.DateTimeField(default=None)
+    vigency     = models.DateTimeField(default=None, null=True)
+    end_date    = models.DateTimeField(default=None, null=True)
 
     def get_commission(self):
         return self.fixed_com + self.variabl_com
