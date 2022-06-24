@@ -1,9 +1,12 @@
-import React, {Component} from "react";
+import React, {Component, useContext} from "react";
 import AccionesPrecios from "../components/HomePage/AccionesPrecios";
 import ResumenUsuario from "../components/HomePage/ResumenUsuario";
 import BarraPrincipal from "../components/NavBar/BarraPrincipal";
 import BarraSecundaria from "../components/NavBar/BarraSecundaria";
 import styled from "styled-components";
+import AuthContext from "../context/AuthContext";
+import Login from "./Login";
+import PageNotFound from "./PageNotFound";
 
 const GridPrincipal = styled.div`
     display: grid;
@@ -34,28 +37,32 @@ const Grid4 = styled.div`
 
 
 
-export default class HomePage extends Component{
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        return(
-            <GridPrincipal>
-                <Grid1>
-                    <BarraPrincipal />
-                </Grid1>
-                <Grid2>
-                    <BarraSecundaria />
-                </Grid2>
-                <Grid3>
-                    <AccionesPrecios />
-                </Grid3>
-                <Grid4>
-                    <ResumenUsuario />
-                </Grid4>
+export default function HomePage(){
+    const {user} = useContext(AuthContext);
 
-            </GridPrincipal>
-        )
-    }
+    return(
+        <div>
+           {user ?
+                (<GridPrincipal>
+            <Grid1>
+                <BarraPrincipal />
+            </Grid1>
+            <Grid2>
+                <BarraSecundaria />
+            </Grid2>
+            <Grid3>
+                <AccionesPrecios />
+            </Grid3>
+            <Grid4>
+                <ResumenUsuario />
+            </Grid4>
+
+        </GridPrincipal>)
+                    :
+                (<PageNotFound/>)}
+        </div>
+
+    )
+
 
 }

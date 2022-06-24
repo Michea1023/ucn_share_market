@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 const Navbarsecundario = styled.div`
   height: 60px;
@@ -13,33 +14,34 @@ const Navbarbutton = styled.div`
   margin: 5px 20px;
 `;
 
-const Buttonnavbar = styled.button`
+const Buttonnavbar = styled(Link)`
   height: 40px;
   background-color: rgba(255, 255, 255, 0.156);
   border-color: #a7cdd900;
   font-size: 20px;
   color: black;
+  text-decoration: none;
 `;
 
 
-export default class BarraSecundaria extends Component{
-    constructor(props) {
-        super(props);
-    }
-    render(){
+export default function BarraSecundaria(){
 
-        return(
-        <Navbarsecundario>
-            <Navbarbutton>
-                <Buttonnavbar>Perfil</Buttonnavbar>
-            </Navbarbutton>
-            <Navbarbutton>
-                <Buttonnavbar>Compra</Buttonnavbar>
-                <Buttonnavbar>Venta</Buttonnavbar>
-            </Navbarbutton>
-        </Navbarsecundario>
-    )
-    }
+    return(
+            <Navbarsecundario>
+                <Navbarbutton>
+                    <Buttonnavbar to="/home">Inicio</Buttonnavbar>
+                </Navbarbutton>
+                <Navbarbutton>
+                    <Buttonnavbar to="/profile">Perfil</Buttonnavbar>
+                </Navbarbutton>
+                <Navbarbutton>
+                    <Buttonnavbar to={'/buysell/buy'}>Compra</Buttonnavbar>
+                </Navbarbutton>
+                <Navbarbutton>
+                    <Buttonnavbar to={'/buysell/sell'}>Venta</Buttonnavbar>
+                </Navbarbutton>
+            </Navbarsecundario>
+        )
 
 
 

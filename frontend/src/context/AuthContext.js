@@ -8,44 +8,39 @@ export default AuthContext;
 
 export const AuthProvider = ({children}) => {
 
-    const [authTokens, setAuthTokens] = useState(() =>
-        localStorage.getItem("authTokens")
-            ? JSON.parse(localStorage.getItem("authTokens"))
-            : null
-    );
+  const [user, setUser] = useState(() =>
+    sessionStorage.getItem("authTokens")
+      ? jwt_decode(sessionStorage.getItem("authTokens"))
+      : null
+  );
 
-    const [user, setUser] = useState(() =>
-        localStorage.getItem("authTokens")
-            ? jwt_decode(localStorage.getItem("authTokens"))
-            : null
-    );
-
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const history = useHistory();
 
-    const loginUser = async (username, password) => {
-        const response = await fetch("http://127.0.0.1:8000/api/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-             },
-            body: JSON.stringify({
-                username,
-                password
-            })
-        });
-        const data = await response.json();
+    const loginUser = async (rut, password) => {
+    const response = await fetch("http://127.0.0.1:8000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        rut,
+        password
+      })
+    });
+    const data = await response.json();
 
-        if (response.status === 200) {
-            setAuthTokens(data);
-            setUser(jwt_decode(data.access));
-            localStorage.setItem("authTokens", JSON.stringify(data));
-            history.push("/home");
-        } else {
-            alert("Ups!");
-        }
-    };
+    if (response.status === 200) {
+      console.log(data.rut);
+      setUser(data);
+      sessionStorage.setItem("rut",data.rut);
+      data.staff ? history.push("/admin") : history.push("/home")
+      ;
+    } else {
+      alert("Contraseña invalida");
+    }
+  };
 
     const registerUser = async (rut, password, password2, email, full_name, career) => {
         const data = {
@@ -68,29 +63,34 @@ export const AuthProvider = ({children}) => {
         })
             .then(response => response.json())
             .then(data => {
-                alert("Registro exitoso")
-                history.push("/")
+                alert("Registro exitoso");
+                history.push("/");
             })
             .catch((error) => {
-                console.log("Error:",(error))
+                alert(error);
             })
     };
 
+    const logOut = () => {
+        setUser(null);
+        history.push("/");
+    }
+
     useEffect(() => {
-        if (authTokens) {
-            setUser(jwt_decode(authTokens.access));
+        if (setUser) {
+          setUser(user);
         }
         setLoading(false);
-    }, [authTokens, loading]);
+    }, [setUser, loading]);
 
     const contextData = {
         user,
         setUser,
-        authTokens,
-        setAuthTokens,
         registerUser,
-        loginUser
-    };
+        loginUser,
+        logOut
+
+  };
 
     return (
         <AuthContext.Provider value={contextData}>

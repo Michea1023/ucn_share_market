@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useState} from "react";
 import BarraPrincipal from "../components/NavBar/BarraPrincipal";
 import styled from "styled-components";
 import BarraSecundaria from "../components/NavBar/BarraSecundaria";
@@ -7,6 +7,7 @@ import Saldos from "../components/BuySell/Saldo";
 import Rentabilidad from "../components/BuySell/Rentabilidad";
 import Compra from "../components/BuySell/Compra"
 import Venta from "../components/BuySell/Venta"
+import {useParams} from "react-router-dom";
 
 const GridPrincipal = styled.div`
     display: grid;
@@ -44,14 +45,13 @@ const Grid6 = styled.div`
     justify-self:center;
 `;
 
-export default class BuySell extends Component{
-    constructor(props){
-        super(props);
-    }
+export default function BuySell(props) {
 
+    const {type, setType} = useState(props.type);
 
-    render(){
-        return(
+    console.log(type);
+
+    return(
             <GridPrincipal>
                 <Grid1>
                     <BarraPrincipal />
@@ -72,10 +72,6 @@ export default class BuySell extends Component{
                 <Grid6>
                     <Compra/>
                 </Grid6>
-
-
-
             </GridPrincipal>
         )
-    }
 }

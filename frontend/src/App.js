@@ -12,6 +12,8 @@ import Admin from "./Pages/Admin";
 import UserProfile from "./Pages/UserProfile";
 import {AuthProvider} from "./context/AuthContext";
 import BarraPrincipal from "./components/NavBar/BarraPrincipal";
+import PrivateRoute from "./utils/PrivateRoute";
+import PageNotFound from "./Pages/PageNotFound";
 
 
 export default class App extends Component {
@@ -24,13 +26,15 @@ export default class App extends Component {
             <Router>
                 <AuthProvider>
                     <Switch>
-                    <Route path="/" exact component={Login} />
-                    <Route path="/register" exact component={Register} />
-                    <Route path="/home" exact component ={HomePage} />
-                    <Route path="/buysell" exact component={BuySell} />
-                    <Route path="/admin" exact component={Admin} />
-                    <Route path="/profile" exact component={UserProfile}/>
-
+                        <Route path="/" exact component={Login} />
+                        <Route path="/register" exact component={Register} />
+                        <Route component ={BuySell} path="/home" exact/>
+                        <Route path="/buysell:type" render={({match})=>{
+                            return <BuySell type={match.params.type}/>
+                        }}/>
+                        <Route path="/admin" exact component={Admin} />
+                        <Route path="/profile" exact component={UserProfile}/>
+                        <Route path="*" component={PageNotFound}/>
                     </Switch>
                 </AuthProvider>
 

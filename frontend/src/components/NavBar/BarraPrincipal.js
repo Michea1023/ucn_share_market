@@ -1,10 +1,11 @@
-import React, {Component} from "react";
+import React, {Component, useContext} from "react";
 import {scryRenderedComponentsWithType} from "react-dom/test-utils";
-
+import {Link} from "react-router-dom";
 import logo from "../../../static/images/logo.png";
 import cierre_sesion from "../../../static/images/logo-cierre-sesion.png"
 
 import styled from "styled-components";
+import AuthContext from "../../context/AuthContext";
 
 const Gridcontainer = styled.header`
   display: grid;
@@ -58,19 +59,26 @@ const Gridcontainer = styled.header`
     margin-left: 20px;
     margin-right: 10px;
  `;
+ const ButtonNav = styled.button`
+    height: 70%;
+    width: auto;
+    margin-left: 20px;
+    margin-right: 10px;
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer; 
+ `;
 
 
 
 
 
-export default class BarraPrincipal extends Component {
-    constructor(props) {
-        super(props);
-    }
 
-    render(){
+export default function BarraPrincipal() {
 
-        return (
+    const {user, logOut} = useContext(AuthContext);
+
+    return (
         <Gridcontainer>
             <Griditem1>
                     <Img src={logo}/>
@@ -78,16 +86,21 @@ export default class BarraPrincipal extends Component {
             <Griditem2>
                 <Navbartitle>Bolsa de Santiago</Navbartitle>
             </Griditem2>
-            <Griditem3>
-                    <p>Nombre usuario</p>
-                    <Img2 src={cierre_sesion}/>
+                {
+                  user ? (
+                      <Griditem3>
+                          <p>{user.full_name}</p>
+                          <ButtonNav onClick={logOut}>
+                              <Img2 src={cierre_sesion}/>
+                          </ButtonNav>
 
-            </Griditem3>
+                      </Griditem3>
+                  ) : (<div></div>)
+
+                }
 
         </Gridcontainer>
     )
-
-    }
 
 }
     

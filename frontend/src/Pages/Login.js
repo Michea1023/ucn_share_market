@@ -110,10 +110,10 @@ const A1 = styled.a`
   text-decoration: none;
   font-size: 12px;
   line-height: 20px;
-  color: blue;
+  color: black;
   
-  a:hover{
-  color: aquamarine;
+  :hover{
+  color: black;
 }
 `;
 
@@ -129,6 +129,7 @@ const B = styled.div`
 export default function Login(){
 
     const { loginUser } = useContext(AuthContext);
+
     const handleSubmit = e => {
         e.preventDefault();
         const rut = e.target.rut.value;
@@ -143,8 +144,6 @@ export default function Login(){
             <Gridlogin>
                 <div >
                         <BarraPrincipal/>
-
-
                 </div>
 
                 <Gridlogin1>
@@ -152,7 +151,7 @@ export default function Login(){
 
 
                         <H1>Inicio de sesión</H1>
-                        <Form>
+                        <Form onSubmit={handleSubmit}>
                             <Label1>Rut de usuario</Label1>
                             <Text1 placeholder="Ingrese usuario" id="rut"></Text1>
 

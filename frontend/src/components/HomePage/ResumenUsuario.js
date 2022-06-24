@@ -1,5 +1,6 @@
-import React,{Component} from "react";
+import React, {Component, useContext} from "react";
 import styled from "styled-components";
+import AuthContext from "../../context/AuthContext";
 
 const Accionesprecios = styled.div`
  
@@ -25,24 +26,21 @@ const Resumemusuario1 = styled.div`
 
 `;
 
-export default class ResumenUsuario extends Component{
+export default function ResumenUsuario(){
 
-    constructor(props) {
-        super(props);
-    }
-    render(){
-     return(
+    const {user} = useContext(AuthContext);
+
+    return(
         <Accionesprecios>
             <h3>Resumen Usuario</h3>
             <Resumemusuario1>
-                <p>Jorge Claudio Soza Bruno</p>
-                <p>RUT: 5.893.897-7</p>
+                <p>Rut: {user.rut}</p>
+                <p>Nombre: {user.full_name}</p>
                 <p>Rentabilidad diaria: -50</p>
                 <p>Monto disponible: $0</p>
             </Resumemusuario1>
 
         </Accionesprecios>
         )
-    }
 
 }
