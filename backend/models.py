@@ -10,8 +10,8 @@ CAREER_CHOICES = (
 )
 
 ORDER_CHOICES = (
-    ('B', 'comprador'),
-    ('S', 'vendedor'),
+    ('B', 'Compra'),
+    ('S', 'Venta'),
 )
 
 # Create your models here.
@@ -84,27 +84,36 @@ class Share(models.Model):
     code        = models.CharField(max_length=15, null=False, unique=True)
     name        = models.TextField(null=True)
 
+    def __str__(self):
+        return self.code
 
 
-class Order(models.Model):
-    is_active   = models.BooleanField(default=True)
-    waiting_share   = models.ForeignKey(Share, on_delete=models.CASCADE, null=True)
-    waiting_price   = models.FloatField(null=True)
-    waiting_amount  = models.FloatField(null=True)
-    start_date  = models.DateTimeField(auto_now_add=True)
-    end_date    = models.DateTimeField(default=None)
+class TransactionTable(models.Model):
+    share_buy   = models.CharField(max_length=15)
+    share_sell  = models.CharField(max_length=15)
+    market_val  = models.FloatField(null=True)
+
+    def __str__(self):
+        return f"{self.share_buy} - {self.share_sell}"
 
 
-class OrderAccount(models.Model):
-    order       = models.ForeignKey(Order, on_delete=models.CASCADE)
-    share       = models.ForeignKey(Share, on_delete=models.CASCADE)
-    account     = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
-    price_unary = models.FloatField(null=True)
-    amount      = models.FloatField(null=True)
-    fixed_com   = models.FloatField(null=True) # Pesos
-    variabl_com = models.FloatField(null=True) # Pesos
+class Transaction(models.Model):
+    share   = models.ForeignKey(Share, on_delete=models.CASCADE, null=True)
+    account = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    trans_table = models.ForeignKey(TransactionTable, on_delete=models.CASCADE, null=True)
+    active = models.BooleanField(default=True)
+    price   = models.FloatField()
+    amount  = models.FloatField()
+    total   = models.FloatField() #price * amount
+    fixed_com   = models.FloatField(null=True)
+    variabl_com = models.FloatField(null=True)
     type_order  = models.CharField(choices=ORDER_CHOICES, max_length=2, null=False)
-    vigency     = models.DateTimeField(default=None)
+    start_date  = models.DateTimeField(auto_now_add=True)
+    vigency     = models.DateTimeField(default=None, null=True)
+    end_date    = models.DateTimeField(default=None, null=True)
+
+    def get_commission(self):
+        return self.fixed_com + self.variabl_com
 
 
 class ShareAccount(models.Model):
