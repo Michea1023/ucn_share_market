@@ -28,10 +28,8 @@ export default class App extends Component {
                     <Switch>
                         <Route path="/" exact component={Login} />
                         <Route path="/register" exact component={Register} />
-                        <Route component ={BuySell} path="/home" exact/>
-                        <Route path="/buysell:type" render={({match})=>{
-                            return <BuySell type={match.params.type}/>
-                        }}/>
+                        <Route component ={HomePage} path="/home" exact/>
+                        <Route path="/buysell:type" component={BuySell}/>
                         <Route path="/admin" exact component={Admin} />
                         <Route path="/profile" exact component={UserProfile}/>
                         <Route path="*" component={PageNotFound}/>

@@ -47,7 +47,7 @@ const Grid6 = styled.div`
 
 export default function BuySell(props) {
 
-    const {type, setType} = useState(props.type);
+    let {type} = useParams()
 
     console.log(type);
 

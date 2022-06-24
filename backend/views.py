@@ -74,8 +74,10 @@ class LoginView(APIView):
     serializer_class = LoginSerializer
 
     def post(self, request, format=None):
-        rut = request.POST.get('rut')
-        password = request.POST.get('password')
+        #data = json.loads(request.body.decode('utf-8'))
+        data = request.data
+        rut = data.get('rut')
+        password = data.get('password')
         user = authenticate(request, rut=rut, password=password)
         if user is not None:
             account = Account.objects.filter(rut=rut)[0]

@@ -35,7 +35,7 @@ export default function BarraSecundaria(){
                     <Buttonnavbar to="/profile">Perfil</Buttonnavbar>
                 </Navbarbutton>
                 <Navbarbutton>
-                    <Buttonnavbar to={'/buysell/buy'}>Compra</Buttonnavbar>
+                    <Buttonnavbar to="/buysell/buy">Compra</Buttonnavbar>
                 </Navbarbutton>
                 <Navbarbutton>
                     <Buttonnavbar to={'/buysell/sell'}>Venta</Buttonnavbar>
