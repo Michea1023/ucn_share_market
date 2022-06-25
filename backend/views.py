@@ -12,7 +12,7 @@ from bolsa.consultas import ConsultasAPI
 def share_account_code(share: str, account: str) -> str:
     return str(share)+str(account)
 
-def response(response: str):
+def response_dict(response: str):
     return {"response": response}
 
 def exception(exception: str):
@@ -110,7 +110,7 @@ class TransactionView(APIView):
     serializer_class = TransactionSerializer
 
     def post(self, request, format=None):
-        #Falta Comprobacion de Vigencia :> , Correccion de usuario(Login), añadir comisiones
+        #Falta Comprobacion de Vigencia :> , Correccion de usuario(Login)
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             bought  = serializer.data.get('share_buy')
@@ -139,6 +139,7 @@ class TransactionView(APIView):
                         if share_account.exists():
                             share_account = share_account[0]
                             if total < MAXIMUM_VALUE_TRANSFERENCE:
+                                total = total + FIXED_COMMISSION + total*VARIABLE_COMMISSION
                                 if type_order == 'B' and share_account.amount > total:
                                     share_account.amount -= total
                                 elif type_order == 'S' and share_account.amount > amount:
@@ -162,7 +163,7 @@ class TransactionView(APIView):
                                     vigency=vigency
                                 )
                                 transaction.save()
-                                return Response(response("NICE"), status=status.HTTP_201_CREATED)
+                                return Response(response_dict("NICE"), status=status.HTTP_201_CREATED)
                             else:
                                 return Response(exception("no puede transferir tanto"), status=status.HTTP_400_BAD_REQUEST)
                         else:
@@ -198,12 +199,24 @@ class ControlUsersView(APIView):
            account = Account.objects.filter(rut=rut)[0]
            account.active = not block
            account.save(update_fields=['active'])
-           return Response(response("blocked" if block else "unblocked"), status=status.HTTP_200_OK)
+           return Response(response_dict("blocked" if block else "unblocked"), status=status.HTTP_200_OK)
         else:
            return Response(exception("you aren't an administrator"), status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
+
 class ChangeCommissions(APIView):
     pass
+    #def post(self,request):
+    #   user = request.user
+    #   if user.is_authenticated and user.staff:
+    #   value = request.POST.get('new_FIXED_COMMISSION')
+    #   FIXED_COMMISSION = value
+    #   value = request.POST.get('VARIABLE_COMMISSION')
+    #   VARIABLE_COMMISSION = value
+    #   return Response(response_dict("VARIABLE_COMMISSION has been updated")
+    #   return Response(response_dict("FIXED_COMMISSION has been updated")
+    #   return Response(
+
 
 
 class ShareView(generics.CreateAPIView):
@@ -234,7 +247,6 @@ class CreateShareView(APIView):
                 share = queryset[0]
                 share.name = name
                 share.save(update_fields=['name'])
-
             return Response(ShareSerializer(share).data, status=status.HTTP_200_OK)
 
 
@@ -257,6 +269,7 @@ class CreateTransTableView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(exception("Envio mal su consulta"), status=status.HTTP_400_BAD_REQUEST)
+
 
 """
 class GetShare(APIView):
