@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 const Navbarsecundario = styled.div`
   height: 60px;
@@ -23,8 +23,13 @@ const Buttonnavbar = styled(Link)`
   text-decoration: none;
 `;
 
+const Button = styled.button `
+    
+`;
+
 
 export default function BarraSecundaria(){
+    const history = useHistory();
 
     return(
             <Navbarsecundario>
@@ -35,7 +40,7 @@ export default function BarraSecundaria(){
                     <Buttonnavbar to="/profile">Perfil</Buttonnavbar>
                 </Navbarbutton>
                 <Navbarbutton>
-                    <Buttonnavbar to="/buysell/buy">Compra</Buttonnavbar>
+                    <Button onClick={() => history.push('/buysell/buy')}>Compra</Button> 
                 </Navbarbutton>
                 <Navbarbutton>
                     <Buttonnavbar to={'/buysell/sell'}>Venta</Buttonnavbar>

@@ -56,7 +56,7 @@ export const AuthProvider = ({children}) => {
 
     if (response.status === 200) {
       setUser(data);
-      localStorage.setItem("rut",data.rut);
+      sessionStorage.setItem("user",JSON.stringify(data));
       // console.log(user.rut);
       data.staff ? history.push("/admin") : history.push("/home")
       ;
@@ -96,6 +96,7 @@ export const AuthProvider = ({children}) => {
 
     const logOut = () => {
         setUser(null);
+        sessionStorage.clear()
         history.push("/");
     }
 

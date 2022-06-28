@@ -211,10 +211,10 @@ class ShareView(generics.CreateAPIView):
     serializer_class = ShareSerializer
 
     def get(self, request, format=None):
-        out = {}
+        out = []
         for i in range(self.queryset.count()):
             data = self.serializer_class(self.queryset[i]).data
-            out[data['code']] = data
+            out.append(data)
         return Response(out, status=status.HTTP_200_OK)
 
 

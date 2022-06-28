@@ -28,7 +28,10 @@ const Resumemusuario1 = styled.div`
 
 export default function ResumenUsuario(){
 
-    const {user} = useContext(AuthContext);
+    //const {user} = useContext(AuthContext);
+    const user = JSON.parse(sessionStorage.getItem('user'));
+
+
 
     return(
         <Accionesprecios>
@@ -37,7 +40,7 @@ export default function ResumenUsuario(){
                 <p>Rut: {user.rut}</p>
                 <p>Nombre: {user.full_name}</p>
                 <p>Rentabilidad diaria: -50</p>
-                <p>Monto disponible: $0</p>
+                <p>Monto disponible: {user.share.map(e => e.code === 'CLP' ? e.amount : null)}</p>
             </Resumemusuario1>
 
         </Accionesprecios>

@@ -1,4 +1,4 @@
-import React, {Component, useState} from "react";
+import React, {Component, useContext, useState} from "react";
 import BarraPrincipal from "../components/NavBar/BarraPrincipal";
 import styled from "styled-components";
 import BarraSecundaria from "../components/NavBar/BarraSecundaria";
@@ -8,6 +8,7 @@ import Rentabilidad from "../components/BuySell/Rentabilidad";
 import Compra from "../components/BuySell/Compra"
 import Venta from "../components/BuySell/Venta"
 import {useParams} from "react-router-dom";
+import PageNotFound from "./PageNotFound";
 
 const GridPrincipal = styled.div`
     display: grid;
@@ -45,14 +46,17 @@ const Grid6 = styled.div`
     justify-self:center;
 `;
 
-export default function BuySell(props) {
+//export const [buscardor, setBuscador] = useState();
+
+export default function BuySell() {
 
     let {type} = useParams()
+    //setBuscador("ltm")
+    //console.log(buscardor);
 
-    console.log(type);
 
     return(
-            <GridPrincipal>
+        <GridPrincipal>
                 <Grid1>
                     <BarraPrincipal />
                 </Grid1>
@@ -69,9 +73,12 @@ export default function BuySell(props) {
                     <h3>Rentabilidad</h3>
                     <Rentabilidad />
                 </Grid5>
+
                 <Grid6>
-                    <Compra/>
+                    {
+                      type === "buy" ? <Compra/> : (type === "sell" ? <Venta/> : <PageNotFound/>)
+                    }
                 </Grid6>
             </GridPrincipal>
-        )
+    );
 }
