@@ -17,9 +17,9 @@ def read():
     json_data.close()
     return out
 
-data = read()
+data_settings = read()
 
-MAXIMUM_VALUE_TRANSFERENCE = SETTING(data["maximum_value_transfer"])
-MAXIMUM_INIT_VALUE = SETTING(data["maximum_init_value"])
-VARIABLE_COMMISSION = SETTING(data["variable_commission"])
-FIXED_COMMISSION = SETTING(data["fixed_commission"])
+MAXIMUM_VALUE_TRANSFERENCE = SETTING(data_settings["maximum_value_transfer"])
+MAXIMUM_INIT_VALUE = SETTING(data_settings["maximum_init_value"])
+VARIABLE_COMMISSION = SETTING(data_settings["variable_commission"])
+FIXED_COMMISSION = SETTING(data_settings["fixed_commission"])

@@ -42,7 +42,7 @@ class BlockSerializer(serializers.ModelSerializer):
 class TransTableSerializer(serializers.ModelSerializer):
     class Meta:
         model   = TransactionTable
-        fields  = ('id', 'share_buy', 'share_sell')
+        fields  = ('id', 'share_buy', 'share_sell', 'market_val')
 
 class ShareSerializer(serializers.ModelSerializer):
     class Meta:

@@ -9,7 +9,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 
-
 def share_account_code(share: str, account: str) -> str:
     return str(share) + str(account)
 
@@ -187,10 +186,10 @@ class ControlUsersView(APIView):
     def get(self, request):
         user = request.user
         if user.is_authenticated and user.staff:
-            out = {}
+            out = []
             for i in range(self.queryset.count()):
                 data = AccountSerializer(self.queryset[i]).data
-                out[data['rut']] = data
+                out.append(data)
             return Response(out, status=status.HTTP_200_OK)
         else:
             return Response(exception("you aren't an administrator"), status=status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -208,19 +207,15 @@ class ControlUsersView(APIView):
             return Response(exception("you aren't an administrator"), status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
-class ChangeCommissions(APIView):
-    pass
-
-
 class ShareView(generics.CreateAPIView):
     queryset = Share.objects.all()
     serializer_class = ShareSerializer
 
     def get(self, request, format=None):
-        out = {}
+        out = []
         for i in range(self.queryset.count()):
             data = self.serializer_class(self.queryset[i]).data
-            out[data['code']] = data
+            out.append(data)
         return Response(out, status=status.HTTP_200_OK)
 
 
@@ -252,11 +247,12 @@ class CreateTransTableView(APIView):
         if serializer.is_valid():
             share_buy = serializer.data.get('share_buy')
             share_sell = serializer.data.get('share_sell')
+            market_value = serializer.data.get('market_val')
             queryset = TransactionTable.objects.filter(share_buy=share_buy, share_sell=share_sell)
             qs_shb = Share.objects.filter(code=share_buy)  # queryset_share_buy
             qs_shs = Share.objects.filter(code=share_sell)  # queryset_share_sell
             if not queryset.exists() and qs_shb.exists() and qs_shs.exists():
-                trans_table = TransactionTable(share_buy=share_buy, share_sell=share_sell)
+                trans_table = TransactionTable(share_buy=share_buy, share_sell=share_sell, market_val=market_value)
                 trans_table.save()
             elif not qs_shb.exists() or not qs_shb.exists():
                 return Response(exception("No existe esa Accion"), status=status.HTTP_400_BAD_REQUEST)
@@ -265,6 +261,45 @@ class CreateTransTableView(APIView):
             return Response(exception("Envio mal su consulta"), status=status.HTTP_400_BAD_REQUEST)
 
 
+class TransTableView(APIView):
+    serializer_class = TransTableSerializer
+    queryset = TransactionTable.objects.all()
+
+    def get(self, request, format=None):
+        out = []
+        for i in range(self.queryset.count()):
+            data = self.serializer_class(self.queryset[i]).data
+            out.append(data)
+        return Response(out, status=status.HTTP_200_OK)
+
+
+
+class SettingView(APIView):
+    lookup_url_kwarg = 'query'
+
+    def post(self, request, format=None):
+        #change commission
+        pass
+
+
+    def get(self, request, format=None):
+        #(request = ('query'))
+        query = request.GET.get(self.lookup_url_kwarg)
+        if query != None:
+            if query == 'all':
+                return Response(data_settings, status=status.HTTP_200_OK)
+            elif query == 'com': #commission
+                return Response({
+                    'variable_commission': VARIABLE_COMMISSION,
+                    'fixed_commission': FIXED_COMMISSION
+                }, status=status.HTTP_200_OK)
+            elif query == 'mvt': #maximum value transference
+                return Response({"maximum_value_transfer": MAXIMUM_VALUE_TRANSFERENCE}, status=status.HTTP_200_OK)
+            elif query == 'miv': #maximum init value
+                return Response({"maximum_init_value": MAXIMUM_INIT_VALUE}, status=status.HTTP_200_OK)
+            else:
+                return Response(exception("invalid query code"), status=status.HTTP_404_NOT_FOUND)
+        return Response(exception('query parameter not found in request'), status=status.HTTP_400_BAD_REQUEST)
 
 """
 class GetShare(APIView):
