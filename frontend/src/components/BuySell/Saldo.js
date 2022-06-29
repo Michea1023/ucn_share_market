@@ -17,27 +17,27 @@ const A = styled.div`
 
 
 
-export default  class Saldos extends Component{
-    constructor(props){
-        super(props);
-    }
+export default  function Saldos(){
 
-    render(){
-        return(
+    let share = "DOLAR"
+
+    const user = JSON.parse(sessionStorage.getItem("user"))
+
+    return(
             <GridSaldos>
 
                 <A>
                     <h4>Saldo total:</h4>
-                    <p>$0</p>
+                    <p>${user.share.map(elem => elem.code === "CLP" ? elem.amount : null)}</p>
                 </A>
                 <A>
-                    <h4>Saldo disponible:</h4>
-                    <p>$0</p>
+                    <h4>Acciones disponible:</h4>
+                    <p>{user.share.map(elem => elem.code === share ? elem.amount : 0)}</p>
                 </A>
 
 
 
             </GridSaldos>
         )
-    }
+
 }

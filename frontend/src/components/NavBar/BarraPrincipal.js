@@ -76,8 +76,8 @@ const Gridcontainer = styled.header`
 
 export default function BarraPrincipal() {
 
-    const {user, logOut} = useContext(AuthContext);
-
+    const {logOut} = useContext(AuthContext);
+    const user = JSON.parse(sessionStorage.getItem("user"))
     return (
         <Gridcontainer>
             <Griditem1>

@@ -38,7 +38,9 @@ const Grid4 = styled.div`
 
 
 export default function HomePage(){
-    const {user} = useContext(AuthContext);
+    //const {user} = useContext(AuthContext);
+    const user = sessionStorage.getItem('user');
+    //console.log(JSON.parse(user))
 
     return(
         <div>
