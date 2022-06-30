@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useEffect} from "react";
 import styled from "styled-components";
 import BarraPrincipal from "../components/NavBar/BarraPrincipal";
 // todo esto es por mientras
@@ -6,6 +6,7 @@ import BarraSecundaria from '../components/NavBar/BarraSecundaria';
 import OrdenesActivas from '../components/UserPage/OrdenesActivas';
 import HistorialTransac from '../components/UserPage/HistorialTransac';
 import Activos from '../components/UserPage/Activos';
+import {useParams} from "react-router-dom";
 
 const GridUsuario = styled.div`
     display: grid;
@@ -41,9 +42,11 @@ const GridArea3 = styled.div`
 
 
 
-export default class UserProfile extends Component{
-    render(){
-        return(
+export default function UserProfile(){
+
+    
+
+    return(
         <GridUsuario>
             <GridNav>
                 <BarraPrincipal />
@@ -56,13 +59,12 @@ export default class UserProfile extends Component{
                 <Activos/>
             </GridArea1>
             <GridArea2>
-                <p>Hola</p>
+                <HistorialTransac></HistorialTransac>
             </GridArea2>
             <GridArea3>
-                <p>Hola</p>
+                <OrdenesActivas></OrdenesActivas>
             </GridArea3>
         </GridUsuario>
     )
-    }
 
 }

@@ -1,4 +1,4 @@
-import React, {Component, useContext} from "react";
+import React, {Component, useContext, useEffect, useState} from "react";
 import AccionesPrecios from "../components/HomePage/AccionesPrecios";
 import ResumenUsuario from "../components/HomePage/ResumenUsuario";
 import BarraPrincipal from "../components/NavBar/BarraPrincipal";
@@ -7,6 +7,7 @@ import styled from "styled-components";
 import AuthContext from "../context/AuthContext";
 import Login from "./Login";
 import PageNotFound from "./PageNotFound";
+import {getRequest} from "../context/Request";
 
 const GridPrincipal = styled.div`
     display: grid;

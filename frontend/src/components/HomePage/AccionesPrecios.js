@@ -1,6 +1,8 @@
 import React,{Component} from "react";
 import CompAccionesPrecios from "./CompAccionesPrecios";
 import styled from "styled-components";
+import {useEffect, useState} from "react";
+import {getRequest} from "../../context/Request";
 
 
 const Accionesprecios1 = styled.div`
@@ -57,13 +59,19 @@ const Spaceordenaccionesp = styled.div`
 
 `;
 
-export default class AccionesPrecios extends Component{
-     constructor (props){
-        super(props);
-    }
+export default function AccionesPrecios() {
 
-    render(){
-         return(
+    const [arrShare, setArrShare] = useState([]);
+
+    useEffect(async () => {
+
+        setArrShare(await getRequest("http://127.0.0.1:8000/api/share"))
+
+        },[])
+
+    console.log(arrShare)
+
+    return(
         <Accionesprecios1>
             <Titleacciones>Acciones y precios</Titleacciones>
             <Parametrosaccionesprecio>
@@ -72,15 +80,17 @@ export default class AccionesPrecios extends Component{
                 <p>Rentabilidad diaria</p>
                 <p>Rentabilidad anual</p>
             </Parametrosaccionesprecio>
+
+
+
             <Spaceordenaccionesp>
-                <CompAccionesPrecios />
-                <CompAccionesPrecios />
-                <CompAccionesPrecios />
-                <CompAccionesPrecios />
+                {
+                arrShare.map( x => (<CompAccionesPrecios code={x.code} />))
+
+            }
+
             </Spaceordenaccionesp>
         </Accionesprecios1>
     )
-
-    }
 
 }

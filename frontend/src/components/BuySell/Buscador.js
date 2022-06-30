@@ -37,7 +37,9 @@ const Datalist = styled.datalist`
 export default function Buscador(){
 
     const [share, setShare] = useState([]); // variables de almacenamiento de la futura request
+
     const [loading, setLoading] =useState(true); //estado de carga para evitar variables vacias
+
     const headers = {'Content-Type': 'application/json'} // heaader para la request (opcional)
 
     useEffect(async () => { // el useEffect va asi ya que el getRequest es una promesa con su respectivo await

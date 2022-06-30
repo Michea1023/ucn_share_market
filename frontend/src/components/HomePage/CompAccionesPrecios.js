@@ -8,22 +8,18 @@ const Compaccionesprecios1= styled.div`
   height: 50px;
 
 `;
-export default class CompAccionesPrecios extends Component{
+export default function CompAccionesPrecios(props){
 
-    constructor(props) {
-        super(props);
-    }
 
-    render(){
-        return(
+
+    return(
         <Compaccionesprecios1>
-            <p>LTM</p>
+            <p>{props.code}</p>
             <p>$127</p>
             <p>10%</p>
             <p>-150%</p>
         </Compaccionesprecios1>
     )
-    }
 
 
 }

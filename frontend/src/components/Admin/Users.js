@@ -1,8 +1,9 @@
 import React,{Component} from "react";
 import styled from "styled-components";
-import {A, Titulo} from "../Styled";
+import {Button} from "../Styled";
 
-const GridRanking = styled.div`
+
+const GridUsuarios = styled.div`
   background-color: #E1F1F9;
     width: 60vw;
     padding: 10px;
@@ -13,17 +14,8 @@ const GridRanking = styled.div`
 `;
 
 
-const GridRanking2 = styled.br`
-  background-color: blue;
-  border: 3px solid black;
-    
-  width: 250px;
-  
- 
-  
-    
-`;
-const Tabla= styled.div`
+
+const TablaUsuario= styled.div`
     display:table;
     padding: 10px;
     text-indent: 150px;
@@ -43,9 +35,7 @@ const H4 = styled.h4`
     line-height: 5;
 `;
 
-const Coordinado = styled.div`
-    margin: 0 10%;
-`;
+
 
 export const Espacio = styled.li`
     display: table-row;
@@ -57,28 +47,37 @@ export const Titulo1 = styled.h4`
     font-size: 190%
 `;
 
+const ButtonVerde = styled(Button)`
+    background-color:#27E709;
+`;
 
-export default function Ranking(){
+const ButtonRojo = styled(Button)`
+    background-color:#FF0000;
+`;
+export default function Users(){
 
     return(
-               <GridRanking>
+               <GridUsuarios>
 
-               <Titulo1>Ranking</Titulo1>
-               <Tabla>
+               <Titulo1>Usuarios</Titulo1>
+               <TablaUsuario>
                     <Espacio>
 
 
 
                         <H3>Nombre</H3>
                         <H3>Rut</H3>
-                        <H3>Rentabilidad</H3>
+                        <H3>Carrera</H3>
+                        <H3>Estado</H3>
 
                     </Espacio>
                     <Espacio>
 
                         <H4>Alberto Milla</H4>
                         <H4>12.222.222-2</H4>
-                        <H4>%50</H4>
+                        <H4>ICCI</H4>
+                        <ButtonVerde>Activo</ButtonVerde>
+
 
 
                     </Espacio>
@@ -86,14 +85,14 @@ export default function Ranking(){
 
                        <H4>Alberto Milla</H4>
                         <H4>12.222.222-2</H4>
-                        <H4>%50</H4>
+                        <H4>ICCI</H4>
+                         <ButtonRojo>Bloqueado</ButtonRojo>
 
                      </Espacio>
 
-               </Tabla>
-                   
-               </GridRanking>
+               </TablaUsuario>
+
+               </GridUsuarios>
 
             )
-
 }

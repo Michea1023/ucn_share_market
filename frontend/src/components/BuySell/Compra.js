@@ -2,7 +2,7 @@ import React, {Component, useState} from "react";
 import styled from "styled-components";
 import {Form,A,Label,Input,Button} from "../Styled";
 import buscador from "../../Pages/BuySell"
-import {postRequest} from "../../context/Request";
+import {getCookie, postRequest} from "../../context/Request";
 
 
 const ButtonVerde = styled(Button)`
@@ -12,8 +12,8 @@ const ButtonVerde = styled(Button)`
 export default function Compra (){
 
     //const [monto, setMonto] = useState(null) revisar implementacion dinamica con cantidad y precio
-    const [cantidad, setCantidad] = useState(null) //con request
-    const [precio, setPrecio] = useState(null) // con request en precio mercado
+    const [cantidad, setCantidad] = useState(0) //con request
+    const [precio, setPrecio] = useState(0) // con request en precio mercado
     const [date, setDate] = useState(null)
 
 
@@ -42,24 +42,44 @@ export default function Compra (){
         e.preventDefault();
     }
 
-    async function handleSubmit(date) {
+    async function handleSubmit(e,date) {
         const user = (JSON.parse(sessionStorage.getItem('user'))).rut;
         const type = 'B'
         const divisa = 'CLP'
         const share = 'DOLAR'
-        console.log(date)
+        //const session = "udpgua267ncxselhhl475ppomd6wa2lt"
+        //console.log(session)
+        const cookie = getCookie("csrftoken")
+        console.log(cookie)
+
+        let formData = new FormData()
+        formData.append("rut", user)
+        formData.append("price", parseInt(precio))
+        formData.append("amount", parseInt(cantidad))
+        formData.append("type_order", type)
+        formData.append("vigency", date)
+        formData.append("share_buy", divisa)
+        formData.append("share_sell", share)
+
         const data = {
             "rut"        : user,
-            "price"      : precio,
-            "amount"     : cantidad,
+            "price"      : parseInt(precio),
+            "amount"     : parseInt(cantidad),
             "type_order" : type,
             "vigency"    : date,
             "share_buy"  : divisa,
             "share_sell" : share
         }
-        console.log(data)
-        const response = await postRequest('http://127.0.0.1:8000/api/transaction', null, JSON.stringify(data))
-        alert(response.status)
+
+        const headers = {"Content-Type": "multipart/form-data"
+
+                        };
+
+        const response = await postRequest('http://127.0.0.1:8000/api/transaction',
+            headers,
+        formData)
+        console.log( response.status)
+
         e.preventDefault();
     }
 
@@ -68,7 +88,7 @@ export default function Compra (){
     return(
             <>
 
-                <Form action="" method="" onSubmit={() => handleSubmit(date)}>
+                <Form onSubmit={(e) => handleSubmit(e,date)}>
                         <A>
                             <Label>Tipo de Compra:</Label>
                             <Button onClick={(e) => typeBuy(e,"mercado")}>Mercado</Button>
@@ -88,7 +108,7 @@ export default function Compra (){
                         </A>
                         <A>
                             <Label>Vigencia: </Label>
-                            <Input type="datetime-local" onChange={e => setDate(e.target.value)}/>
+                            <Input type="datetime-local" required onChange={e => setDate(e.target.value)}/>
                         </A>
                         <A>
                             <Label>Monto a invertir:</Label>

@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd9975ba-1e72-491d-9254-c33708c32ab6" name="Changes" comment="" />
+    <list default="true" id="dd9975ba-1e72-491d-9254-c33708c32ab6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Admin/BarraAdmin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Admin/Settings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Admin/Users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/UserProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Admin/Ranking.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Admin/Ranking.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Buscador.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Buscador.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Compra.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Compra.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePage/AccionesPrecios.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePage/AccionesPrecios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePage/CompAccionesPrecios.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePage/CompAccionesPrecios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/NavBar/BarraSecundaria.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NavBar/BarraSecundaria.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/ActivoAccion.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/ActivoAccion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/Activos.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/Activos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialState.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialState.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialTransac.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialTransac.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenState.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenState.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenesActivas.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenesActivas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/context/AuthContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/context/AuthContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/context/Request.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/context/Request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +41,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -73,6 +101,7 @@
       <workItem from="1656191686199" duration="485000" />
       <workItem from="1656352887320" duration="770000" />
       <workItem from="1656462573529" duration="2376000" />
+      <workItem from="1656466609808" duration="24274000" />
     </task>
     <servers />
   </component>

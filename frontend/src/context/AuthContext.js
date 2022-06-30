@@ -40,29 +40,29 @@ export const AuthProvider = ({children}) => {
     const history = useHistory();
 
     const loginUser = async (rut, password) => {
-    const response = await fetch("http://127.0.0.1:8000/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-          "X-CSRFToken": getCookie("csrftoken")
+        const response = await fetch("http://127.0.0.1:8000/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+              "X-CSRFToken": getCookie("csrftoken")
 
-      },
-      body: JSON.stringify({
-        rut,
-        password
-      })
-    });
-    const data = await response.json();
+          },
+          body: JSON.stringify({
+            rut,
+            password
+          })
+        });
+        const data = await response.json();
 
-    if (response.status === 200) {
-      setUser(data);
-      sessionStorage.setItem("user",JSON.stringify(data));
-      // console.log(user.rut);
-      data.staff ? history.push("/admin") : history.push("/home")
-      ;
-    } else {
-      alert("Contraseña invalida");
-    }
+        if (response.status === 200) {
+          setUser(data);
+          sessionStorage.setItem("user",JSON.stringify(data));
+          // console.log(user.rut);
+          data.staff ? history.push("/admin") : history.push("/home")   // condicion (x === 1) ? (codigo verdadero) : (codigo en el caso contrario) operadores ternario
+          ;
+        } else {
+          alert(response.status);
+        }
   };
 
     const registerUser = async (rut, password, password2, email, full_name, career) => {
@@ -80,13 +80,14 @@ export const AuthProvider = ({children}) => {
         const response = await fetch("http://127.0.0.1:8000/api/create-user", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                 "X-CSRFToken": getCookie("csrftoken")
             },
             body: JSON.stringify(data)
         })
             .then(response => response.json())
             .then(data => {
-                alert("Registro exitoso");
+                alert(data);
                 history.push("/");
             })
             .catch((error) => {

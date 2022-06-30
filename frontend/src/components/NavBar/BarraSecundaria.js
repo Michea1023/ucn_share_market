@@ -30,7 +30,7 @@ const Button = styled.button `
 
 export default function BarraSecundaria(){
     const history = useHistory();
-
+    //<Buttonna onClick={() => history.push('/buysell/buy')}>Compra</Buttonna>
     return(
             <Navbarsecundario>
                 <Navbarbutton>
@@ -40,7 +40,7 @@ export default function BarraSecundaria(){
                     <Buttonnavbar to="/profile">Perfil</Buttonnavbar>
                 </Navbarbutton>
                 <Navbarbutton>
-                    <Button onClick={() => history.push('/buysell/buy')}>Compra</Button> 
+                    <Buttonnavbar to={'/buysell/buy'}>Compra</Buttonnavbar>
                 </Navbarbutton>
                 <Navbarbutton>
                     <Buttonnavbar to={'/buysell/sell'}>Venta</Buttonnavbar>

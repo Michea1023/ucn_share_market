@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function getCookie(name) {
+export function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
         const cookies = document.cookie.split(';');
@@ -18,20 +18,25 @@ function getCookie(name) {
 
 
 
-export const getRequest = async (http,header) => {
-        const response = await fetch(http);
+export const getRequest = async (http) => {
 
+        const response = await fetch(http);
         const data = await response.json();
-        //console.log(data)
+
         return data;
-        //console.log(data.map(elem => (console.log(elem.code))));
+
 }
 
 export const postRequest = async (http,header,data) => {
-    const response = await fetch(http,
+    try {
+       const response = await fetch(http,
         {header, method: "POST",
-            body : JSON.stringify(data)})
+            body : data, credentials: "omit",}) // no se porque en compra/venta no hay que enviar ningun cookie -.-
     return response;
+    }catch (error){
+        console.log("Errooooor")
+    }
+
 
 }
 

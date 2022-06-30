@@ -26,40 +26,50 @@ const Fondo= styled.div`
 const H4 = styled.h4`
     display:table-cell;
     margin: 20px;
+    text-indent: 13px;
 `;
 
+ const B = styled.li`
+  
+    display: table-row;
+    margin: 10px;
+    background-color: #E1F1F9;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
+    border-top-right-radius: 80px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 50px;
+    width: 22vw;
+    
 
+`;
 
-export default class Activos extends Component{
-    constructor(props) {
-        super(props);
-    }
-    render(){
-        return(
+export default function Activos (){
+
+    return(
         <GridActivos>
             <Titulo>Ordenes activas</Titulo>
             <Tabla>
-                <A>
+                <B>
                     <H4>Accion</H4>
                     <H4>Cantidad</H4>
                     <H4>Monto</H4>
-                </A>
-                <A>
+                </B>
+                <B>
                     <ActivoAccion />
-                </A>
-                <A>
+                </B>
+                <B>
                     <ActivoAccion />
-                </A>
-                <A>
+                </B>
+                <B>
                     <ActivoAccion />
-                </A>
+                </B>
             </Tabla>
 
 
 
         </GridActivos>
     )
-    }
 
 
 }
