@@ -3,7 +3,6 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from rest_framework import generics, status
-from .settings import *
 from .serializers import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -51,7 +50,7 @@ class RegisterView(APIView):
                     account=user,
                     share=share,
                     code=lambda rut: share_account_code('CLP', rut),
-                    amount=MAXIMUM_INIT_VALUE
+                    amount=Settings.objects.get(name="maximum_init_value").value
                 )
                 account_share.save()
                 response = {
@@ -140,7 +139,7 @@ class TransactionView(APIView):
 
                         if share_account.exists():
                             share_account = share_account[0]
-                            if total < MAXIMUM_VALUE_TRANSFERENCE:
+                            if total < Settings.objects.get(name="variable_commission").value:
                                 if type_order == 'B' and share_account.amount > total:
                                     share_account.amount -= total
                                 elif type_order == 'S' and share_account.amount > amount:
@@ -159,8 +158,8 @@ class TransactionView(APIView):
                                     price=price,
                                     amount=amount,
                                     total=total,
-                                    fixed_com=FIXED_COMMISSION,
-                                    variabl_com=total * VARIABLE_COMMISSION,
+                                    fixed_com= Settings.objects.get(name="fixed_commission").value,
+                                    variabl_com=total * Settings.objects.get(name="variable_commission").value,
                                     type_order=type_order,
                                     vigency=vigency
                                 )
@@ -278,25 +277,59 @@ class SettingView(APIView):
     lookup_url_kwarg = 'query'
 
     def post(self, request, format=None):
-        #change commission
-        pass
+        user = request.user
+        if user.is_authenticated and user.staff:
+            data = request.data
+            settings = Settings.objects.all()
+
+            if data.get("variable_commission") is not None:
+                var_commission = settings.get(name="variable_commission")
+                var_commission.value = data.get("variable_commission")
+                var_commission.save(update_fields=['value'])
+
+            if data.get("fixed_commission") is not None:
+                fixed_commission = settings.get(name="fixed_commission")
+                fixed_commission.value = data.get("fixed_commission")
+                fixed_commission.save(update_fields=['value'])
+
+            if data.get("maximum_init_value") is not None:
+                maximum_init_value = settings.get(name="maximum_init_value")
+                maximum_init_value.value = data.get("maximum_init_value")
+                maximum_init_value.save(update_fields=['value'])
+                
+            if data.get("maximum_value_transfer") is not None:
+                maximum_value_transfer = settings.get(name="maximum_value_transfer")
+                maximum_value_transfer.value = data.get("maximum_value_transfer")
+                maximum_value_transfer.save(update_fields=['value'])
+
+            return Response(data, status=status.HTTP_200_OK)
+
+        else:
+            return Response(exception("you aren't an administrator"), status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
 
 
     def get(self, request, format=None):
         #(request = ('query'))
         query = request.GET.get(self.lookup_url_kwarg)
         if query != None:
+            data = Settings.objects.all()
             if query == 'all':
-                return Response(data_settings, status=status.HTTP_200_OK)
+                return Response({
+                    "maximum_value_transfer": data.get(name="maximum_value_transfer").value,
+                    "maximum_init_value": data.get(name="maximum_init_value").value,
+                    "variable_commission": data.get(name="variable_commission").value,
+                    "fixed_commission": data.get(name="fixed_commission").value
+                }, status=status.HTTP_200_OK)
             elif query == 'com': #commission
                 return Response({
-                    'variable_commission': VARIABLE_COMMISSION,
-                    'fixed_commission': FIXED_COMMISSION
+                    'variable_commission': data.get(name="variable_commission").value,
+                    'fixed_commission': data.get(name="fixed_commission").value
                 }, status=status.HTTP_200_OK)
             elif query == 'mvt': #maximum value transference
-                return Response({"maximum_value_transfer": MAXIMUM_VALUE_TRANSFERENCE}, status=status.HTTP_200_OK)
+                return Response({"maximum_value_transfer": data.get(name="maximum_value_transfer").value}, status=status.HTTP_200_OK)
             elif query == 'miv': #maximum init value
-                return Response({"maximum_init_value": MAXIMUM_INIT_VALUE}, status=status.HTTP_200_OK)
+                return Response({"maximum_init_value": data.get(name="maximum_init_value").value}, status=status.HTTP_200_OK)
             else:
                 return Response(exception("invalid query code"), status=status.HTTP_404_NOT_FOUND)
         return Response(exception('query parameter not found in request'), status=status.HTTP_400_BAD_REQUEST)
@@ -316,3 +349,12 @@ class GetShare(APIView):
             return Response({'Room Not Found': 'Invalid Room Code'}, status=status.HTTP_404_NOT_FOUND)
         return Response({'Bad Request': 'Code parameter not found in request'}, status=status.HTTP_400_BAD_REQUEST)
 """
+
+class QueryView(APIView):
+    def get(self, request, format=None):
+        queryset = Transaction.objects.filter(active=True).exclude(account=None)
+        out = []
+        for i in range(queryset.count()):
+            data = TransSerializer(queryset[i]).data
+            out.append(data)
+        return Response(out, status=status.HTTP_200_OK)
