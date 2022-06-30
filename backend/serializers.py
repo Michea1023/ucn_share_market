@@ -53,3 +53,13 @@ class ShareAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShareAccount
         fields = ('id', 'account', 'share', 'code', 'amount')
+
+class TransSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transaction
+        fields = ('account', 'price', 'amount', 'type_order', 'vigency')
+
+class SettingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Settings
+        fields = ('name', 'value')

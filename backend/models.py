@@ -121,3 +121,7 @@ class ShareAccount(models.Model):
     share       = models.ForeignKey(Share, on_delete=models.CASCADE)
     code        = models.CharField(max_length=45, unique=True)
     amount      = models.FloatField(default=0)
+
+class Settings(models.Model):
+    name    = models.CharField(max_length=40, unique=True)
+    value   = models.FloatField()

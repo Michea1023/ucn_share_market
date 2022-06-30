@@ -12,7 +12,8 @@ urlpatterns = [
     path('create-table', CreateTransTableView.as_view()),
     path('control-users', ControlUsersView.as_view()),
     path('setting', SettingView.as_view()),
-    path('transaction-table', TransTableView.as_view())
+    path('transaction-table', TransTableView.as_view()),
+    path('query', QueryView.as_view()),
     #path('get-share-by-account', ShareAccountView.as_view()),
     #path('services', ExternalApi.as_view()),
 ]
