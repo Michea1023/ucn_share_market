@@ -91,7 +91,7 @@ class Share(models.Model):
 class TransactionTable(models.Model):
     share_buy   = models.CharField(max_length=15)
     share_sell  = models.CharField(max_length=15)
-    market_val  = models.FloatField(null=True)
+    market_val  = models.FloatField(null=True) # 1 share_sell = X share_buy
 
     def __str__(self):
         return f"{self.share_buy} - {self.share_sell}"

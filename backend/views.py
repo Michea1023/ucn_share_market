@@ -271,8 +271,6 @@ class TransTableView(APIView):
             out.append(data)
         return Response(out, status=status.HTTP_200_OK)
 
-
-
 class SettingView(APIView):
     lookup_url_kwarg = 'query'
 
@@ -352,9 +350,6 @@ class GetShare(APIView):
 
 class QueryView(APIView):
     def get(self, request, format=None):
-        queryset = Transaction.objects.filter(active=True).exclude(account=None)
-        out = []
-        for i in range(queryset.count()):
-            data = TransSerializer(queryset[i]).data
-            out.append(data)
-        return Response(out, status=status.HTTP_200_OK)
+        operative_trans = Transaction.objects.filter(active=True).exclude(account=None)
+
+        return Response(response("NICE"), status=status.HTTP_200_OK)
