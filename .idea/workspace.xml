@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd9975ba-1e72-491d-9254-c33708c32ab6" name="Changes" comment="" />
+    <list default="true" id="ad4ee528-cf28-4b40-9467-e4dd32976075" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/79e0800f-b92b-4aac-9866-73325a7eadc7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/96af30e1-e298-42e3-b25b-25526b7ab129.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePage/AccionesPrecios.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePage/AccionesPrecios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/Activos.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/Activos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialState.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialState.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialTransac.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialTransac.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenState.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenState.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenesActivas.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenesActivas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/node_modules_web-vitals_dist_web-vitals_js.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/node_modules_web-vitals_dist_web-vitals_js.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/node_modules_web-vitals_dist_web-vitals_js.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/node_modules_web-vitals_dist_web-vitals_js.js.LICENSE.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ComposerSettings">
-    <execution />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -23,19 +33,20 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2B2EyySroTYae5Bsrh59b6BfkG2" />
+  <component name="ProjectId" id="2BMHjv9gL2a2i26pNTQZ4kYNIWp" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "nodejs_package_manager_path": "npm"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="ucn_share_market" type="Python.DjangoServer" factoryName="Django server">
       <module name="ucn_share_market" />
@@ -64,39 +75,19 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="dd9975ba-1e72-491d-9254-c33708c32ab6" name="Changes" comment="" />
-      <created>1656096037720</created>
+      <changelist id="ad4ee528-cf28-4b40-9467-e4dd32976075" name="Changes" comment="" />
+      <created>1656709173910</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1656096037720</updated>
-      <workItem from="1656096061842" duration="5758000" />
-      <workItem from="1656116001060" duration="4471000" />
-      <workItem from="1656189866309" duration="2000" />
-      <workItem from="1656191686199" duration="485000" />
-      <workItem from="1656352887320" duration="770000" />
-      <workItem from="1656462573529" duration="2376000" />
-      <workItem from="1656546854272" duration="9480000" />
-      <workItem from="1656635750089" duration="2103000" />
-      <workItem from="1656729986491" duration="1215000" />
-      <workItem from="1656795709078" duration="676000" />
-      <workItem from="1656891354840" duration="1978000" />
-      <workItem from="1656983322515" duration="4249000" />
-      <workItem from="1657065649559" duration="2043000" />
+      <updated>1656709173910</updated>
+      <workItem from="1656709193538" duration="417000" />
+      <workItem from="1656714635748" duration="5290000" />
+      <workItem from="1657415893021" duration="663000" />
+      <workItem from="1657566464843" duration="1465000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>
