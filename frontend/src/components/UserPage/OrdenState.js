@@ -15,13 +15,13 @@ const ButtonRojo = styled(Button)`
 
 
 
-export default function OrdenState(){
+export default function OrdenState(props){
     return(
              <>
-            <H4>3</H4>
-            <H4>LTM</H4>
+            <H4>{props.id}</H4>
+            <H4>{props.share_buy}</H4>
             <H4>1000</H4>
-             <H4>$130</H4>
+             <H4>{props.market_val}</H4>
              <H4>Compra</H4>
                  <H4>
                      <ButtonRojo>Cancelar</ButtonRojo>

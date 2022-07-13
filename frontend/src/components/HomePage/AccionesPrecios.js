@@ -85,7 +85,7 @@ export default function AccionesPrecios() {
 
             <Spaceordenaccionesp>
                 {
-                arrShare.map( x => (<CompAccionesPrecios code={x.code} />))
+                arrShare.map( x => (<CompAccionesPrecios code={x.code}  />))
 
             }
 

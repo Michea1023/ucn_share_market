@@ -1,8 +1,9 @@
-import React, {Component} from "react";
+import React, {Component, useEffect, useState} from "react";
 import styled from "styled-components";
 import {A,Titulo} from "../Styled"
 
 import ActivoAccion from "./ActivoAccion";
+import {getRequest} from "../../context/Request";
 
 const GridActivos = styled.div`
     background-color: #A7CDD9;
@@ -46,9 +47,18 @@ const H4 = styled.h4`
 
 export default function Activos (){
 
+    const [arrShare, setArrShare] = useState([]);
+
+    useEffect(async ()=>{
+
+        setArrShare(await getRequest("http://127.0.0.1:8000/api/transaction-table"))
+    },[])
+
+
+
     return(
         <GridActivos>
-            <Titulo>Ordenes activas</Titulo>
+            <Titulo>Activos</Titulo>
             <Tabla>
                 <B>
                     <H4>Accion</H4>
@@ -56,6 +66,7 @@ export default function Activos (){
                     <H4>Monto</H4>
                 </B>
                 <B>
+
                     <ActivoAccion />
                 </B>
                 <B>

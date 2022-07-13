@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import OrdenState from "./OrdenState";
 import styled from "styled-components";
 import {A,Titulo} from "../Styled"
+import {useEffect, useState} from "react";
+import {getRequest} from "../../context/Request";
 
 
 const GridActivos = styled.div`
@@ -44,6 +46,13 @@ const H4 = styled.h4`
 `;
 
 export default function OrdenesActivas(){
+    const [arrShare, setArrShare] = useState([]);
+
+    useEffect(async ()=>{
+
+        setArrShare(await getRequest("http://127.0.0.1:8000/api/transaction-table"))
+    },[])
+
     return(
 
             <GridActivos>
