@@ -44,6 +44,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
 }</component>
@@ -84,6 +85,8 @@
       <workItem from="1656714635748" duration="5290000" />
       <workItem from="1657415893021" duration="663000" />
       <workItem from="1657566464843" duration="1465000" />
+      <workItem from="1657758166935" duration="9237000" />
+      <workItem from="1657842481057" duration="8167000" />
     </task>
     <servers />
   </component>

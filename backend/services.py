@@ -181,57 +181,6 @@ class ConsultasAPI(object):
         return self.__handle_response()
 
 
-class ExternalApi(APIView):
-    # cargar la api key desde las variables de entorno del sistma
-    api_key = 'FC3A633C1B854FCF91AB4E2D770AF952'  # os.environ['API_BS']
-
-    # Creación de la instancia que manipulara las solicitudes a la API
-    con_bs = ConsultasAPI(token=api_key)
-    # resp = con_bs.get_indices_rv()
-    #resp = con_bs.get_instrumentos_rv()
-    #resp2 = con_bs.get_puntas_rv()
-    resp3 = con_bs.get_transacciones_rv()
-
-    price = []
-    amount = []
-    total = []
-    vigente = []
-    start_date = []
-    active = []
-    name = []
-    for sub in resp3:
-        for key3, value3 in sub.items():
-            if key3 == 'instrument':
-                name.append(value3)
-            if key3 == 'price':
-                price.append(value3)
-            if key3 == 'quantity':
-                amount.append(value3)
-            if key3 == 'amount':
-                total.append(value3)
-            if key3 == 'timeInForce':
-                vigente.append(value3)
-            if key3 == 'timeStamp':
-                value3 = value3[:-1]
-                fecha_dt = datetime.strptime(value3,'%Y%m%d%H%M%S%f')
-                start_date.append(fecha_dt)
-            if key3 == 'action':
-                is_active = False
-                if 'action' == 'I':
-                    is_active = True
-                active.append(is_active)
-
-    connection = psycopg2.connect(database="Share_Market", user="postgres", password="password")
-    cur = connection.cursor()
-    sql = "insert into share(code,name) values (%s,%s)"
-    sql2 = "insert into transaction(share,account,trans_table,active,price,amount,total,start_date,vigency) values (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-    for i in range(len(name)):
-        datos = (i,name[i])
-        datos2 = (i,"207265799",1,active[i],price[i],amount[i],total[i],start_date[i],start_date[i] + timedelta(days=int(vigente[i])))
-        cur.execute(sql,datos)
-        cur.execute(sql2,datos2)
-    connection.commit()
-    connection.close()
 
 
 
