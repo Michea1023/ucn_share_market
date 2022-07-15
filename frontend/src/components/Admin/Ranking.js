@@ -1,6 +1,5 @@
 import React,{Component} from "react";
 import styled from "styled-components";
-import {A, Titulo} from "../Styled";
 
 const GridRanking = styled.div`
   background-color: #E1F1F9;
@@ -12,35 +11,28 @@ const GridRanking = styled.div`
     
 `;
 
-
 const GridRanking2 = styled.br`
   background-color: blue;
   border: 3px solid black;
-    
-  width: 250px;
-  
- 
-  
-    
+  width: 250px;   
 `;
+
 const Tabla= styled.div`
     display:table;
     padding: 10px;
-    text-indent: 150px;
+    
     
 `;
 
 const H3 = styled.h2`
     display:table-cell;
-    margin: 60px;
-    line-height: 5;
+
 `;
 
 
 const H4 = styled.h4`
     display:table-cell;
-    margin: 60px;
-    line-height: 5;
+
 `;
 
 const Coordinado = styled.div`
@@ -49,12 +41,11 @@ const Coordinado = styled.div`
 
 export const Espacio = styled.li`
     display: table-row;
-    margin: 100px;
 `;
 
 export const Titulo1 = styled.h4`
     justify-self: center;
-    font-size: 190%
+
 `;
 
 
