@@ -2,15 +2,13 @@ import os
 import sys
 from datetime import datetime
 from itertools import cycle
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from rest_framework import generics, status
 from .serializers import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from .services import ConsultasAPI
 
-
-def share_account_code(share: str, account: str) -> str:
-    return str(share) + str(account)
 
 def response(response: str):
     return {"response": response}
@@ -43,11 +41,136 @@ def cleaner_rut(rut: str):
     rut = rut.replace(".", "")
     return rut
 
-def cancel_transaction():
-    pass
+def cancel_transaction(transaction):
+    share_account = ShareAccount.objects.get(account_id=transaction.account_id, share_id=transaction.share_id)
+    if transaction.type_order == "B":
+        share_account.amount += transaction.total + transaction.variabl_com + transaction.fixed_com
+    else:
+        share_account.amount += transaction.amount
+    share_account.save(update_fields=['amount'])
+    transaction.delete()
+    return
 
-def make_transaction(transaction, table):
-    pass
+def transfer(transaction, share_id, amount):
+    transaction.active = False
+    transaction.used_amount = transaction.amount
+    if transaction.account_id is not None:
+        account_share = ShareAccount.objects.filter(account_id=transaction.account_id, share_id=share_id)
+        if account_share.count() > 0:
+            account_share = account_share[0]
+            account_share.amount += amount
+            account_share.save(update_fields=['amount'])
+        else:
+            account_share = ShareAccount(account_id=transaction.account_id, share_id=share_id, amount=amount)
+            account_share.save()
+    transaction.save(update_fields=['active', 'used_amount'])
+
+def make_transaction(buyer, seller, type_order):
+    #añadir a la cartera
+    if (buyer.price > seller.price):
+        if (buyer.amount - buyer.used_amount) < (seller.amount - seller.used_amount):
+            seller.used_amount = (buyer.amount - buyer.used_amount) + seller.used_amount
+            seller.save(update_fields=['used_amount'])
+            transfer(buyer, seller.share_id, buyer.amount)
+        elif (buyer.amount - buyer.used_amount) < (seller.amount - seller.used_amount):
+            buyer.used_amount = (seller.amount - seller.used_amount) + buyer.used_amount
+            buyer.save(update_fields=['used_amount'])
+            transfer(seller, buyer.share_id, seller.price - seller.fixed_com - seller.variabl_com)
+        else:
+            transfer(buyer, seller.share_id, buyer.amount)
+            transfer(seller, buyer.share_id, seller.price - seller.fixed_com - seller.variabl_com)
+        trans_table = TransactionTable.objects.get(id=buyer.trans_table_id)
+        trans_table.market_val = buyer.price if type_order == 'B' else seller.price
+        trans_table.save(update_fields=['market_val'])
+        return True
+    else:
+        return False
+
+def operate_trans(transaction, type_order):
+    filtered_trans = Transaction.objects.filter(active=True, trans_table=transaction.trans_table,
+                                                type_order='B' if type_order == 'S' else 'S').order_by('price' if type_order == 'S' else '-price').exclude(account_id=transaction.account_id)
+    if filtered_trans.count():
+        if type_order == 'B':
+            buyer = transaction
+            seller = filtered_trans[0]
+        else:
+            buyer = filtered_trans[0]
+            seller = transaction
+        i = 0
+        max = filtered_trans.count()
+        while True:
+            if make_transaction(buyer, seller, type_order):
+                if type_order == 'B' and not buyer.active:
+                    break
+                elif type_order == 'S' and not seller.active:
+                    break
+                i += 1
+                if i > max: break
+                if type_order == 'B':
+                    seller = filtered_trans[i]
+                else:
+                    buyer = filtered_trans[i]
+            else:
+                break
+
+
+def get_transaction_API():
+    # cargar la api key desde las variables de entorno del sistma
+    api_key = 'CC50A4DF46274CE79682FEA8A1A5B0F3'  # os.environ['API_BS']
+    # Creación de la instancia que manipulara las solicitudes a la API
+    con_bs = ConsultasAPI(token=api_key)
+    resp = con_bs.get_puntas_rv()
+
+    name = []
+    precio_venta = []
+
+    for sub in resp:
+        for key, value in sub.items():
+            if key == 'instrumento':
+                name.append(value)
+            if key == 'precioVenta':
+                precio_venta.append(value)
+    return name,precio_venta
+
+#get_transaction_API(name,precio_venta,name1)
+
+def generate_false_data():
+    api_key = 'CC50A4DF46274CE79682FEA8A1A5B0F3'
+    con_bs = ConsultasAPI(token=api_key)
+    resp1 = con_bs.get_transacciones_rv()
+    price = []
+    amount = []
+    total = []
+    vigente = []
+    start_date = []
+    active = []
+    name1 = []
+    for sub1 in resp1:
+        for key1, value1 in sub1.items():
+            if key1 == 'instrument':
+                name1.append(value1)
+            if key1 == 'price':
+                price.append(value1)
+            if key1 == 'quantity':
+                amount.append(value1)
+            if key1 == 'amount':
+                total.append(value1)
+            if key1 == 'timeInForce':
+                vigente.append(value1)
+            if key1 == 'timeStamp':
+                value1 = value1[:-1]
+                fecha_dt = datetime.strptime(value1, '%Y%m%d%H%M%S%f')
+                start_date.append(fecha_dt)
+            if key1 == 'action':
+                is_active = False
+                if 'action' == 'I':
+                    is_active = True
+                active.append(is_active)
+
+    for i in range(len(name1)):
+        transaccion = Transaction.objects.create(active=active[i], price=price[i], amount=amount[i],start_date=start_date[i],total=total[i])
+        transaccion.save()
+    return
 
 # Create your views here.
 class RegisterView(APIView):
@@ -78,7 +201,6 @@ class RegisterView(APIView):
                 account_share = ShareAccount(
                     account=user,
                     share=share,
-                    code=lambda rut: share_account_code('CLP', rut),
                     amount=Settings.objects.get(name="maximum_init_value").value
                 )
                 account_share.save()
@@ -100,6 +222,16 @@ class RegisterView(APIView):
                 return Response(response, status=status.HTTP_201_CREATED)
 
 
+class LogOutView(APIView):
+    def get(self, request):
+        user = request.user
+        if user.is_authenticated:
+            logout(request)
+            return Response(response("NICE"), status=status.HTTP_200_OK)
+        else:
+            return Response(exception("User not authenticated"), status=status.HTTP_404_NOT_FOUND)
+
+
 class LoginView(APIView):
     serializer_class = LoginSerializer
 
@@ -114,6 +246,15 @@ class LoginView(APIView):
             if account.active:
                 login(request, user)
                 account_share = ShareAccount.objects.filter(account=account).values_list('share', 'amount')
+                shares = []
+                if not account.staff:
+                    for share, amount in account_share:
+                        code = Share.objects.get(id=share).code
+                        if code != 'CLP':
+                            trans = TransactionTable.objects.get(share_buy="CLP", share_sell=code)
+                            price = amount * trans.market_val
+                            share = (code, amount, price)
+                            shares.append(share)
                 response = {
                     'rut': account.rut,
                     'email': account.email,
@@ -124,9 +265,9 @@ class LoginView(APIView):
                     'active': True,
                     'share': [
                         {
-                            "code": Share.objects.get(id=share).code,
+                            "code": share,
                             "amount": amount
-                        } for share, amount in account_share
+                        } for share, amount in shares
                     ] if not account.staff else None
                 }
                 return Response(response, status=status.HTTP_200_OK)
@@ -141,6 +282,15 @@ class RefreshView(APIView):
         account = request.user
         if account.is_authenticated:
             account_share = ShareAccount.objects.filter(account=account).values_list('share', 'amount')
+            shares = []
+            if not account.staff:
+                for share, amount in account_share:
+                    code = Share.objects.get(id=share).code
+                    if code != 'CLP':
+                        trans = TransactionTable.objects.get(share_buy="CLP", share_sell=code)
+                        price = amount * trans.market_val
+                        share = (code, amount, price)
+                        shares.append(share)
             response = {
                 'rut': account.rut,
                 'email': account.email,
@@ -151,9 +301,10 @@ class RefreshView(APIView):
                 'active': True,
                 'share': [
                     {
-                        "code": Share.objects.get(id=share).code,
-                        "amount": amount
-                    } for share, amount in account_share
+                        "code": share,
+                        "amount": amount,
+                        "price": price
+                    } for share, amount, price in shares
                 ] if not account.staff else None
             }
             return Response(response, status=status.HTTP_200_OK)
@@ -165,7 +316,7 @@ class TransactionView(APIView):
     serializer_class = TransactionSerializer
 
     def post(self, request, format=None):
-        # Falta Comprobacion de Vigencia :>
+        # Falta Hacer la transaccion
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             bought = serializer.data.get('share_buy')
@@ -197,7 +348,7 @@ class TransactionView(APIView):
                                 today = datetime.now()
                                 if datetime.strptime(vigency, "%Y-%m-%dT%H:%M:%SZ") > today:
                                     if type_order == 'B' and share_account.amount > total:
-                                        share_account.amount -= total
+                                        share_account.amount -= (total+Settings.objects.get(name='fixed_commission').value+Settings.objects.get(name='variable_commission').value)
                                     elif type_order == 'S' and share_account.amount > amount:
                                         share_account.amount -= amount
                                     else:
@@ -206,7 +357,6 @@ class TransactionView(APIView):
                                     share_account.save(update_fields=['amount'])
 
                                     table = query_table[0]
-
                                     transaction = Transaction(
                                         share=share,
                                         account=account,
@@ -220,6 +370,7 @@ class TransactionView(APIView):
                                         vigency=vigency
                                     )
                                     transaction.save()
+                                    operate_trans(transaction, type_order)
                                     return Response(response("NICE"), status=status.HTTP_201_CREATED)
                                 else:
                                     return Response(exception("solo se puede dar vigencia a dias posteriores a este"),
@@ -260,6 +411,14 @@ class TransactionView(APIView):
         else:
             return Response(exception("you aren't an administrator"), status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
+    def delete(self, request, format=None):
+        data = request.data
+        user = request.user
+        if user.is_authenticated:
+            transaction = Transaction.objects.get(id=data.get("id"))
+            cancel_transaction(transaction)
+            return Response(response("delete: " + data.get("id")))
+
 
 class ControlUsersView(APIView):
     serializer_class = BlockSerializer
@@ -276,6 +435,7 @@ class ControlUsersView(APIView):
         else:
             return Response(exception("you aren't an administrator"), status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
+    #put
     def post(self, request):
         user = request.user
         if user.is_authenticated and user.staff:
@@ -313,7 +473,6 @@ class ShareView(APIView):
                 share = queryset[0]
                 share.name = name
                 share.save(update_fields=['name'])
-
             return Response(ShareSerializer(share).data, status=status.HTTP_200_OK)
 
 
@@ -322,6 +481,7 @@ class TransTableView(APIView):
     queryset = TransactionTable.objects.all()
 
     def post(self, request, format=None):
+        # Modificar
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             share_buy = serializer.data.get('share_buy')
@@ -343,6 +503,8 @@ class TransTableView(APIView):
         out = []
         for i in range(self.queryset.count()):
             data = self.serializer_class(self.queryset[i]).data
+            data['name'] = str(self.queryset[i])
+            del data['share_buy'], data['share_sell']
             out.append(data)
         return Response(out, status=status.HTTP_200_OK)
 
@@ -350,6 +512,7 @@ class TransTableView(APIView):
 class SettingView(APIView):
     lookup_url_kwarg = 'query'
 
+    #put
     def post(self, request, format=None):
         user = request.user
         if user.is_authenticated and user.staff:
@@ -408,13 +571,28 @@ class SettingView(APIView):
         return Response(exception('query parameter not found in request'), status=status.HTTP_400_BAD_REQUEST)
 
 
-class QueryView(APIView):
-    def get(self, request, format=None):
-        operative_trans = Transaction.objects.filter(active=True).exclude(account=None)
+class UpdateShareView(APIView):
+    def post(self, request, format=None):
+        name, precio_venta = get_transaction_API()
+        for i in range(len(name)):
+            queryset = Share.objects.filter(share_buy='CLP', share_sell=name[i])
+            if not queryset.exists():
+                trans_table = TransactionTable(share_buy='CLP', share_sell=name[i], market_val=precio_venta[i])
+                trans_table.save()
+
+        for j in range(len(name)):
+            queryset = Share.objects.filter(code=name[j])
+            if not queryset.exists():
+                share1 = Share(code=name[j], name=name[j])
+                share1.save()
+
+
+class CancelTransactionView(APIView):
+    #automatizar el backend
+    def delete(self, request, format=None):
         today = datetime.now()
+        operative_trans = Transaction.objects.filter(active=True)
         for i in range(operative_trans.count()):
-            if datetime.strptime(operative_trans[i].vigency, "%Y-%m-%dT%H:%M:%SZ") > today:
-                make_transaction(operative_trans[i], operative_trans)
-            else:
-                cancel_transaction()
+            if datetime.strptime(operative_trans[i].vigency, "%Y-%m-%dT%H:%M:%SZ") < today:
+                cancel_transaction(operative_trans[i])
         return Response(response("NICE"), status=status.HTTP_200_OK)
