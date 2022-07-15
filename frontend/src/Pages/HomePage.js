@@ -1,13 +1,11 @@
-import React, {Component, useContext, useEffect, useState} from "react";
+
+import React from "react";
 import AccionesPrecios from "../components/HomePage/AccionesPrecios";
 import ResumenUsuario from "../components/HomePage/ResumenUsuario";
 import BarraPrincipal from "../components/NavBar/BarraPrincipal";
 import BarraSecundaria from "../components/NavBar/BarraSecundaria";
 import styled from "styled-components";
-import AuthContext from "../context/AuthContext";
-import Login from "./Login";
 import PageNotFound from "./PageNotFound";
-import {getRequest} from "../context/Request";
 
 const GridPrincipal = styled.div`
     display: grid;
@@ -39,9 +37,9 @@ const Grid4 = styled.div`
 
 
 export default function HomePage(){
-    //const {user} = useContext(AuthContext);
+
     const user = sessionStorage.getItem('user');
-    //console.log(JSON.parse(user))
+
 
     return(
         <div>

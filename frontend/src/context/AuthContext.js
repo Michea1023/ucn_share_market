@@ -29,11 +29,11 @@ export default AuthContext;
 
 export const AuthProvider = ({children}) => {
 
-  const [user, setUser] = useState(() =>
-    localStorage.getItem("authTokens")
-      ? jwt_decode(localStorage.getItem("authTokens"))
-      : null
-  );
+      const [user, setUser] = useState(() =>
+        localStorage.getItem("authTokens")
+          ? jwt_decode(localStorage.getItem("authTokens"))
+          : null
+      );
 
     const [loading, setLoading] = useState(false);
 
@@ -91,7 +91,7 @@ export const AuthProvider = ({children}) => {
                 history.push("/");
             })
             .catch((error) => {
-                alert(error);
+                alert(error.toString());
             })
     };
 

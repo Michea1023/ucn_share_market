@@ -9,26 +9,21 @@ import Settings from "../components/Admin/Settings";
 
 const GridPrincipal = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 60px 60px 60vh;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 60px 60vh;
     grid-template-areas: 
     "nav nav"
-    "nav2 nav2"
-    "Acciones1 Resumen2"
+    "Barra Contenido"
     
 `;
 const Grid1 = styled.div`
     grid-area: nav;
 `;
 const Grid2 = styled.div`
-    grid-area: nav2;
+    grid-area: Barra;
 `;
 const Grid3 = styled.div`
-    grid-area: Acciones1;   
-    
-`;
-const Grid4 = styled.div`
-    grid-area: Resumen2;
+    grid-area: Contenido;   
     justify-self:center;
     align-self:center;
 `;
@@ -42,15 +37,12 @@ export default function Admin(){
                     <BarraPrincipal/>
                 </Grid1>
                 <Grid2>
-                    <BarraSecundaria/>
-                </Grid2>
-                <Grid3>
                     <BarraAdmin/>
 
-                </Grid3>
-                <Grid4>
+                </Grid2>
+                <Grid3>
                     <Users/>
-                </Grid4>
+                </Grid3>
 
 
             </GridPrincipal>

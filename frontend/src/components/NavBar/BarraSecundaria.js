@@ -37,7 +37,7 @@ export default function BarraSecundaria(){
                     <Buttonnavbar to="/home">Inicio</Buttonnavbar>
                 </Navbarbutton>
                 <Navbarbutton>
-                    <Buttonnavbar to="/profile">Perfil</Buttonnavbar>
+                    <Buttonnavbar to={location => ({ ...location, pathname: "/profile" })}>Perfil</Buttonnavbar>
                 </Navbarbutton>
                 <Navbarbutton>
                     <Buttonnavbar to={'/buysell/buy'}>Compra</Buttonnavbar>
