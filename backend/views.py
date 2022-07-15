@@ -1,7 +1,8 @@
 import os
+import sys
+from datetime import datetime
+from itertools import cycle
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
-from django.contrib import messages
 from rest_framework import generics, status
 from .serializers import *
 from rest_framework.views import APIView
@@ -11,14 +12,42 @@ from rest_framework.response import Response
 def share_account_code(share: str, account: str) -> str:
     return str(share) + str(account)
 
-
 def response(response: str):
     return {"response": response}
-
 
 def exception(exception: str):
     return {"exception": exception}
 
+def verify_rut(rut: str):
+    rut = rut.upper();
+    rut = rut.replace("-", "")
+    rut = rut.replace(".", "")
+    aux = rut[:-1]
+    dv = rut[-1:]
+
+    revertido = map(int, reversed(str(aux)))
+    factors = cycle(range(2, 8))
+    s = sum(d * f for d, f in zip(revertido, factors))
+    res = (-s) % 11
+
+    if str(res) == dv:
+        return True
+    elif dv == "K" and res == 10:
+        return True
+    else:
+        return False
+
+def cleaner_rut(rut: str):
+    rut = rut.upper();
+    rut = rut.replace("-", "")
+    rut = rut.replace(".", "")
+    return rut
+
+def cancel_transaction():
+    pass
+
+def make_transaction(transaction, table):
+    pass
 
 # Create your views here.
 class RegisterView(APIView):
@@ -34,7 +63,7 @@ class RegisterView(APIView):
         full_name = data.get('full_name')
         career = data.get('career')
         staff = data.get('staff')
-        if password == password2:
+        if password == password2 and verify_rut(rut):
             if Account.objects.filter(rut=rut).exists():
                 return Response(exception("rut already used"), status=status.HTTP_406_NOT_ACCEPTABLE)
             elif Account.objects.filter(email=email).exists():
@@ -77,7 +106,7 @@ class LoginView(APIView):
     def post(self, request, format=None):
         #data = json.loads(request.body.decode('utf-8'))
         data = request.data
-        rut = data.get('rut')
+        rut = cleaner_rut(data.get('rut'))
         password = data.get('password')
         user = authenticate(request, rut=rut, password=password)
         if user is not None:
@@ -107,25 +136,50 @@ class LoginView(APIView):
             return Response(exception("user not registered"), status=status.HTTP_404_NOT_FOUND)
 
 
+class RefreshView(APIView):
+    def get(self, request, format=None):
+        account = request.user
+        if account.is_authenticated:
+            account_share = ShareAccount.objects.filter(account=account).values_list('share', 'amount')
+            response = {
+                'rut': account.rut,
+                'email': account.email,
+                'full_name': account.full_name,
+                'career': account.career
+                if account.career is not None and account.career != '' else None,
+                'staff': account.staff if account.staff else None,
+                'active': True,
+                'share': [
+                    {
+                        "code": Share.objects.get(id=share).code,
+                        "amount": amount
+                    } for share, amount in account_share
+                ] if not account.staff else None
+            }
+            return Response(response, status=status.HTTP_200_OK)
+        else:
+            return Response(exception("User not authenticated"), status=status.HTTP_404_NOT_FOUND)
+
+
 class TransactionView(APIView):
     serializer_class = TransactionSerializer
 
     def post(self, request, format=None):
-        # Falta Comprobacion de Vigencia :> , Correccion de usuario(Login), añadir comisiones
+        # Falta Comprobacion de Vigencia :>
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             bought = serializer.data.get('share_buy')
             selled = serializer.data.get('share_sell')
-            rut = serializer.data.get('rut')
+            rut = cleaner_rut(serializer.data.get('rut'))
             price = serializer.data.get('price')
             amount = serializer.data.get('amount')
             type_order = serializer.data.get('type_order')
             vigency = serializer.data.get('vigency')
-            share_buy = Share.objects.filter(code=bought)
-            share_sell = Share.objects.filter(code=selled)
             account = Account.objects.filter(rut=rut)
             if account.exists():
                 account = account[0]
+                share_buy = Share.objects.filter(code=bought)
+                share_sell = Share.objects.filter(code=selled)
                 if share_buy.exists() and share_sell.exists():
                     query_table = TransactionTable.objects.filter(share_buy=bought, share_sell=selled)
                     if query_table.exists():
@@ -139,32 +193,37 @@ class TransactionView(APIView):
 
                         if share_account.exists():
                             share_account = share_account[0]
-                            if total < Settings.objects.get(name="variable_commission").value:
-                                if type_order == 'B' and share_account.amount > total:
-                                    share_account.amount -= total
-                                elif type_order == 'S' and share_account.amount > amount:
-                                    share_account.amount -= amount
+                            if total < Settings.objects.get(name="maximum_value_transfer").value:
+                                today = datetime.now()
+                                if datetime.strptime(vigency, "%Y-%m-%dT%H:%M:%SZ") > today:
+                                    if type_order == 'B' and share_account.amount > total:
+                                        share_account.amount -= total
+                                    elif type_order == 'S' and share_account.amount > amount:
+                                        share_account.amount -= amount
+                                    else:
+                                        return Response(exception("no cuenta con el saldo disponible",
+                                                                  status=status.HTTP_400_BAD_REQUEST))
+                                    share_account.save(update_fields=['amount'])
+
+                                    table = query_table[0]
+
+                                    transaction = Transaction(
+                                        share=share,
+                                        account=account,
+                                        trans_table=table,
+                                        price=price,
+                                        amount=amount,
+                                        total=total,
+                                        fixed_com= Settings.objects.get(name="fixed_commission").value,
+                                        variabl_com=total * Settings.objects.get(name="variable_commission").value,
+                                        type_order=type_order,
+                                        vigency=vigency
+                                    )
+                                    transaction.save()
+                                    return Response(response("NICE"), status=status.HTTP_201_CREATED)
                                 else:
-                                    return Response(exception("no cuenta con el saldo disponible",
-                                                              status=status.HTTP_400_BAD_REQUEST))
-                                share_account.save(update_fields=['amount'])
-
-                                table = query_table[0]
-
-                                transaction = Transaction(
-                                    share=share,
-                                    account=account,
-                                    trans_table=table,
-                                    price=price,
-                                    amount=amount,
-                                    total=total,
-                                    fixed_com= Settings.objects.get(name="fixed_commission").value,
-                                    variabl_com=total * Settings.objects.get(name="variable_commission").value,
-                                    type_order=type_order,
-                                    vigency=vigency
-                                )
-                                transaction.save()
-                                return Response(response("NICE"), status=status.HTTP_201_CREATED)
+                                    return Response(exception("solo se puede dar vigencia a dias posteriores a este"),
+                                                    status=status.HTTP_400_BAD_REQUEST)
                             else:
                                 return Response(exception("no puede transferir tanto"),
                                                 status=status.HTTP_400_BAD_REQUEST)
@@ -176,6 +235,30 @@ class TransactionView(APIView):
                     return Response(exception("no existe tal accion"), status=status.HTTP_400_BAD_REQUEST)
             else:
                 return Response(exception("No existe este usuario"), status=status.HTTP_404_NOT_FOUND)
+
+    def get(self, request, format=None):
+        user = request.user
+        if user.is_authenticated:
+            queryset = Transaction.objects.filter(account=user)
+            out = {
+                "active": [],
+                "inactive": []
+            }
+            for i in range(queryset.count()):
+                data = TransSerializer(queryset[i]).data
+                data["account"] = user.rut
+                transtable = TransactionTable.objects.get(id=data["trans_table"])
+                data["badge"] = transtable.share_buy
+                data["share"] = transtable.share_sell
+                data["market_val"] = transtable.market_val
+                del data["trans_table"]
+                if data.get("active"):
+                    out.get("active").append(data)
+                else:
+                    out.get("inactive").append(data)
+            return Response(out, status=status.HTTP_200_OK)
+        else:
+            return Response(exception("you aren't an administrator"), status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
 class ControlUsersView(APIView):
@@ -206,7 +289,7 @@ class ControlUsersView(APIView):
             return Response(exception("you aren't an administrator"), status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
-class ShareView(generics.CreateAPIView):
+class ShareView(APIView):
     queryset = Share.objects.all()
     serializer_class = ShareSerializer
 
@@ -216,10 +299,6 @@ class ShareView(generics.CreateAPIView):
             data = self.serializer_class(self.queryset[i]).data
             out.append(data)
         return Response(out, status=status.HTTP_200_OK)
-
-
-class CreateShareView(APIView):
-    serializer_class = ShareSerializer
 
     def post(self, request, format=None):
         serializer = self.serializer_class(data=request.data)
@@ -238,8 +317,9 @@ class CreateShareView(APIView):
             return Response(ShareSerializer(share).data, status=status.HTTP_200_OK)
 
 
-class CreateTransTableView(APIView):
+class TransTableView(APIView):
     serializer_class = TransTableSerializer
+    queryset = TransactionTable.objects.all()
 
     def post(self, request, format=None):
         serializer = self.serializer_class(data=request.data)
@@ -259,17 +339,13 @@ class CreateTransTableView(APIView):
         else:
             return Response(exception("Envio mal su consulta"), status=status.HTTP_400_BAD_REQUEST)
 
-
-class TransTableView(APIView):
-    serializer_class = TransTableSerializer
-    queryset = TransactionTable.objects.all()
-
     def get(self, request, format=None):
         out = []
         for i in range(self.queryset.count()):
             data = self.serializer_class(self.queryset[i]).data
             out.append(data)
         return Response(out, status=status.HTTP_200_OK)
+
 
 class SettingView(APIView):
     lookup_url_kwarg = 'query'
@@ -306,7 +382,6 @@ class SettingView(APIView):
             return Response(exception("you aren't an administrator"), status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
-
     def get(self, request, format=None):
         #(request = ('query'))
         query = request.GET.get(self.lookup_url_kwarg)
@@ -332,24 +407,14 @@ class SettingView(APIView):
                 return Response(exception("invalid query code"), status=status.HTTP_404_NOT_FOUND)
         return Response(exception('query parameter not found in request'), status=status.HTTP_400_BAD_REQUEST)
 
-"""
-class GetShare(APIView):
-    serializer_class = ShareSerializer
-    lookup_url_kwarg = 'code'
-
-    def get(self, request, format=None):
-        code = request.GET.get(self.lookup_url_kwarg)
-        if code != None:
-            share = Share.objects.filter(code=code)
-            if len(share) > 0:
-                data = ShareSerializer(share[0]).data
-                return Response(data, status=status.HTTP_200_OK)
-            return Response({'Room Not Found': 'Invalid Room Code'}, status=status.HTTP_404_NOT_FOUND)
-        return Response({'Bad Request': 'Code parameter not found in request'}, status=status.HTTP_400_BAD_REQUEST)
-"""
 
 class QueryView(APIView):
     def get(self, request, format=None):
         operative_trans = Transaction.objects.filter(active=True).exclude(account=None)
-
+        today = datetime.now()
+        for i in range(operative_trans.count()):
+            if datetime.strptime(operative_trans[i].vigency, "%Y-%m-%dT%H:%M:%SZ") > today:
+                make_transaction(operative_trans[i], operative_trans)
+            else:
+                cancel_transaction()
         return Response(response("NICE"), status=status.HTTP_200_OK)

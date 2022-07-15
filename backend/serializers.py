@@ -57,7 +57,7 @@ class ShareAccountSerializer(serializers.ModelSerializer):
 class TransSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
-        fields = ('account', 'price', 'amount', 'type_order', 'vigency')
+        fields = ('account', 'price', 'amount', 'trans_table',  'type_order', 'vigency', 'active')
 
 class SettingSerializer(serializers.ModelSerializer):
     class Meta:

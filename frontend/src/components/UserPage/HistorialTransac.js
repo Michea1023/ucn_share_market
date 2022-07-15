@@ -3,6 +3,8 @@ import HistorialState from "./HistorialState";
 
 import styled from "styled-components";
 import {A,Titulo} from "../Styled";
+import {useEffect, useState} from "react";
+import {getRequest} from "../../context/Request";
 
 
 
@@ -71,12 +73,18 @@ const H4 = styled.h4`
 
 
 export default function HistorialTransac(){
+    const [arrShare, setArrShare] = useState([]);
+
+    useEffect(async ()=>{
+
+        setArrShare(await getRequest("http://127.0.0.1:8000/api/transaction-table"))
+    },[])
 
     return(
 
            <GridActivos>
 
-                   <Titulo>Ordenes activas</Titulo>
+                   <Titulo>Historial de transacciones</Titulo>
 
 
                 <Tabla>
@@ -89,14 +97,13 @@ export default function HistorialTransac(){
                         <H4>Tipo</H4>
                     </B>
                     <B>
-                        <HistorialState/>
+                        {
+                            arrShare.map(x => (<HistorialState id ={x.id}  share_buy = {x.share_buy}  market_val={x.market_val}></HistorialState>))
+                        }
+
+
                     </B>
-                    <B>
-                        <HistorialState />
-                    </B>
-                    <B>
-                        <HistorialState />
-                    </B>
+
                 </Tabla>
 
 

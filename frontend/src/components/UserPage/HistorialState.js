@@ -7,14 +7,14 @@ const H4 = styled.h4`
     text-indent: 13px;
 `;
 
-export default function HistorialState(){
+export default function HistorialState(props){
 
     return(
              <>
-            <H4>4</H4>
-            <H4>SQM</H4>
+            <H4>{props.id}</H4>
+            <H4>{props.share_buy}</H4>
             <H4>100</H4>
-             <H4>$500</H4>
+             <H4>{props.market_val}</H4>
              <H4>Venta</H4>
 
              </>
