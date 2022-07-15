@@ -1,6 +1,4 @@
-import React, {Component, useContext} from "react";
-import {scryRenderedComponentsWithType} from "react-dom/test-utils";
-import {Link} from "react-router-dom";
+import React, {useContext} from "react";
 import logo from "../../../static/images/logo.png";
 import cierre_sesion from "../../../static/images/logo-cierre-sesion.png"
 
@@ -68,11 +66,6 @@ const Gridcontainer = styled.header`
     border-color: transparent;
     cursor: pointer; 
  `;
-
-
-
-
-
 
 export default function BarraPrincipal() {
 

@@ -27,14 +27,15 @@ export const getRequest = async (http) => {
 
 }
 
-export const postRequest = async (http,header,data) => {
+
+export const postRequest = async(http,header,data) => {
     try {
-       const response = await fetch(http,
+       const response =await fetch(http,
         {header, method: "POST",
-            body : data, credentials: "omit",}) // no se porque en compra/venta no hay que enviar ningun cookie -.-
-    return response;
+            body : data, credentials: "omit"})
+        return response
     }catch (error){
-        console.log("Errooooor")
+        console.log(error)
     }
 
 

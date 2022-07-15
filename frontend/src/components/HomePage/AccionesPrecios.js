@@ -63,13 +63,15 @@ export default function AccionesPrecios() {
 
     const [arrShare, setArrShare] = useState([]);
 
-    useEffect(async () => {
-
-        setArrShare(await getRequest("http://127.0.0.1:8000/api/share"))
-
-        },[])
+    useEffect(() => {
+        async function shares(){
+            setArrShare(await getRequest("http://127.0.0.1:8000/api/share"))
+        }
+        shares()
+    },[])
 
     console.log(arrShare)
+
 
     return(
         <Accionesprecios1>
