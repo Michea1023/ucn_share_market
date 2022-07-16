@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'backend.apps.BackendConfig',
-    'frontend.apps.FrontendConfig'
+    'frontend.apps.FrontendConfig',
+    'django_celery_results',
+    'django_celery_beat'
 ]
 
 AUTH_USER_MODEL = 'backend.Account'
