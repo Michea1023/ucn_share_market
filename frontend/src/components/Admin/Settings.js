@@ -1,9 +1,10 @@
-import React,{Component} from "react";
+import React, {Component, useEffect, useState} from "react";
 import styled from "styled-components";
 import {A, Button, Input, Label} from "../Styled";
+import {getRequest} from "../../context/Request";
 
 const GridPrincipal = styled.div`
-    width: 50vw;   
+    width: 60vw;   
 `;
 
 const Separacion = styled.div`
@@ -16,22 +17,46 @@ const ButtonVerde = styled(Button)`
 
 export default function Settings(){
 
+    const [maxValueTrans, setMaxValueTrans] = useState()
+    const [maxInitValue, setMaxInitValue] = useState()
+    const [variableComission, setVariableComission] = useState()
+    const [fixedCom, setFixedCom] = useState()
+
+    useEffect(()=>{
+
+        async function setting(){
+            const com = await getRequest("http://127.0.0.1:8000/api/setting?query=all")
+            setMaxValueTrans(com.maximum_value_transfer)
+            setMaxInitValue(com.maximum_init_value)
+            setVariableComission(com.variable_commission)
+            setFixedCom(com.fixed_commission)
+        }
+        setting()
+
+
+    },[])
+
+
     return(
              <GridPrincipal>
             <Separacion>
                 <h2>Buscador</h2>
             </Separacion>
             <A>
-                <Label>Monto Inicial</Label>
-                <Input disabled/>
+                <Label>Monto inicial</Label>
+                <Input value={maxInitValue}/>
+            </A>
+                 <A>
+                <Label>Monto maximo por transaccion</Label>
+                <Input value={maxValueTrans}/>
             </A>
             <A>
-                <Label>Comision Fija</Label>
-                <Input disabled/>
+                <Label>Comision fija</Label>
+                <Input value={fixedCom}/>
             </A>
             <A>
-                <Label>Comision Variable</Label>
-                <Input disabled/>
+                <Label>Comision variable</Label>
+                <Input value={variableComission}/>
                 <ButtonVerde>Actualizar</ButtonVerde>
 
             </A>

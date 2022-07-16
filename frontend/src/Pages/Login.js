@@ -134,7 +134,13 @@ export default function Login(){
         e.preventDefault();
         const rut = e.target.rut.value;
         const password = e.target.password.value;
-        rut.length > 0 && loginUser(rut, password);
+        if(rut.length > 0){
+            const login = loginUser(rut, password)
+            if(login == 404){
+                alert("Usuario no encontrado")
+            }
+
+        }
     };
 
 
