@@ -1,20 +1,19 @@
-import React,{Component} from "react";
+import React from "react";
 import styled from "styled-components";
 import BarraPrincipal from "../components/NavBar/BarraPrincipal";
-import BarraSecundaria from "../components/NavBar/BarraSecundaria";
 import Ranking from "../components/Admin/Ranking";
 import BarraAdmin from "../components/Admin/BarraAdmin";
 import Users from "../components/Admin/Users";
 import Settings from "../components/Admin/Settings";
 
 const GridPrincipal = styled.div`
+    box-sizing: content-box;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 60px 60vh;
+    grid-template-rows: 60px calc(100% - 60px);
     grid-template-areas: 
     "nav nav"
-    "Barra Contenido"
-    
+    "Barra Contenido";
 `;
 const Grid1 = styled.div`
     grid-area: nav;
@@ -25,14 +24,21 @@ const Grid2 = styled.div`
 const Grid3 = styled.div`
     grid-area: Contenido;   
     justify-self:center;
-    align-self:center;
+    margin-top: 20px;
+    
 `;
 
 
 export default function Admin(){
 
+    const admin = JSON.parse(sessionStorage.getItem("user")).staff
+
     return(
-            <GridPrincipal>
+        <>
+
+        {
+            admin == true ? (
+                <GridPrincipal>
                 <Grid1>
                     <BarraPrincipal/>
                 </Grid1>
@@ -46,6 +52,10 @@ export default function Admin(){
 
 
             </GridPrincipal>
+            ) : ( alert("Problemas al iniciar como administrador"))
+
+        }
+        </>
         )
 
 }
