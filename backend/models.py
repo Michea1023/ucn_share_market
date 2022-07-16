@@ -89,12 +89,14 @@ class Share(models.Model):
 
 
 class TransactionTable(models.Model):
-    share_buy   = models.CharField(max_length=15)
-    share_sell  = models.CharField(max_length=15)
+    share_buy   = models.CharField(max_length=15) #share_used_to_buy
+    share_sell  = models.CharField(max_length=15) #share_used_to_sell
     market_val  = models.FloatField(null=True) # 1 share_sell = X share_buy
+    diary_rent  = models.FloatField(null=True) # rentabilidad diaria
+    annual_rent = models.FloatField(null=True) # rentabilidad anual
 
     def __str__(self):
-        return f"{self.share_buy} - {self.share_sell}"
+        return f"{self.share_sell}/{self.share_buy}"
 
 
 class Transaction(models.Model):
@@ -104,6 +106,7 @@ class Transaction(models.Model):
     active = models.BooleanField(default=True)
     price   = models.FloatField()
     amount  = models.FloatField()
+    used_amount = models.FloatField(default=0)
     total   = models.FloatField() #price * amount
     fixed_com   = models.FloatField(null=True)
     variabl_com = models.FloatField(null=True)
@@ -119,7 +122,6 @@ class Transaction(models.Model):
 class ShareAccount(models.Model):
     account     = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     share       = models.ForeignKey(Share, on_delete=models.CASCADE)
-    code        = models.CharField(max_length=45, unique=True)
     amount      = models.FloatField(default=0)
 
 

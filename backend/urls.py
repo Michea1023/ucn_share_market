@@ -7,10 +7,12 @@ urlpatterns = [
     path('create-user', RegisterView.as_view()),
     path('transaction', TransactionView.as_view()),
     path('login', LoginView.as_view()),
+    path('logout', LogOutView.as_view()),
     path('control-users', ControlUsersView.as_view()),
     path('setting', SettingView.as_view()),
     path('transaction-table', TransTableView.as_view()),
     path('query', RefreshView.as_view()),
+    path('update', UpdateShareView.as_view())
     #path('get-share-by-account', ShareAccountView.as_view()),
     #path('services', ExternalApi.as_view()),
 ]

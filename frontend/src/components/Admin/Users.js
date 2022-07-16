@@ -1,51 +1,55 @@
-import React,{Component} from "react";
+import React, {Component, useEffect, useState} from "react";
 import styled from "styled-components";
 import {Button} from "../Styled";
+import {getRequest} from "../../context/Request";
 
 
 const GridUsuarios = styled.div`
-  background-color: #E1F1F9;
+    background-color: #A7CDD9;
     width: 60vw;
-    padding: 10px;
     border-radius: 20px;
     box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.252);
     display:grid;
     
 `;
 
-
-
-const TablaUsuario= styled.div`
+const Tabla= styled.div`
     display:table;
     padding: 10px;
-    text-indent: 150px;
     
 `;
 
-const H3 = styled.h2`
-    display:table-cell;
-    margin: 60px;
-    line-height: 5;
+const Fondo= styled.div`
+    
 `;
-
 
 const H4 = styled.h4`
     display:table-cell;
-    margin: 60px;
-    line-height: 5;
+    margin: 20px;
+    text-indent: 13px;
 `;
 
 
-
-export const Espacio = styled.li`
-    display: table-row;
-    margin: 100px;
-`;
-
-export const Titulo1 = styled.h4`
+const H1 = styled.h1`
     justify-self: center;
-    font-size: 190%
 `;
+
+
+ const B = styled.li`
+  
+    display: table-row;
+    margin: 10px;
+    background-color: #E1F1F9;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
+    border-top-right-radius: 80px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 50px;
+    width: 22vw;
+    
+
+`;
+
 
 const ButtonVerde = styled(Button)`
     background-color:#27E709;
@@ -56,41 +60,48 @@ const ButtonRojo = styled(Button)`
 `;
 export default function Users(){
 
+    const [listUser, setListUser] = useState([])
+
+    useEffect(()=>{
+        async function listaUsuarios(){
+            setListUser(await getRequest("http://127.0.0.1:8000/api/control-users", {'Content-Type': 'application/json'}))
+        }
+        listaUsuarios();
+        console.log(listUser)
+
+    },[])
+
+
+
+
     return(
+
                <GridUsuarios>
 
-               <Titulo1>Usuarios</Titulo1>
-               <TablaUsuario>
-                    <Espacio>
+               <H1>Usuarios</H1>
+               <Tabla>
+                    <B>
 
 
 
-                        <H3>Nombre</H3>
-                        <H3>Rut</H3>
-                        <H3>Carrera</H3>
-                        <H3>Estado</H3>
+                        <H4>Nombre</H4>
+                        <H4>Rut</H4>
+                        <H4>Carrera</H4>
+                        <H4>Estado</H4>
 
-                    </Espacio>
-                    <Espacio>
+                    </B>
+                   {
+                       listUser.map(x=>(
+                           <B>
+                               <H4>{x.full_name}</H4>
+                               <H4>{x.rut}</H4>
+                               <H4>{x.career}</H4>
+                               <ButtonVerde>Activo</ButtonVerde>
+                           </B>
+                       ))
+                   }
 
-                        <H4>Alberto Milla</H4>
-                        <H4>12.222.222-2</H4>
-                        <H4>ICCI</H4>
-                        <ButtonVerde>Activo</ButtonVerde>
-
-
-
-                    </Espacio>
-                     <Espacio>
-
-                       <H4>Alberto Milla</H4>
-                        <H4>12.222.222-2</H4>
-                        <H4>ICCI</H4>
-                         <ButtonRojo>Bloqueado</ButtonRojo>
-
-                     </Espacio>
-
-               </TablaUsuario>
+               </Tabla>
 
                </GridUsuarios>
 

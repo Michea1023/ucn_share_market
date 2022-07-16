@@ -42,7 +42,7 @@ class BlockSerializer(serializers.ModelSerializer):
 class TransTableSerializer(serializers.ModelSerializer):
     class Meta:
         model   = TransactionTable
-        fields  = ('id', 'share_buy', 'share_sell', 'market_val')
+        fields  = ('id', 'share_buy', 'share_sell', 'market_val', 'diary_rent', 'annual_rent')
 
 class ShareSerializer(serializers.ModelSerializer):
     class Meta:
@@ -57,7 +57,7 @@ class ShareAccountSerializer(serializers.ModelSerializer):
 class TransSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
-        fields = ('account', 'price', 'amount', 'trans_table',  'type_order', 'vigency', 'active')
+        fields = ('id', 'account', 'price', 'amount', 'trans_table',  'type_order', 'vigency', 'active')
 
 class SettingSerializer(serializers.ModelSerializer):
     class Meta:

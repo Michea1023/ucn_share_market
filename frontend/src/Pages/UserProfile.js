@@ -1,4 +1,4 @@
-import React, {Component, useEffect} from "react";
+import React from "react";
 import styled from "styled-components";
 import BarraPrincipal from "../components/NavBar/BarraPrincipal";
 // todo esto es por mientras
@@ -6,7 +6,8 @@ import BarraSecundaria from '../components/NavBar/BarraSecundaria';
 import OrdenesActivas from '../components/UserPage/OrdenesActivas';
 import HistorialTransac from '../components/UserPage/HistorialTransac';
 import Activos from '../components/UserPage/Activos';
-import {useParams} from "react-router-dom";
+
+import PageNotFound from "./PageNotFound";
 
 const GridUsuario = styled.div`
     display: grid;
@@ -39,15 +40,14 @@ const GridArea3 = styled.div`
     grid-area: area3;
 `;
 
-
-
-
 export default function UserProfile(){
 
-    
+    const user = sessionStorage.getItem('user');
 
     return(
-        <GridUsuario>
+        <>
+        {user ? (
+            <GridUsuario>
             <GridNav>
                 <BarraPrincipal />
             </GridNav>
@@ -65,6 +65,13 @@ export default function UserProfile(){
                 <OrdenesActivas></OrdenesActivas>
             </GridArea3>
         </GridUsuario>
+            ) : (
+                <PageNotFound/>
+            )
+
+        }
+        </>
+
     )
 
 }
