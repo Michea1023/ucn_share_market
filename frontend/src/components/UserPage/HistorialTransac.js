@@ -5,6 +5,7 @@ import styled from "styled-components";
 import {A,Titulo} from "../Styled";
 import {useEffect, useState} from "react";
 import {getRequest} from "../../context/Request";
+import OrdenState from "./OrdenState";
 
 
 
@@ -78,7 +79,7 @@ export default function HistorialTransac(){
     useEffect(()=>{
 
         async function request(){
-             setArrShare(await getRequest("http://127.0.0.1:8000/api/transaction-table"))
+             setArrShare(await getRequest("http://127.0.0.1:8000/api/transaction"))
         }
         request()
 
@@ -103,12 +104,19 @@ export default function HistorialTransac(){
 
                         {
 
-                            arrShare.map(x => (
+                            arrShare.inactive ? (arrShare.inactive.length > 0) ? (arrShare.inactive.map(
+                                x=> (
+                                    <B>
+                                        <HistorialState id ={x.id} name = {x.share}  price={x.price} amount={x.amount} type={x.type_order}></HistorialState>
+                                    </B>
+                                )
+                            )) : (
                                 <B>
-                                    <HistorialState name ={x.name}   market_val={x.market_val}   diary_rent = {x.diary_rent} annual_rent = {x.annual_rent}></HistorialState>)
-                               </B>
+                                    <h3>Sin historias de transacciones</h3>
+                                </B>
+                            ) : null
 
-                                ))
+
                         }
 
 

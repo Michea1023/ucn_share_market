@@ -1,18 +1,12 @@
 import React from "react";
-import {useHistory} from "react-router-dom";
 
 export default function Comprobante(props){
-    console.log(props.comisionF)
-    console.log(props.comisionV)
-
-    const history = useHistory();
 
     const repit = (e) =>{
         e.preventDefault()
         location.reload(true)
     }
     const share = props.share
-
 
     return(
         <>

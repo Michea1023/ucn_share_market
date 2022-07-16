@@ -11,10 +11,11 @@ export default function HistorialState(props){
 
     return(
              <>
-            <H4>{props.name}</H4>
-            <H4>{props.market_val}</H4>
-            <H4>{props.diary_rent}</H4>
-             <H4>{props.annual_rent}</H4>
+                 <H4>{props.id}</H4>
+                 <H4>{props.name}</H4>
+                 <H4>{props.amount}</H4>
+                 <H4>{props.price}</H4>
+                 <H4>{props.type == "B"? "Compra":"Venta"}</H4>
 
 
              </>

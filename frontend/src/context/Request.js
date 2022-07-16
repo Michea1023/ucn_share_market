@@ -41,5 +41,19 @@ export const postRequest = async(http,header,data) => {
 
 }
 
+export const postRequestCer = async(http,data) => {
+    try {
+       const response =await fetch(http,
+        {headers: {
+                "Content-Type": "application/json",
+                 "X-CSRFToken": getCookie("csrftoken")
+            }, method: "POST",
+            body : JSON.stringify(data)})
+        return response
+    }catch (error){
+        console.log(error)
+    }
+}
+
 
 

@@ -2,7 +2,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import {BrowserRouter as Router, Switch, Route, Link, Redirect, BrowserRouter} from "react-router-dom";
-
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import HomePage from "./Pages/HomePage";
@@ -11,8 +10,7 @@ import Admin from "./Pages/Admin";
 import UserProfile from "./Pages/UserProfile";
 import {AuthProvider} from "./context/AuthContext";
 import PageNotFound from "./Pages/PageNotFound";
-import Comprobante from "./Pages/Comprobante";
-import ReactDOM from "react-dom/client";
+
 
 
 export default function App(){
@@ -24,10 +22,9 @@ export default function App(){
                         <Route exact path="/register" component={Register} />
                         <Route exect path="/buysell/:type" component={BuySell}/>
                         <Route component ={HomePage} exact path="/home" />
+                        <Route exact component={UserProfile} path="/profile"/>
 
                         <Route exact path="/admin" component={Admin} />
-                        <Route exact component={UserProfile} path="/profile"/>
-                        <Route exact path="/comprobante" component={Comprobante}/>
                         <Route exact path="*" component={PageNotFound}/>
                     </Switch>
                 </AuthProvider>
@@ -36,11 +33,6 @@ export default function App(){
         );
   }
 
-
-//const root = ReactDOM.createRoot(
-  //document.getElementById('app')
-//);
-//root.render(App);
 
 const appDiv = document.getElementById("app");
 render(<App />, appDiv);

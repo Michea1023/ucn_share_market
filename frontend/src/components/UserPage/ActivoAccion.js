@@ -10,13 +10,13 @@ const H4 = styled.h4`
 `;
 
 
-export default function ActivoAccion(){
+export default function ActivoAccion(props){
 
     return(
         <>
-            <H4>LTM</H4>
-            <H4>1000</H4>
-            <H4>$127.000.000</H4>
+            <H4>{props.share}</H4>
+            <H4>{props.amount}</H4>
+            <H4>${props.price}</H4>
         </>
     )
 

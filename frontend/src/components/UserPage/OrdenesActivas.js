@@ -47,7 +47,7 @@ const H4 = styled.h4`
 
 
 //<B>
-//                             <OrdenState id ={x.id} share = {x.share}  price={x.price} amount={x.amount} type_order={x.type_order}></OrdenState>
+//
 //                         </B>
 
 export default function OrdenesActivas(){
@@ -78,7 +78,19 @@ export default function OrdenesActivas(){
 
 
                 {
-                    //(arrShare.active).map(x=>(
+
+                    arrShare.active ? (arrShare.active.length > 0) ? (arrShare.active.map(
+                        x=> (
+                            <B>
+                                <OrdenState id ={x.id} share = {x.share}  price={x.price} amount={x.amount} type_order={x.type_order}></OrdenState>
+                            </B>
+                        )
+                    )) : (
+                        <B>
+                            <h3>Sin ordenes activas</h3>
+                        </B>
+                    ) : null
+
                 }
             </Tabla>
         </GridActivos>

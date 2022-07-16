@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import { useHistory } from "react-router-dom";
+import {getRequest} from "./Request";
 
 
 function getCookie(name) {
@@ -106,6 +107,7 @@ export const AuthProvider = ({children}) => {
     const logOut = () => {
         setUser(null);
         sessionStorage.clear()
+        getRequest("http://127.0.0.1:8000/api/logout")
         history.push("/");
     }
 

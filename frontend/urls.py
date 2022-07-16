@@ -8,7 +8,6 @@ urlpatterns = [
     path('home', index),
     path('buysell/buy', index),
     path('buysell/sell', index),
-    path('comprobante', index),
     path('user', index),
     path('profile', index),
     path('admin', index)

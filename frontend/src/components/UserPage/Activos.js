@@ -57,6 +57,7 @@ export default function Activos (){
 
     },[])
 
+    const user = JSON.parse(sessionStorage.getItem("user"))
 
 
     return(
@@ -68,16 +69,18 @@ export default function Activos (){
                     <H4>Cantidad</H4>
                     <H4>Monto</H4>
                 </B>
-                <B>
 
-                    <ActivoAccion />
-                </B>
-                <B>
-                    <ActivoAccion />
-                </B>
-                <B>
-                    <ActivoAccion />
-                </B>
+                {
+                  user.share.map(x=>(
+                     <B>
+
+                        <ActivoAccion share={x.code} amount={x.amount} price={x.price}/>
+                     </B>
+                  ))
+                }
+
+
+
             </Tabla>
 
 

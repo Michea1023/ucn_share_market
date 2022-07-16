@@ -52,13 +52,16 @@ export default function Compra(props) {
     }
 
     async function typeBuy(e, event) {
+        e.preventDefault();
+
         if (event === "mercado" && props.share !== null) {
-            const resp = await getRequest("http://127.0.0.1:8000/api/transaction-table").then(data => data.map(x => x.share_sell === props.share ? setPrecio(x.market_val) : null))
+            const resp = await getRequest("http://127.0.0.1:8000/api/transaction-table").then(data => data.map(x => x.name === props.share+"/CLP" ? setPrecio(x.market_val) : null))
         } else if (event === "limite") {
             setPrecio(precio)
         }
-        e.preventDefault();
+
     }
+
 
     const handleSubmit = async (e, date) => {
         e.preventDefault()
