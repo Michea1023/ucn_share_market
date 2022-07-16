@@ -48,9 +48,13 @@ const H4 = styled.h4`
 export default function OrdenesActivas(){
     const [arrShare, setArrShare] = useState([]);
 
-    useEffect(async ()=>{
+    useEffect( ()=>{
 
-        setArrShare(await getRequest("http://127.0.0.1:8000/api/transaction-table"))
+        async function request(){
+            setArrShare(await getRequest("http://127.0.0.1:8000/api/transaction-table"))
+        }
+        request()
+
     },[])
 
     return(
@@ -66,15 +70,16 @@ export default function OrdenesActivas(){
                     <H4>Tipo</H4>
                     <H4></H4>
                 </B>
-                <B>
-                    <OrdenState/>
-                </B>
-                <B>
-                    <OrdenState />
-                </B>
-                <B>
-                    <OrdenState/>
-                </B>
+
+                    {
+                     arrShare.map(x => (
+                         <B>
+                         <OrdenState id ={x.id}  share_buy = {x.share_buy}  market_val={x.market_val}></OrdenState>)
+                             </B>))
+                    }
+
+
+
             </Tabla>
 
 

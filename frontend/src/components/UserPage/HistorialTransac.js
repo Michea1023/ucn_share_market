@@ -75,9 +75,13 @@ const H4 = styled.h4`
 export default function HistorialTransac(){
     const [arrShare, setArrShare] = useState([]);
 
-    useEffect(async ()=>{
+    useEffect(()=>{
 
-        setArrShare(await getRequest("http://127.0.0.1:8000/api/transaction-table"))
+        async function request(){
+             setArrShare(await getRequest("http://127.0.0.1:8000/api/transaction-table"))
+        }
+        request()
+
     },[])
 
     return(
@@ -96,13 +100,19 @@ export default function HistorialTransac(){
                         <H4>Precio</H4>
                         <H4>Tipo</H4>
                     </B>
-                    <B>
+
                         {
-                            arrShare.map(x => (<HistorialState id ={x.id}  share_buy = {x.share_buy}  market_val={x.market_val}></HistorialState>))
+
+                            arrShare.map(x => (
+                                <B>
+                                    <HistorialState id ={x.id}  share_buy = {x.share_buy}  market_val={x.market_val}></HistorialState>)
+                               </B>
+
+                                ))
                         }
 
 
-                    </B>
+
 
                 </Tabla>
 

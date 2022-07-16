@@ -8,17 +8,23 @@ const Compaccionesprecios1= styled.div`
   height: 50px;
 
 `;
+
+const H4 = styled.h4`
+    display:table-cell;
+    margin: 10px;
+    text-indent: 13px;
+`;
 export default function CompAccionesPrecios(props){
 
 
 
     return(
-        <Compaccionesprecios1>
-            <p>{props.code}</p>
-            <p>$127</p>
-            <p>10%</p>
-            <p>-150%</p>
-        </Compaccionesprecios1>
+        <>
+            <H4>{props.code}</H4>
+            <H4>$127</H4>
+            <H4>10%</H4>
+            <H4>-150%</H4>
+        </>
     )
 
 

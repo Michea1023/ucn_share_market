@@ -3,22 +3,12 @@ import CompAccionesPrecios from "./CompAccionesPrecios";
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 import {getRequest} from "../../context/Request";
+import {Titulo} from "../Styled";
 
 
-const Accionesprecios1 = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #A7CDD9;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
-  margin:30px;
-  width: 100%; 
-  padding-top: 20px ;
-  border-radius: 20px;
-    
-`;
-const Parametrosaccionesprecio = styled.div`
+
+
+const Parametros = styled.div`
   display: grid;
   grid-template-columns: 20% 20% 40% 30%;
   grid-template-rows: 30px;
@@ -31,66 +21,102 @@ const Parametrosaccionesprecio = styled.div`
   width: 44vw;
     
 `;
-const Titleacciones = styled.h3`
- margin: 15px;
+
+
+
+ const B = styled.li`
+    display: table-row;
+    margin: 10px;
+    background-color: #E1F1F9;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
+    border-top-right-radius: 80px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 50px;
+    width: 22vw;
     
 `;
 
 
-const Spaceordenaccionesp = styled.div`
-  grid-row: 3/auto;
-  grid-column: 1/6;
-  background-color: #E1F1F9;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
-  width: 32vw;
-  min-height: 50px;
-  border-radius: 20px;
-  margin: 5px;
-  justify-content: center;
-  /*overflow-y: auto;*/
-  
-  a{
-      width: 44vw;
-      margin-top: 10px;
-      padding-left: 10px;
-      padding-right: 10px;
-  }
-  
-
+const GridActivos = styled.div`
+    background-color: #A7CDD9;
+    width: 90%;
+    border-radius: 20px;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.252);
+    display:grid;
+    
 `;
+
+const GridActivos2 = styled.div`
+    background-color: #E1F1F9;
+    width: 90%;
+    border-radius: 20px;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.252);
+    display:grid;
+    
+`;
+const Tabla= styled.div`
+    display:table;
+    padding: 10px;
+    
+`;
+
+const Fondo= styled.div`
+    
+`;
+
+const H4 = styled.h4`
+    display:table-cell;
+    margin: 20px;
+    text-indent: 13px;
+`;
+
 
 export default function AccionesPrecios() {
 
     const [arrShare, setArrShare] = useState([]);
 
-    useEffect(async () => {
+    useEffect(() => {
 
-        setArrShare(await getRequest("http://127.0.0.1:8000/api/share"))
+        async function request(){
+            setArrShare(await getRequest("http://127.0.0.1:8000/api/share"))
+        }
+        request()
 
         },[])
 
     console.log(arrShare)
 
     return(
-        <Accionesprecios1>
-            <Titleacciones>Acciones y precios</Titleacciones>
-            <Parametrosaccionesprecio>
-                <p>Nombre</p>
-                <p>Precio</p>
-                <p>Rentabilidad diaria</p>
-                <p>Rentabilidad anual</p>
-            </Parametrosaccionesprecio>
+        <GridActivos>
+            <Titulo>Acciones y precios</Titulo>
+            <Tabla>
+                <B>
+
+
+                <H4>Nombre</H4>
+                <H4>Precio</H4>
+                <H4>Rentabilidad diaria</H4>
+                <H4>Rentabilidad anual</H4>
+                 <H4></H4>
+                </B>
 
 
 
-            <Spaceordenaccionesp>
+
                 {
-                arrShare.map( x => (<CompAccionesPrecios code={x.code}  />))
 
-            }
+                    arrShare.map(x=> (
+                        <B>
+                       <CompAccionesPrecios code ={x.code}/>
+                        </B>
+                    ))
+                }
 
-            </Spaceordenaccionesp>
-        </Accionesprecios1>
+
+
+            </Tabla>
+        </GridActivos>
     )
 
 }
