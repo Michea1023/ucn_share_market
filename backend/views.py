@@ -253,8 +253,10 @@ class LoginView(APIView):
                         if code != 'CLP':
                             trans = TransactionTable.objects.get(share_buy="CLP", share_sell=code)
                             price = amount * trans.market_val
-                            share = (code, amount, price)
-                            shares.append(share)
+                        else:
+                            price = amount
+                        share = (code, amount, price)
+                        shares.append(share)
                 response = {
                     'rut': account.rut,
                     'email': account.email,
@@ -266,8 +268,9 @@ class LoginView(APIView):
                     'share': [
                         {
                             "code": share,
-                            "amount": amount
-                        } for share, amount in shares
+                            "amount": round(amount, 2),
+                            "price": round(price, 2)
+                        } for share, amount, price in shares
                     ] if not account.staff else None
                 }
                 return Response(response, status=status.HTTP_200_OK)
@@ -289,8 +292,10 @@ class RefreshView(APIView):
                     if code != 'CLP':
                         trans = TransactionTable.objects.get(share_buy="CLP", share_sell=code)
                         price = amount * trans.market_val
-                        share = (code, amount, price)
-                        shares.append(share)
+                    else:
+                        price = amount
+                    share = (code, amount, price)
+                    shares.append(share)
             response = {
                 'rut': account.rut,
                 'email': account.email,
@@ -302,8 +307,8 @@ class RefreshView(APIView):
                 'share': [
                     {
                         "code": share,
-                        "amount": amount,
-                        "price": price
+                        "amount": round(amount, 2),
+                        "price": round(price, 2)
                     } for share, amount, price in shares
                 ] if not account.staff else None
             }

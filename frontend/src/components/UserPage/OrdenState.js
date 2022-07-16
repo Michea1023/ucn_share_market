@@ -19,10 +19,10 @@ export default function OrdenState(props){
     return(
              <>
             <H4>{props.id}</H4>
-            <H4>{props.share_buy}</H4>
-            <H4>1000</H4>
-             <H4>{props.market_val}</H4>
-             <H4>Compra</H4>
+            <H4>{props.share}</H4>
+            <H4>{props.amount}</H4>
+                 <H4>{props.price}</H4>
+             <H4>{props.type_order == "B"? "Compra":"Venta"}</H4>
                  <H4>
                      <ButtonRojo>Cancelar</ButtonRojo>
                  </H4>

@@ -45,12 +45,21 @@ const H4 = styled.h4`
 
 `;
 
+
+//<B>
+//                             <OrdenState id ={x.id} share = {x.share}  price={x.price} amount={x.amount} type_order={x.type_order}></OrdenState>
+//                         </B>
+
 export default function OrdenesActivas(){
     const [arrShare, setArrShare] = useState([]);
 
-    useEffect(async ()=>{
+    useEffect( ()=>{
 
-        setArrShare(await getRequest("http://127.0.0.1:8000/api/transaction-table"))
+        async function request(){
+            setArrShare(await getRequest("http://127.0.0.1:8000/api/transaction"))
+        }
+        request()
+
     },[])
 
     return(
@@ -66,19 +75,12 @@ export default function OrdenesActivas(){
                     <H4>Tipo</H4>
                     <H4></H4>
                 </B>
-                <B>
-                    <OrdenState/>
-                </B>
-                <B>
-                    <OrdenState />
-                </B>
-                <B>
-                    <OrdenState/>
-                </B>
+
+
+                {
+                    //(arrShare.active).map(x=>(
+                }
             </Tabla>
-
-
-
         </GridActivos>
 
     )
