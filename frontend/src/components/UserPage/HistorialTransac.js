@@ -105,7 +105,7 @@ export default function HistorialTransac(){
 
                             arrShare.map(x => (
                                 <B>
-                                    <HistorialState id ={x.id}  share_buy = {x.share_buy}  market_val={x.market_val}></HistorialState>)
+                                    <HistorialState name ={x.name}   market_val={x.market_val}   diary_rent = {x.diary_rent} annual_rent = {x.annual_rent}></HistorialState>)
                                </B>
 
                                 ))

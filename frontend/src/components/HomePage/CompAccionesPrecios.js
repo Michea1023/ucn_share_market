@@ -20,10 +20,10 @@ export default function CompAccionesPrecios(props){
 
     return(
         <>
-            <H4>{props.code}</H4>
-            <H4>$127</H4>
-            <H4>10%</H4>
-            <H4>-150%</H4>
+            <H4>{props.name}</H4>
+            <H4>{props.market_val}</H4>
+            <H4>{props.diary_rent}</H4>
+            <H4>{props.annual_rent}</H4>
         </>
     )
 

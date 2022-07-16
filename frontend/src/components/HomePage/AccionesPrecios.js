@@ -79,7 +79,7 @@ export default function AccionesPrecios() {
     useEffect(() => {
 
         async function request(){
-            setArrShare(await getRequest("http://127.0.0.1:8000/api/share"))
+            setArrShare(await getRequest("http://127.0.0.1:8000/api/transaction-table"))
         }
         request()
 
@@ -108,7 +108,7 @@ export default function AccionesPrecios() {
 
                     arrShare.map(x=> (
                         <B>
-                       <CompAccionesPrecios code ={x.code}/>
+                       <CompAccionesPrecios name ={x.name}   market_val={x.market_val}   diary_rent = {x.diary_rent} annual_rent = {x.annual_rent}/>
                         </B>
                     ))
                 }
