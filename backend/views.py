@@ -279,8 +279,6 @@ class LoginView(APIView):
         else:
             return Response(exception("user not registered"), status=status.HTTP_404_NOT_FOUND)
 
-
-class RefreshView(APIView):
     def get(self, request, format=None):
         account = request.user
         if account.is_authenticated:
