@@ -49,9 +49,12 @@ export default function Activos (){
 
     const [arrShare, setArrShare] = useState([]);
 
-    useEffect(async ()=>{
+    useEffect( ()=>{
+        async function request(){
+           setArrShare(await getRequest("http://127.0.0.1:8000/api/transaction-table"))
+        }
+        request()
 
-        setArrShare(await getRequest("http://127.0.0.1:8000/api/transaction-table"))
     },[])
 
 

@@ -60,8 +60,13 @@ export const AuthProvider = ({children}) => {
           // console.log(user.rut);
           data.staff ? history.push("/admin") : history.push("/home")   // condicion (x === 1) ? (codigo verdadero) : (codigo en el caso contrario) operadores ternario
           ;
-        } else {
-          alert(response.status);
+        }else{
+            if(response.status == 404){
+                alert("Usuario no encontrado o resgistrado")
+            }
+            else{
+                alert("Problema desconocido :(")
+            }
         }
   };
 
@@ -85,14 +90,17 @@ export const AuthProvider = ({children}) => {
             },
             body: JSON.stringify(data)
         })
-            .then(response => response.json())
-            .then(data => {
-                alert(data);
-                history.push("/");
-            })
-            .catch((error) => {
-                alert(error.toString());
-            })
+
+
+        if(response.status==201){
+            alert("Usuario creado con exito")
+            history.push("/");
+        }else{
+            alert("Error desconocido (rut o correo ya existente)")
+        }
+
+
+
     };
 
     const logOut = () => {

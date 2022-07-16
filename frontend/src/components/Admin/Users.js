@@ -30,7 +30,7 @@ const H4 = styled.h4`
 `;
 
 
-const H1 = styled.h1`
+const H2 = styled.h2`
     justify-self: center;
 `;
 
@@ -78,7 +78,7 @@ export default function Users(){
 
                <GridUsuarios>
 
-               <H1>Usuarios</H1>
+               <H2>Usuarios</H2>
                <Tabla>
                     <B>
 
