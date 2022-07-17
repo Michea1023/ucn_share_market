@@ -1,7 +1,8 @@
 import React, {Component, useEffect, useState} from "react";
 import styled from "styled-components";
 import {Button} from "../Styled";
-import {getRequest} from "../../context/Request";
+import {getRequest, postRequestCer} from "../../context/Request";
+import User from "./User";
 
 
 const GridUsuarios = styled.div`
@@ -23,11 +24,7 @@ const Fondo= styled.div`
     
 `;
 
-const H4 = styled.h4`
-    display:table-cell;
-    margin: 20px;
-    text-indent: 13px;
-`;
+
 
 
 const H2 = styled.h2`
@@ -49,15 +46,14 @@ const H2 = styled.h2`
     
 
 `;
-
-
-const ButtonVerde = styled(Button)`
-    background-color:#27E709;
+ const H4 = styled.h4`
+    display:table-cell;
+    margin: 20px;
+    text-indent: 13px;
 `;
 
-const ButtonRojo = styled(Button)`
-    background-color:#FF0000;
-`;
+
+
 export default function Users(){
 
     const [listUser, setListUser] = useState([])
@@ -93,10 +89,7 @@ export default function Users(){
                    {
                        listUser.map(x=>(
                            <B>
-                               <H4>{x.full_name}</H4>
-                               <H4>{x.rut}</H4>
-                               <H4>{x.career}</H4>
-                               <ButtonVerde>Activo</ButtonVerde>
+                                <User full_name={x.full_name} rut={x.rut} career={x.career} active={x.active}/>
                            </B>
                        ))
                    }

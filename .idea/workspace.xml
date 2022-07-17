@@ -2,23 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad4ee528-cf28-4b40-9467-e4dd32976075" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Admin/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/fa51445d-d27d-4887-9799-6f1a7189d4dc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fa51445d-d27d-4887-9799-6f1a7189d4dc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ucn_share_market.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ucn_share_market.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePage/AccionesPrecios.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePage/AccionesPrecios.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePage/CompAccionesPrecios.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePage/CompAccionesPrecios.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialState.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialTransac.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialTransac.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Admin/Settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Admin/Settings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Admin/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Admin/Users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Compra.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Compra.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Venta.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Venta.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenState.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenesActivas.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenesActivas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/context/Request.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/context/Request.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" afterDir="false" />
     </list>
-    <list id="75f1d58d-9092-4226-86bd-d5c6f256c9ad" name="Changes by gasri" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenesActivas.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenesActivas.js" afterDir="false" />
-    </list>
+    <list id="75f1d58d-9092-4226-86bd-d5c6f256c9ad" name="Changes by gasri" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,22 +26,12 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenesActivas.js">
-      <ranges>
-        <range start1="46" end1="46" start2="46" end2="51" changelist="75f1d58d-9092-4226-86bd-d5c6f256c9ad" />
-        <range start1="53" end1="54" start2="58" end2="59" changelist="ad4ee528-cf28-4b40-9467-e4dd32976075" />
-        <range start1="72" end1="72" start2="77" end2="78" changelist="75f1d58d-9092-4226-86bd-d5c6f256c9ad" />
-        <range start1="73" end1="82" start2="79" end2="82" changelist="ad4ee528-cf28-4b40-9467-e4dd32976075" />
-        <range start1="83" end1="86" start2="83" end2="83" changelist="75f1d58d-9092-4226-86bd-d5c6f256c9ad" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -105,10 +93,22 @@
       <workItem from="1657934041892" duration="3626000" />
       <workItem from="1657937895717" duration="492000" />
       <workItem from="1658005499064" duration="112000" />
+      <workItem from="1658009448990" duration="9317000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

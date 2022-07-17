@@ -82,7 +82,7 @@ export default function Compra(props) {
         const headers = {"Content-Type": "multipart/form-data"};
         if (share !== undefined) {
             const response = await postRequest('http://127.0.0.1:8000/api/transaction',
-                headers, formData)
+                headers, formData,"omit")
             console.log(response.status)
             response.status === 201 ? setComprobante(true) : alert("sad")
         } else {

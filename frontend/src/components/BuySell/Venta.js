@@ -50,7 +50,7 @@ export default function Venta(props){
 
     async function typeBuy(e, event) {
         if (event === "mercado" && props.share !== null) {
-            const resp = await getRequest("http://127.0.0.1:8000/api/transaction-table").then(data => data.map(x => x.share_sell === props.share ? setPrecio(x.market_val) : null))
+            const resp = await getRequest("http://127.0.0.1:8000/api/transaction-table").then(data => data.map(x => x.name === props.share+"/CLP" ? setPrecio(x.market_val) : null))
         } else if (event === "limite") {
             setPrecio(precio)
         }
@@ -76,7 +76,7 @@ export default function Venta(props){
         const headers = {"Content-Type": "multipart/form-data"};
         if (share !== undefined)  {
             const response = await postRequest('http://127.0.0.1:8000/api/transaction',
-                headers, formData)
+                headers, formData,"omit")
             response.status == 201 ? alert("wena") : alert("Problemas al enviar la solicitud")
 
         } else {
