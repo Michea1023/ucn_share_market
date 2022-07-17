@@ -1,5 +1,3 @@
-import os
-import sys
 from datetime import datetime
 from itertools import cycle
 from django.contrib.auth import authenticate, login, logout
@@ -7,14 +5,16 @@ from rest_framework import generics, status
 from .serializers import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .services import ConsultasAPI
+from .tasks import cancel_transaction
 
 
 def response(response: str):
     return {"response": response}
 
+
 def exception(exception: str):
     return {"exception": exception}
+
 
 def verify_rut(rut: str):
     rut = rut.upper();
@@ -35,21 +35,12 @@ def verify_rut(rut: str):
     else:
         return False
 
+
 def cleaner_rut(rut: str):
     rut = rut.upper();
     rut = rut.replace("-", "")
     rut = rut.replace(".", "")
     return rut
-
-def cancel_transaction(transaction):
-    share_account = ShareAccount.objects.get(account_id=transaction.account_id, share_id=transaction.share_id)
-    if transaction.type_order == "B":
-        share_account.amount += transaction.total + transaction.variabl_com + transaction.fixed_com
-    else:
-        share_account.amount += transaction.amount
-    share_account.save(update_fields=['amount'])
-    transaction.delete()
-    return
 
 def transfer(transaction, share_id, amount):
     transaction.active = False
@@ -65,8 +56,9 @@ def transfer(transaction, share_id, amount):
             account_share.save()
     transaction.save(update_fields=['active', 'used_amount'])
 
+
 def make_transaction(buyer, seller, type_order):
-    #añadir a la cartera
+    # añadir a la cartera
     if (buyer.price > seller.price):
         if (buyer.amount - buyer.used_amount) < (seller.amount - seller.used_amount):
             seller.used_amount = (buyer.amount - buyer.used_amount) + seller.used_amount
@@ -86,9 +78,11 @@ def make_transaction(buyer, seller, type_order):
     else:
         return False
 
+
 def operate_trans(transaction, type_order):
     filtered_trans = Transaction.objects.filter(active=True, trans_table=transaction.trans_table,
-                                                type_order='B' if type_order == 'S' else 'S').order_by('price' if type_order == 'S' else '-price').exclude(account_id=transaction.account_id)
+                                                type_order='B' if type_order == 'S' else 'S').order_by(
+        'price' if type_order == 'S' else '-price').exclude(account_id=transaction.account_id)
     if filtered_trans.count():
         if type_order == 'B':
             buyer = transaction
@@ -114,64 +108,7 @@ def operate_trans(transaction, type_order):
                 break
 
 
-def get_transaction_API():
-    # cargar la api key desde las variables de entorno del sistma
-    api_key = 'CC50A4DF46274CE79682FEA8A1A5B0F3'  # os.environ['API_BS']
-    # Creación de la instancia que manipulara las solicitudes a la API
-    con_bs = ConsultasAPI(token=api_key)
-    resp = con_bs.get_puntas_rv()
-
-    name = []
-    precio_venta = []
-
-    for sub in resp:
-        for key, value in sub.items():
-            if key == 'instrumento':
-                name.append(value)
-            if key == 'precioVenta':
-                precio_venta.append(value)
-    return name,precio_venta
-
-#get_transaction_API(name,precio_venta,name1)
-
-def generate_false_data():
-    api_key = 'CC50A4DF46274CE79682FEA8A1A5B0F3'
-    con_bs = ConsultasAPI(token=api_key)
-    resp1 = con_bs.get_transacciones_rv()
-    price = []
-    amount = []
-    total = []
-    vigente = []
-    start_date = []
-    active = []
-    name1 = []
-    for sub1 in resp1:
-        for key1, value1 in sub1.items():
-            if key1 == 'instrument':
-                name1.append(value1)
-            if key1 == 'price':
-                price.append(value1)
-            if key1 == 'quantity':
-                amount.append(value1)
-            if key1 == 'amount':
-                total.append(value1)
-            if key1 == 'timeInForce':
-                vigente.append(value1)
-            if key1 == 'timeStamp':
-                value1 = value1[:-1]
-                fecha_dt = datetime.strptime(value1, '%Y%m%d%H%M%S%f')
-                start_date.append(fecha_dt)
-            if key1 == 'action':
-                is_active = False
-                if 'action' == 'I':
-                    is_active = True
-                active.append(is_active)
-
-    for i in range(len(name1)):
-        transaccion = Transaction.objects.create(active=active[i], price=price[i], amount=amount[i],start_date=start_date[i],total=total[i])
-        transaccion.save()
-    return
-
+# get_transaction_API(name,precio_venta,name1)
 # Create your views here.
 class RegisterView(APIView):
     serializer_class = RegisterSerializer
@@ -236,7 +173,7 @@ class LoginView(APIView):
     serializer_class = LoginSerializer
 
     def post(self, request, format=None):
-        #data = json.loads(request.body.decode('utf-8'))
+        # data = json.loads(request.body.decode('utf-8'))
         data = request.data
         rut = cleaner_rut(data.get('rut'))
         password = data.get('password')
@@ -351,7 +288,9 @@ class TransactionView(APIView):
                                 today = datetime.now()
                                 if datetime.strptime(vigency, "%Y-%m-%dT%H:%M:%SZ") > today:
                                     if type_order == 'B' and share_account.amount > total:
-                                        share_account.amount -= (total+Settings.objects.get(name='fixed_commission').value+Settings.objects.get(name='variable_commission').value)
+                                        share_account.amount -= (total + Settings.objects.get(
+                                            name='fixed_commission').value + Settings.objects.get(
+                                            name='variable_commission').value)
                                     elif type_order == 'S' and share_account.amount > amount:
                                         share_account.amount -= amount
                                     else:
@@ -367,7 +306,7 @@ class TransactionView(APIView):
                                         price=price,
                                         amount=amount,
                                         total=total,
-                                        fixed_com= Settings.objects.get(name="fixed_commission").value,
+                                        fixed_com=Settings.objects.get(name="fixed_commission").value,
                                         variabl_com=total * Settings.objects.get(name="variable_commission").value,
                                         type_order=type_order,
                                         vigency=vigency
@@ -390,7 +329,7 @@ class TransactionView(APIView):
             else:
                 return Response(exception("No existe este usuario"), status=status.HTTP_404_NOT_FOUND)
 
-    def get(self, request, format=None):
+    def get(self, request, event_id=None, format=None):
         user = request.user
         if user.is_authenticated:
             queryset = Transaction.objects.filter(account=user)
@@ -414,13 +353,13 @@ class TransactionView(APIView):
         else:
             return Response(exception("you aren't an administrator"), status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
-    def delete(self, request, format=None):
-        data = request.data
+    def delete(self, request, event_id=None, format=None):
         user = request.user
         if user.is_authenticated:
-            transaction = Transaction.objects.get(id=data.get("id"))
-            cancel_transaction(transaction)
-            return Response(response("delete: " + data.get("id")))
+            transaction = Transaction.objects.filter(id=event_id, active=True)
+            if transaction.exists():
+                cancel_transaction(transaction[0])
+            return Response(response("delete: " + event_id))
 
 
 class ControlUsersView(APIView):
@@ -438,13 +377,13 @@ class ControlUsersView(APIView):
         else:
             return Response(exception("you aren't an administrator"), status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
-    #put
+    # put
     def post(self, request):
         user = request.user
         if user.is_authenticated and user.staff:
             rut = request.POST.get('rut')
             block = request.POST.get('block')
-            account = Account.objects.filter(rut=rut)[0]
+            account = Account.objects.get(rut=rut)
             account.active = not block
             account.save(update_fields=['active'])
             return Response(response("blocked" if block else "unblocked"), status=status.HTTP_200_OK)
@@ -515,7 +454,7 @@ class TransTableView(APIView):
 class SettingView(APIView):
     lookup_url_kwarg = 'query'
 
-    #put
+    # put
     def post(self, request, format=None):
         user = request.user
         if user.is_authenticated and user.staff:
@@ -536,7 +475,7 @@ class SettingView(APIView):
                 maximum_init_value = settings.get(name="maximum_init_value")
                 maximum_init_value.value = data.get("maximum_init_value")
                 maximum_init_value.save(update_fields=['value'])
-                
+
             if data.get("maximum_value_transfer") is not None:
                 maximum_value_transfer = settings.get(name="maximum_value_transfer")
                 maximum_value_transfer.value = data.get("maximum_value_transfer")
@@ -547,9 +486,8 @@ class SettingView(APIView):
         else:
             return Response(exception("you aren't an administrator"), status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
-
     def get(self, request, format=None):
-        #(request = ('query'))
+        # (request = ('query'))
         query = request.GET.get(self.lookup_url_kwarg)
         if query != None:
             data = Settings.objects.all()
@@ -560,42 +498,20 @@ class SettingView(APIView):
                     "variable_commission": data.get(name="variable_commission").value,
                     "fixed_commission": data.get(name="fixed_commission").value
                 }, status=status.HTTP_200_OK)
-            elif query == 'com': #commission
+            elif query == 'com':  # commission
                 return Response({
                     'variable_commission': data.get(name="variable_commission").value,
                     'fixed_commission': data.get(name="fixed_commission").value
                 }, status=status.HTTP_200_OK)
-            elif query == 'mvt': #maximum value transference
-                return Response({"maximum_value_transfer": data.get(name="maximum_value_transfer").value}, status=status.HTTP_200_OK)
-            elif query == 'miv': #maximum init value
-                return Response({"maximum_init_value": data.get(name="maximum_init_value").value}, status=status.HTTP_200_OK)
+            elif query == 'mvt':  # maximum value transference
+                return Response({"maximum_value_transfer": data.get(name="maximum_value_transfer").value},
+                                status=status.HTTP_200_OK)
+            elif query == 'miv':  # maximum init value
+                return Response({"maximum_init_value": data.get(name="maximum_init_value").value},
+                                status=status.HTTP_200_OK)
             else:
                 return Response(exception("invalid query code"), status=status.HTTP_404_NOT_FOUND)
         return Response(exception('query parameter not found in request'), status=status.HTTP_400_BAD_REQUEST)
 
 
-class UpdateShareView(APIView):
-    def post(self, request, format=None):
-        name, precio_venta = get_transaction_API()
-        for i in range(len(name)):
-            queryset = Share.objects.filter(share_buy='CLP', share_sell=name[i])
-            if not queryset.exists():
-                trans_table = TransactionTable(share_buy='CLP', share_sell=name[i], market_val=precio_venta[i])
-                trans_table.save()
 
-        for j in range(len(name)):
-            queryset = Share.objects.filter(code=name[j])
-            if not queryset.exists():
-                share1 = Share(code=name[j], name=name[j])
-                share1.save()
-
-
-class CancelTransactionView(APIView):
-    #automatizar el backend
-    def delete(self, request, format=None):
-        today = datetime.now()
-        operative_trans = Transaction.objects.filter(active=True)
-        for i in range(operative_trans.count()):
-            if datetime.strptime(operative_trans[i].vigency, "%Y-%m-%dT%H:%M:%SZ") < today:
-                cancel_transaction(operative_trans[i])
-        return Response(response("NICE"), status=status.HTTP_200_OK)
