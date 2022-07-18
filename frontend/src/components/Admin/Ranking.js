@@ -1,6 +1,10 @@
 import React,{Component} from "react";
 import styled from "styled-components";
 
+
+// Sin implementar jejejeje
+
+
 const GridRanking = styled.div`
   background-color: #E1F1F9;
     width: 60vw;

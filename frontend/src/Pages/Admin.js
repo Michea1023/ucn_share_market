@@ -2,11 +2,8 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import BarraPrincipal from "../components/NavBar/BarraPrincipal";
 import Ranking from "../components/Admin/Ranking";
-import BarraAdmin from "../components/Admin/BarraAdmin";
 import Users from "../components/Admin/Users";
 import Settings from "../components/Admin/Settings";
-import {Link} from "react-router-dom";
-import button from "bootstrap/js/src/button";
 
 const GridPrincipal = styled.div`
     box-sizing: content-box;
@@ -70,8 +67,8 @@ export default function Admin(){
                     </Grid1>
                     <Grid2>
                         <H2 onClick={()=>setPage(0)}>Usuarios</H2>
-                        <H2 onClick={()=>setPage(1)}>Ranking</H2>
-                        <H2 onClick={()=>setPage(2)}>Configuracion</H2>
+                        <br/>
+                        <H2 onClick={()=>setPage(2)}>Configuración del sistema</H2>
 
                     </Grid2>
                     <Grid3>

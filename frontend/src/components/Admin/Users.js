@@ -11,21 +11,21 @@ const GridUsuarios = styled.div`
     border-radius: 20px;
     box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.252);
     display:grid;
+    padding:10px;
     
 `;
 
 const Tabla= styled.div`
     display:table;
     padding: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
+    border-radius:20px;
+    background-color: #E1F1F9;
+    width:58vw;
+
+    justify-self:center;
     
 `;
-
-const Fondo= styled.div`
-    
-`;
-
-
-
 
 const H2 = styled.h2`
     justify-self: center;
@@ -36,8 +36,7 @@ const H2 = styled.h2`
   
     display: table-row;
     margin: 10px;
-    background-color: #E1F1F9;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
+    
     border-top-right-radius: 80px;
     padding-left: 10px;
     padding-right: 10px;
@@ -49,7 +48,7 @@ const H2 = styled.h2`
  const H4 = styled.h4`
     display:table-cell;
     margin: 20px;
-    text-indent: 13px;
+    text-align:center;
 `;
 
 

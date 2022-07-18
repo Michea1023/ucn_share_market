@@ -54,6 +54,7 @@ export default function Settings(){
     }
 
     const handleSubmit = async (e) => {
+        e.preventDefault()
         const data = {
             "variable_commission": variableComission,
             "fixed_commission": fixedCom,
@@ -61,7 +62,7 @@ export default function Settings(){
             "maximum_value_transfer": maxValueTrans
         }
         const res = await postRequestCer("http://127.0.0.1:8000/api/setting", JSON.stringify(data))
-        res == 201 ? (alert("Se actualizaron los datos correctamente")) : (alert("Problemas al actualizar los datos"))
+        res.status == 200 ? (alert("Se actualizaron los datos correctamente")) : (alert("Problemas al actualizar los datos, error http:" + res.status))
     }
 
     return(
@@ -71,19 +72,19 @@ export default function Settings(){
                 </Separacion>
                  <form onSubmit={(e) => handleSubmit(e)}>
                      <A>
-                        <Label>Monto inicial</Label>
+                        <Label>Monto inicial:</Label>
                         <Input type="number" onChange={handleChangeInicial} value={maxInitValue}/>
                      </A>
                      <A>
-                        <Label>Monto maximo por transaccion</Label>
+                        <Label>Monto máximo por transacción:</Label>
                         <Input type="number" onChange={handleChangeMax} value={maxValueTrans}/>
                      </A>
                      <A>
-                        <Label>Comision fija</Label>
+                        <Label>Comisión fija:</Label>
                         <Input type="number" onChange={handleChangeFix} value={fixedCom}/>
                      </A>
                      <A>
-                        <Label>Comision variable</Label>
+                        <Label>Comisión variable:</Label>
                         <Input  onChange={handleChangeVa} value={variableComission}/>
                         <ButtonVerde type="submit">Actualizar</ButtonVerde>
                      </A>
