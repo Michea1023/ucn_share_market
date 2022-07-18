@@ -37,7 +37,6 @@ def get_transaction_API():
     resp2 = con_bs.get_instrumentos_rv()
     instruments = []
     imbalance = []
-    print(name)
     for sub2 in resp2:
         instruments.append(sub2.get("instruments"))
         imbalance.append(sub2.get("imbalance"))

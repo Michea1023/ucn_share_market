@@ -11,10 +11,8 @@ from .tasks import cancel_transaction
 def response(response: str):
     return {"response": response}
 
-
 def exception(exception: str):
     return {"exception": exception}
-
 
 def verify_rut(rut: str):
     rut = rut.upper();
@@ -34,7 +32,6 @@ def verify_rut(rut: str):
         return True
     else:
         return False
-
 
 def cleaner_rut(rut: str):
     rut = rut.upper();
@@ -56,7 +53,6 @@ def transfer(transaction, share_id, amount):
             account_share.save()
     transaction.save(update_fields=['active', 'used_amount'])
 
-
 def make_transaction(buyer, seller, type_order):
     # añadir a la cartera
     if (buyer.price > seller.price):
@@ -77,7 +73,6 @@ def make_transaction(buyer, seller, type_order):
         return True
     else:
         return False
-
 
 def operate_trans(transaction, type_order):
     filtered_trans = Transaction.objects.filter(active=True, trans_table=transaction.trans_table,
@@ -251,6 +246,23 @@ class LoginView(APIView):
         else:
             return Response(exception("User not authenticated"), status=status.HTTP_404_NOT_FOUND)
 
+class UpdateUserView(APIView):
+    def post(self, request, format=None):
+        data = request.data
+        rut = cleaner_rut(data.get("rut"))
+        account = Account.objects.filter(rut=rut)
+        if account.exists():
+            account = account[0]
+            password = data.get("password1")
+            password2 = data.get("password2")
+            if password == password2:
+                account.set_password(password)
+                account.save()
+                return Response(response("NICE"))
+            else:
+                return Response(exception("the passwords are not the same"))
+        else:
+            return Response(exception("user not registered"), status=status.HTTP_404_NOT_FOUND)
 
 class TransactionView(APIView):
     serializer_class = TransactionSerializer
@@ -381,8 +393,8 @@ class ControlUsersView(APIView):
     def post(self, request):
         user = request.user
         if user.is_authenticated and user.staff:
-            rut = request.POST.get('rut')
-            block = request.POST.get('block')
+            rut = request.data.get('rut')
+            block = request.data.get('block')
             account = Account.objects.get(rut=rut)
             account.active = not block
             account.save(update_fields=['active'])
@@ -420,7 +432,7 @@ class ShareView(APIView):
 
 class TransTableView(APIView):
     serializer_class = TransTableSerializer
-    queryset = TransactionTable.objects.all()
+    queryset = TransactionTable.objects.exclude(market_val=0)
 
     def post(self, request, format=None):
         # Modificar
