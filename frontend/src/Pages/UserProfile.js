@@ -31,13 +31,16 @@ const GridTitulo = styled.h3`
 `;
 const GridArea1 = styled.div`
     grid-area: area1;
+    justify-self:center;
     
 `;
 const GridArea2 = styled.div`
     grid-area: area2;
+    justify-self:center;
 `;
 const GridArea3 = styled.div`
     grid-area: area3;
+    justify-self:center;
 `;
 
 export default function UserProfile(){

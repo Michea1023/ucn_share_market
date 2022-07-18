@@ -2,19 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad4ee528-cf28-4b40-9467-e4dd32976075" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/Pages/ForgotRegister.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/utils/Updade.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/fa51445d-d27d-4887-9799-6f1a7189d4dc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fa51445d-d27d-4887-9799-6f1a7189d4dc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ucn_share_market.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ucn_share_market.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/BuySell.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/BuySell.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Comprobante.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Comprobante.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/UserProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Compra.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Compra.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Rentabilidad.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Rentabilidad.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Saldo.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Saldo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Venta.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Venta.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePage/AccionesPrecios.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePage/AccionesPrecios.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePage/CompAccionesPrecios.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePage/CompAccionesPrecios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePage/ResumenUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePage/ResumenUsuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/ActivoAccion.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/ActivoAccion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/Activos.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/Activos.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialState.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialState.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialTransac.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialTransac.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenState.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenState.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenesActivas.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenesActivas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/context/Request.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/context/Request.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/urls.py" afterDir="false" />
     </list>
     <list id="75f1d58d-9092-4226-86bd-d5c6f256c9ad" name="Changes by gasri" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +45,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -96,10 +113,22 @@
       <workItem from="1657937895717" duration="492000" />
       <workItem from="1658005499064" duration="112000" />
       <workItem from="1658024621353" duration="2548000" />
+      <workItem from="1658075467885" duration="21074000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

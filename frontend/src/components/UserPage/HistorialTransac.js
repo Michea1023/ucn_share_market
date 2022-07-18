@@ -1,35 +1,15 @@
-import React, {Component} from "react";
+import React from "react";
 import HistorialState from "./HistorialState";
 
 import styled from "styled-components";
-import {A,Titulo} from "../Styled";
+import {Titulo} from "../Styled";
 import {useEffect, useState} from "react";
 import {getRequest} from "../../context/Request";
-import OrdenState from "./OrdenState";
-
-
-
-const Parametros = styled.div`
-  display: grid;
-  grid-template-columns: 20% 20% 40% 30%;
-  grid-template-rows: 30px;
-  background-color: #E1F1F9;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
-  border-radius: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-  height: 50px;
-  width: 44vw;
-    
-`;
-
-
 
  const B = styled.div`
     display: table-row;
     margin: 10px;
     background-color: #E1F1F9;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
     border-top-right-radius: 80px;
     padding-left: 10px;
     padding-right: 10px;
@@ -41,35 +21,29 @@ const Parametros = styled.div`
 
 const GridActivos = styled.div`
     background-color: #A7CDD9;
-    width: 90%;
+    width: 30vw;
     border-radius: 20px;
+    padding:10px;
     box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.252);
     display:grid;
     
 `;
 
-const GridActivos2 = styled.div`
-    background-color: #E1F1F9;
-    width: 90%;
-    border-radius: 20px;
-    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.252);
-    display:grid;
-    
-`;
 const Tabla= styled.div`
     display:table;
     padding: 10px;
-    
-`;
-
-const Fondo= styled.div`
+    width: 28vw;
+    justify-self:center;
+    background-color: #E1F1F9;
+    border-radius:20px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
     
 `;
 
 const H4 = styled.h4`
     display:table-cell;
     margin: 20px;
-    text-indent: 13px;
+    text-align:center;
 `;
 
 
@@ -96,7 +70,7 @@ export default function HistorialTransac(){
 
                     <B>
                         <H4>ID</H4>
-                        <H4>Accion</H4>
+                        <H4>Acción</H4>
                         <H4>Cantidad</H4>
                         <H4>Precio</H4>
                         <H4>Tipo</H4>
@@ -111,9 +85,7 @@ export default function HistorialTransac(){
                                     </B>
                                 )
                             )) : (
-                                <B>
-                                    <h3>Sin historias de transacciones</h3>
-                                </B>
+                                <H4>Sin historial de transacciones</H4>
                             ) : null
 
 

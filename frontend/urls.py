@@ -5,6 +5,7 @@ urlpatterns = [
     path('', index),
     path('login', index),
     path('register', index),
+    path('forgot', index),
     path('home', index),
     path('buysell/buy', index),
     path('buysell/sell', index),

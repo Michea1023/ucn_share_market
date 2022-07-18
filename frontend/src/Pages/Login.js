@@ -171,7 +171,7 @@ export default function Login(){
 
                         </Form>
                         <B>
-                            <A1 href="#">¿Olvidastes tu contraseña?</A1><br>
+                            <A1 href="/forgot">¿Olvidastes tu contraseña?</A1><br>
                             </br>
                             <A1 href="/register">¿No tienes una cuenta?</A1>
                         </B>

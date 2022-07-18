@@ -1,15 +1,29 @@
-import React, {Component} from "react";
+import React from "react";
 import OrdenState from "./OrdenState";
 import styled from "styled-components";
-import {A,Titulo} from "../Styled"
+import {Titulo} from "../Styled"
 import {useEffect, useState} from "react";
 import {getRequest} from "../../context/Request";
 
 
+ const B = styled.div`
+    display: table-row;
+    margin: 10px;
+    background-color: #E1F1F9;
+    border-top-right-radius: 80px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 50px;
+    width: 22vw;
+    
+`;
+
+
 const GridActivos = styled.div`
     background-color: #A7CDD9;
-    width: 90%;
+    width: 30vw;
     border-radius: 20px;
+    padding:10px;
     box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.252);
     display:grid;
     
@@ -18,37 +32,19 @@ const GridActivos = styled.div`
 const Tabla= styled.div`
     display:table;
     padding: 10px;
-    
-`;
-
-const Fondo= styled.div`
+    width: 28vw;
+    justify-self:center;
+    background-color: #E1F1F9;
+    border-radius:20px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
     
 `;
 
 const H4 = styled.h4`
     display:table-cell;
     margin: 20px;
-    text-indent: 13px;
+    text-align:center;
 `;
- const B = styled.li`
-  
-    display: table-row;
-    margin: 10px;
-    background-color: #E1F1F9;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
-    border-top-right-radius: 80px;
-    padding-left: 10px;
-    padding-right: 10px;
-    height: 50px;
-    width: 22vw;
-    
-
-`;
-
-
-//<B>
-//
-//                         </B>
 
 export default function OrdenesActivas(){
     const [arrShare, setArrShare] = useState([]);
@@ -65,7 +61,7 @@ export default function OrdenesActivas(){
     return(
 
             <GridActivos>
-            <Titulo>Ordenes activas</Titulo>
+            <Titulo>Órdenes activas</Titulo>
             <Tabla>
                 <B>
                     <H4>ID</H4>
@@ -86,9 +82,9 @@ export default function OrdenesActivas(){
                             </B>
                         )
                     )) : (
-                        <B>
-                            <h3>Sin ordenes activas</h3>
-                        </B>
+
+                            <H4>Sin órdenes activas</H4>
+
                     ) : null
 
                 }

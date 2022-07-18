@@ -1,12 +1,12 @@
-import React, {Component} from "react";
+import React from "react";
 import styled from "styled-components";
-import {A} from "../Styled";
+
 
 
 const H4 = styled.h4`
     display:table-cell;
     margin: 10px;
-    text-indent: 13px;
+    text-align:center;
 `;
 
 

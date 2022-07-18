@@ -1,5 +1,6 @@
-import React, {Component} from "react";
+import React, {Component, useEffect, useState} from "react";
 import styled from "styled-components";
+import {getRequest} from "../../context/Request";
 
 
 const GridRentabilidad = styled.div`
@@ -15,30 +16,49 @@ const A = styled.div`
     margin: 0 10%;
 `;
 
-export default class Rentabilidad extends Component{
-    constructor(props){
-        super(props);
-    }
-    render(){
-        return(
-            <GridRentabilidad>
+export default function Rentabilidad(props){
 
-                <A>
-                    <h4>30 días</h4>
-                    <p>10%</p>
-                </A>
-                <A>
-                    <h4>90 días:</h4>
-                    <p>50%</p>
-                </A>
-                <A>
-                    <h4>365 días</h4>
-                    <p>-100%</p>
-                </A>
+    const [shareTable,setShareTable] = useState([])
+
+
+    useEffect(()=>{
+        async function rent() {
+            setShareTable(await getRequest("http://127.0.0.1:8000/api/transaction-table"))
+        }
+        rent()
+    },[])
+
+    return(
+        <GridRentabilidad>
+
+            {
+                props.share != undefined ? (
+                    shareTable.map(x=>(
+                        x.name === props.share+"/CLP" ? (
+                            <>
+                                <A>
+                                    <h4>Par Acción</h4>
+                                    <p>{x.name}</p>
+                                </A>
+                                <A>
+                                    <h4>Variación diaria</h4>
+                                    <p>{x.diary_rent}</p>
+                                </A>
+                            </>
+                        ) :     null
+                    ))
+                ) : (
+                    <A>
+                        <h4>Seleccione una acción</h4>
+
+                    </A>
+                )
+            }
+
+
 
 
 
             </GridRentabilidad>
-        )
-    }
+    )
 }

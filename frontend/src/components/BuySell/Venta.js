@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {Form,A,Label,Input,Button} from "../Styled";
 import {getRequest, postRequest} from "../../context/Request";
 import Comprobante from "../../Pages/Comprobante";
+import {updateUser} from "../../utils/Updade";
 
 
 const ButtonRojo = styled(Button)`
@@ -12,6 +13,7 @@ const ButtonRojo = styled(Button)`
 export default function Venta(props){
 
     const [cantidad, setCantidad] = useState(0) //con request
+
     const [precio, setPrecio] = useState(0) // con request en precio mercado
     const [date, setDate] = useState(null)
     const [comprobante,setComprobante] =useState(false)
@@ -77,7 +79,12 @@ export default function Venta(props){
         if (share !== undefined)  {
             const response = await postRequest('http://127.0.0.1:8000/api/transaction',
                 headers, formData,"omit")
-            response.status == 201 ? alert("wena") : alert("Problemas al enviar la solicitud")
+            if(response.status == 201){
+                await updateUser()
+                setComprobante(true)
+            }else{
+                alert("Error al enviar la solicitud, error: http " + response.status + " , " + response.statusText)
+            }
 
         } else {
             alert("Seleccione una accion")
@@ -98,7 +105,7 @@ export default function Venta(props){
                                     <A>
                                         <Label>Tipo de Venta:</Label>
                                         <Button onClick={(e) => typeBuy(e, "mercado")}>Mercado</Button>
-                                        <Button onClick={(e) => typeBuy(e, "limite")}>Limite</Button>
+                                        <Button onClick={(e) => typeBuy(e, "limite")}>Límite</Button>
                                     </A>
                                     <A>
                                         <Label>Monto:</Label>

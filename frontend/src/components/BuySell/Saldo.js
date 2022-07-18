@@ -17,9 +17,9 @@ const A = styled.div`
 
 
 
-export default  function Saldos(){
+export default  function Saldos(props){
 
-    let share = "DOLAR"
+
 
     const user = JSON.parse(sessionStorage.getItem("user"))
 
@@ -32,7 +32,7 @@ export default  function Saldos(){
                 </A>
                 <A>
                     <h4>Acciones disponible:</h4>
-                    <p>{user.share.map(elem => elem.code === share ? elem.amount : 0)}</p>
+                    <p>{props.share != undefined ? (user.share.map(elem => elem.code === props.share ? elem.amount : null)): "Seleccione una acción"}</p>
                 </A>
 
 

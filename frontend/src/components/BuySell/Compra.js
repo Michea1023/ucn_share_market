@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {Form,A,Label,Input,Button} from "../Styled";
 import {getRequest, postRequest} from "../../context/Request";
 import Comprobante from "../../Pages/Comprobante";
+import {updadeUser, updateUser} from "../../utils/Updade";
 
 
 const ButtonVerde = styled(Button)`
@@ -83,8 +84,13 @@ export default function Compra(props) {
         if (share !== undefined) {
             const response = await postRequest('http://127.0.0.1:8000/api/transaction',
                 headers, formData,"omit")
-            console.log(response.status)
-            response.status === 201 ? setComprobante(true) : alert("sad")
+            if(response.status == 201){
+                await updateUser()
+                setComprobante(true)
+            }else{
+                alert("Error al enviar la solicitud, error: http " + response.status + " , " + response.statusText)
+            }
+
         } else {
             alert("Seleccione una accion")
         }
@@ -101,7 +107,7 @@ export default function Compra(props) {
                             <A>
                                 <Label>Tipo de Compra:</Label>
                                 <Button onClick={(e) => typeBuy(e, "mercado")}>Mercado</Button>
-                                <Button onClick={(e) => typeBuy(e, "limite")}>Limite</Button>
+                                <Button onClick={(e) => typeBuy(e, "limite")}>Límite</Button>
                             </A>
                             <A>
                                 <Label>Monto:</Label>

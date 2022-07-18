@@ -10,6 +10,7 @@ import Admin from "./Pages/Admin";
 import UserProfile from "./Pages/UserProfile";
 import {AuthProvider} from "./context/AuthContext";
 import PageNotFound from "./Pages/PageNotFound";
+import ForgotRegister from "./Pages/ForgotRegister";
 
 
 
@@ -20,6 +21,8 @@ export default function App(){
                     <Switch>
                         <Route exact path="/" component={Login} />
                         <Route exact path="/register" component={Register} />
+                        <Route exact path="/forgot" component={ForgotRegister} />
+
                         <Route exect path="/buysell/:type" component={BuySell}/>
                         <Route component ={HomePage} exact path="/home" />
                         <Route exact component={UserProfile} path="/profile"/>

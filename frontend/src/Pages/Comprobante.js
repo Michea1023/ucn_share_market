@@ -1,5 +1,40 @@
 import React from "react";
+import styled from "styled-components";
+import {Button} from "../components/Styled";
+import {updadeUser} from "../utils/Updade";
 
+
+const GridComprobante = styled.div`
+ 
+  display: flex;
+  flex-direction: column;
+  
+  
+  background-color: #E1F1F9;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
+  width:40vw;
+  margin:30px;
+  padding-top: 20px;
+  border-radius: 20px;
+  a{
+        width: 20vw;
+  }
+  p{
+    margin:5px;
+    margin-left:20px;
+  }
+  
+
+`;
+
+const ButtonRojo = styled(Button)`
+    background-color:#30A1FF;
+`;
+
+const Titulo  = styled.h4`
+    justify-content: center;
+    align-self: center;
+`;
 export default function Comprobante(props){
 
     const repit = (e) =>{
@@ -9,17 +44,24 @@ export default function Comprobante(props){
     const share = props.share
 
     return(
-        <>
-            <h1>Comprobante transaccion</h1>
-            <h4>Nombre: {JSON.parse(sessionStorage.getItem("user")).full_name}</h4>
-            <h4>Tipo de transaccion: {props.type}</h4>
-            <h4>Nombre accion: {share}</h4>
-            <h4>Vigencia: {props.vigencia}</h4>
-            <h4>Cantidad: {props.cantidad}</h4>
-            <h4>Precio: {props.precio}</h4>
-            <h4>Comision: {parseFloat(props.comisionF) + props.comisionV*props.monto}</h4>
-            <h4>Monto total: {props.monto + (parseFloat(props.comisionF) + props.comisionV*props.monto)}</h4>
-            <button onClick={repit}>Realizar otra {props.type}</button>
-        </>
+
+            <GridComprobante>
+                <Titulo>Comprobante transaccion</Titulo>
+                <p>Nombre: {JSON.parse(sessionStorage.getItem("user")).full_name}</p>
+                <p>Tipo de transaccion: {props.type}</p>
+                <p>Nombre accion: {share}</p>
+                <p>Vigencia: {props.vigencia}</p>
+                <p>Cantidad: {props.cantidad}</p>
+                <p>Precio: {props.precio}</p>
+                <p>Comision: {parseFloat(props.comisionF) + props.comisionV*props.monto}</p>
+                <p>Monto total: {props.monto + (parseFloat(props.comisionF) + props.comisionV*props.monto)}</p>
+                <ButtonRojo onClick={repit}>Realizar otra {props.type}</ButtonRojo>
+            </GridComprobante>
+
     )
 }
+
+
+
+
+

@@ -122,37 +122,37 @@ export default function BuySell() {
                      <BarraSecundaria/>
                 </Grid2>
                 <Grid3>
-                    <GridBuscador>
-                <T1>
-                    <h2>Buscardor de acciones</h2>
-                </T1>
-                <T2>
-                    <B>
-                        <p>Seleccione una acción</p>
-                    </B>
-                    <B>
-                        {
-                            loading ?
-                                (<p>Cargando</p>) :
-                                (<datalist id = "acciones">
-                                   {
-                                       share.map(elem => (<Option>{elem.code}</Option>))
-                                   }
-                                </datalist>
-                                )
-                        }
-                        <Input type= "text" list = "acciones" name="share" onChange={handleChangeShare} />
-                    </B>
+                            <GridBuscador>
+                                <T1>
+                                    <h2>Buscardor de acciones</h2>
+                                </T1>
+                                <T2>
+                                    <B>
+                                        <p>Seleccione una acción:</p>
+                                    </B>
+                                    <B>
+                                        {
+                                            loading ?
+                                                (<p>Cargando</p>) :
+                                                (<datalist id = "acciones">
+                                                   {
+                                                       share.map(elem => elem.code != "CLP"?(<Option>{elem.code}</Option>):null)  // No se muestra como accion la moneda CLP ya que solo usaremos esta como la principal
+                                                   }
+                                                </datalist>
+                                                )
+                                        }
+                                        <Input type= "text" list = "acciones" name="share" onChange={handleChangeShare} />
+                                    </B>
 
-                </T2>
-            </GridBuscador>
+                                </T2>
+                    </GridBuscador>
                 </Grid3>
                 <Grid4>
-                    <Saldos/>
+                    <Saldos share={select}/>
                 </Grid4>
                 <Grid5>
                     <h3>Rentabilidad</h3>
-                    <Rentabilidad />
+                    <Rentabilidad share={select}/>
                 </Grid5>
 
                 <Grid6>
