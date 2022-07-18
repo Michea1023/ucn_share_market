@@ -28,11 +28,11 @@ export const getRequest = async (http) => {
 }
 
 
-export const postRequest = async(http,header,data) => {
+export const postRequest = async(http,header,data,type) => {
     try {
        const response =await fetch(http,
         {header, method: "POST",
-            body : data, credentials: "omit"})
+            body : data, credentials: type})
         return response
     }catch (error){
         console.log(error)
@@ -48,7 +48,20 @@ export const postRequestCer = async(http,data) => {
                 "Content-Type": "application/json",
                  "X-CSRFToken": getCookie("csrftoken")
             }, method: "POST",
-            body : JSON.stringify(data)})
+            body : data})
+        return response
+    }catch (error){
+        console.log(error)
+    }
+}
+export const postRequestCerForm = async(http,data) => {
+    try {
+       const response =await fetch(http,
+        {headers: {
+                "Content-Type": "multipart/form-data",
+                 "X-CSRFToken": getCookie("csrftoken")
+            }, method: "POST",
+            body : data})
         return response
     }catch (error){
         console.log(error)

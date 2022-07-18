@@ -20,7 +20,7 @@ export default function OrdenState(props){
 
     const deleteOrder = async (e) => {
         const id = props.id
-        const resp = await postRequestCer("http://127.0.0.1:8000/api/transaction",{id})
+        const resp = await postRequestCer("http://127.0.0.1:8000/api/transaction",{"id":id})
         console.log(resp)
     }
 
