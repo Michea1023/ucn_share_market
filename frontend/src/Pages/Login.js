@@ -136,9 +136,6 @@ export default function Login(){
         const password = e.target.password.value;
         if(rut.length > 0){
             const login = loginUser(rut, password)
-            if(login == 404){
-                alert("Usuario no encontrado")
-            }
 
         }
     };

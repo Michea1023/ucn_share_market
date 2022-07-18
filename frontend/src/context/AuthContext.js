@@ -54,21 +54,19 @@ export const AuthProvider = ({children}) => {
           })
         });
         const data = await response.json();
-
         if (response.status === 200) {
           setUser(data);
           sessionStorage.setItem("user",JSON.stringify(data));
-          // console.log(user.rut);
           data.staff ? history.push("/admin") : history.push("/home")   // condicion (x === 1) ? (codigo verdadero) : (codigo en el caso contrario) operadores ternario
           ;
+        }else if(response.status == 404){
+                alert("Usuario no encontrado o contraseña incorrecta")
+        }else if(response.status == 406){
+                alert("Usuario bloqueado, contacta con el administrador")
         }else{
-            if(response.status == 404){
-                alert("Usuario no encontrado o resgistrado")
-            }
-            else{
-                alert("Problema desconocido :(")
-            }
+            alert("Problema desconocido, http: " + response.status)
         }
+
   };
 
     const registerUser = async (rut, password, password2, email, full_name, career) => {

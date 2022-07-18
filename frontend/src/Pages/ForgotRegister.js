@@ -3,6 +3,8 @@ import React from "react";
 import styled from "styled-components";
 import BarraPrincipal from "../components/NavBar/BarraPrincipal";
 import {Submit1} from "../components/Styled";
+import {postRequestCer} from "../context/Request";
+import {useHistory} from "react-router-dom";
 
 
 const Gridlogin1 = styled.div`
@@ -105,8 +107,28 @@ const H1 = styled.h1`
 `;
 export default function ForgotRegister(){
 
+    const history = useHistory()
 
+    async function handleSubmit(e) {
+        e.preventDefault()
+        const rut = e.target.rut.value;
+        const password1 = e.target.password1.value;
+        const password2 = e.target.password2.value;
+        const data = {
+            rut,
+            password1,
+            password2
+        }
 
+        const resp = await postRequestCer("http://127.0.0.1:8000/api/change-password", JSON.stringify(data))
+        if(resp.status === 200){
+            alert("Contraseña cambiada con exito")
+            history.push("/")
+        }else{
+            alert("Problemas al cambiar la contraseña, http: " + resp.status)
+        }
+
+    }
 
     return(
         <Gridlogin>
@@ -116,15 +138,15 @@ export default function ForgotRegister(){
 
             <Gridlogin1>
                 <H1>Recuperación de cuenta</H1>
-                <Form>
+                <Form onSubmit={(e) => handleSubmit(e)}>
                     <Label1>Rut de usuario </Label1>
-                    <Text1 placeholder ="Ingrese rut usuario"></Text1>
+                    <Text1 placeholder ="Ingrese rut usuario" id="rut"></Text1>
 
                     <Label1>Ingrese la contraseña</Label1>
-                    <Password1 type ="password" placeholder="Ingrese contraseña"></Password1>
+                    <Password1 type ="password" placeholder="Ingrese contraseña" id="password1"></Password1>
 
                     <Label1>Repita la contraseña</Label1>
-                    <Password1 type ="password" placeholder="Repita la contraseña"></Password1>
+                    <Password1 type ="password" placeholder="Repita la contraseña" id="password2"></Password1>
 
                     <Submit1 type ="submit" value ="Cambiar contraseña"></Submit1>
 

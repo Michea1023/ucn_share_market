@@ -3,14 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ad4ee528-cf28-4b40-9467-e4dd32976075" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Admin/BarraAdmin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Admin/Ranking.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Admin/Ranking.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Admin/Settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Admin/Settings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Admin/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Admin/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Admin/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Admin/Users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/ForgotRegister.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/ForgotRegister.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/context/AuthContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/context/AuthContext.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" afterDir="false" />
     </list>
     <list id="75f1d58d-9092-4226-86bd-d5c6f256c9ad" name="Changes by gasri" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,6 +93,7 @@
       <workItem from="1658085917473" duration="14000" />
       <workItem from="1658102808148" duration="2389000" />
       <workItem from="1658114660810" duration="2138000" />
+      <workItem from="1658116967278" duration="2565000" />
     </task>
     <servers />
   </component>
