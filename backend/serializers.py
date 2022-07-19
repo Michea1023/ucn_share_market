@@ -22,7 +22,7 @@ class LoginSerializer(serializers.ModelSerializer):
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model   = Account
-        fields  = ('rut', 'full_name', 'career', 'active')
+        fields  = ('rut', 'full_name', 'career', 'active', 'email')
 
 class TransactionSerializer(serializers.ModelSerializer):
     share_buy   = serializers.CharField(max_length=15)
