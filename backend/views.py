@@ -5,7 +5,6 @@ from rest_framework import generics, status
 from .serializers import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .tasks import cancel_transaction
 
 
 def response(response: str):
@@ -101,6 +100,15 @@ def operate_trans(transaction, type_order):
                     buyer = filtered_trans[i]
             else:
                 break
+
+def cancel_transaction(transaction):
+    share_account = ShareAccount.objects.get(account_id=transaction.account_id, share_id=transaction.share_id)
+    if transaction.type_order == "B":
+        share_account.amount += transaction.total + transaction.variabl_com + transaction.fixed_com
+    else:
+        share_account.amount += transaction.amount
+    share_account.save(update_fields=['amount'])
+    transaction.delete()
 
 
 # get_transaction_API(name,precio_venta,name1)
@@ -432,7 +440,7 @@ class ShareView(APIView):
 
 class TransTableView(APIView):
     serializer_class = TransTableSerializer
-    queryset = TransactionTable.objects.exclude(market_val=0)
+    queryset = TransactionTable.objects.exclude(active=False)
 
     def post(self, request, format=None):
         # Modificar

@@ -2,15 +2,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime
 from .models import Transaction, Share, TransactionTable, ShareAccount
 from .services import ConsultasAPI
-
-def cancel_transaction(transaction):
-    share_account = ShareAccount.objects.get(account_id=transaction.account_id, share_id=transaction.share_id)
-    if transaction.type_order == "B":
-        share_account.amount += transaction.total + transaction.variabl_com + transaction.fixed_com
-    else:
-        share_account.amount += transaction.amount
-    share_account.save(update_fields=['amount'])
-    transaction.delete()
+from .views import operate_trans, cancel_transaction
 
 def bubble_sort(arr1,precio1):
     n = len(arr1)
@@ -64,12 +56,20 @@ def update_transtable():
     for i in range(len(name)):
         queryset = TransactionTable.objects.filter(share_buy='CLP', share_sell=name[i])
         if not queryset.exists():
-            trans_table = TransactionTable.objects.create(share_buy='CLP', share_sell=name[i], market_val=precio_venta[i], diary_rent=inbalance[i])
+            active = True if precio_venta[i] != 0 else False
+            trans_table = TransactionTable.objects.create(share_buy='CLP', share_sell=name[i], market_val=precio_venta[i],
+                                                          diary_rent=inbalance[i], active=active)
             trans_table.save()
         else:
-            tt = trans_table[0]
-            tt["market_val"] = precio_venta[i]
-            tt["diary_rent"] = inbalance[i]
+            tt = queryset[0]
+            tt.market_val = precio_venta[i]
+            tt.diary_rent = inbalance[i]
+            if precio_venta[i] == 0:
+                tt.active = False
+            else:
+                tt.active = True
+
+            tt.save(update_fields=['market_val', 'diary_rent', "active"])
 
 def generate_false_data():
     api_key = '0F2A8BD687B242A29B785285FACC0ED6'
@@ -84,8 +84,10 @@ def generate_false_data():
         share_code = sub1.get("instrument")
         share = Share.objects.get(code=share_code)
         table_trans = TransactionTable.objects.get(share_buy="CLP", share_sell=share_code)
-        transaccion = Transaction(share=share, active=active, price=price, amount=amount, start_date=start_date,total=total, trans_table=table_trans)
+        transaccion = Transaction(share=share, active=active, price=price, amount=amount, start_date=start_date,
+                                  total=total, trans_table=table_trans, type_order='S', fixed_com=0, variabl_com=0)
         transaccion.save()
+        operate_trans(transaccion, 'S')
     return
 
 

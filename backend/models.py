@@ -94,6 +94,7 @@ class TransactionTable(models.Model):
     market_val  = models.FloatField(null=True) # 1 share_sell = X share_buy
     diary_rent  = models.FloatField(null=True) # rentabilidad diaria
     annual_rent = models.FloatField(null=True) # rentabilidad anual
+    active      = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.share_sell}/{self.share_buy}"
