@@ -292,7 +292,7 @@ class TransactionView(APIView):
                 share_buy = Share.objects.filter(code=bought)
                 share_sell = Share.objects.filter(code=selled)
                 if share_buy.exists() and share_sell.exists():
-                    query_table = TransactionTable.objects.filter(share_buy=bought, share_sell=selled)
+                    query_table = TransactionTable.objects.filter(share_buy=bought, share_sell=selled, active=True)
                     if query_table.exists():
                         if type_order == "B":
                             share = share_buy[0]

@@ -93,7 +93,6 @@ def generate_false_data():
 def delete_trash_data():
     Transaction.objects.filter(account_id=None).delete()
 
-
 def start():
     scheduler = BackgroundScheduler()
     scheduler.add_job(canceler, 'interval', hours=6)

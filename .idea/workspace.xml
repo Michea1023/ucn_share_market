@@ -33,11 +33,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="ucn_share_market" type="Python.DjangoServer" factoryName="Django server">
       <module name="ucn_share_market" />
@@ -93,6 +93,7 @@
       <workItem from="1658247552150" duration="53000" />
       <workItem from="1658247617663" duration="162000" />
       <workItem from="1658282575825" duration="1566000" />
+      <workItem from="1658284847751" duration="347000" />
     </task>
     <servers />
   </component>
