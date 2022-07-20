@@ -419,7 +419,10 @@ class ShareView(APIView):
         out = []
         for i in range(self.queryset.count()):
             data = self.serializer_class(self.queryset[i]).data
-            out.append(data)
+            transtable = TransactionTable.objects.filter(share_sell=data.get("code"))
+            if transtable.exists():
+                if transtable[0].active:
+                    out.append(data)
         return Response(out, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):

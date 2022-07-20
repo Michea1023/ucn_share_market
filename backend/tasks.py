@@ -56,7 +56,7 @@ def update_transtable():
     for i in range(len(name)):
         queryset = TransactionTable.objects.filter(share_buy='CLP', share_sell=name[i])
         if not queryset.exists():
-            active = True
+            active = True if precio_venta[i] == 0 else False
             trans_table = TransactionTable.objects.create(share_buy='CLP', share_sell=name[i], market_val=precio_venta[i],
                                                           diary_rent=inbalance[i], active=active)
             trans_table.save()
@@ -64,7 +64,10 @@ def update_transtable():
             tt = queryset[0]
             tt.market_val = precio_venta[i]
             tt.diary_rent = inbalance[i]
-            tt.active = True
+            if precio_venta[i] == 0:
+                tt.active = False
+            else:
+                tt.active = True
 
             tt.save(update_fields=['market_val', 'diary_rent', "active"])
 
@@ -87,10 +90,14 @@ def generate_false_data():
         operate_trans(transaccion, 'S')
     return
 
+def delete_trash_data():
+    Transaction.objects.filter(account_id=None).delete()
+
 
 def start():
     scheduler = BackgroundScheduler()
     scheduler.add_job(canceler, 'interval', hours=6)
+    scheduler.add_job(delete_trash_data, 'interval', days=3)
     scheduler.add_job(generate_false_data, 'interval', days=1)
     scheduler.add_job(update_transtable, 'interval', days=1)
     scheduler.start()
