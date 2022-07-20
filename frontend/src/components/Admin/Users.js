@@ -11,6 +11,7 @@ const GridUsuarios = styled.div`
     box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.252);
     display:grid;
     padding:10px;
+    overflow-x: scroll;
     @media(max-width:950px){
         width:95vw;
     }
@@ -24,7 +25,7 @@ const Tabla= styled.div`
     border-radius:20px;
     background-color: #E1F1F9;
     width:58vw;
-
+    
     justify-self:center;
     
     @media(max-width:950px){
@@ -56,6 +57,7 @@ const H2 = styled.h2`
     display:table-cell;
     margin: 20px;
     text-align:center;
+    padding: 5px;
 `;
 
 
