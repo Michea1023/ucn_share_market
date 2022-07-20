@@ -11,9 +11,24 @@ const GridRentabilidad = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
+    
+    @media(max-width: 1250px){
+        width:45vw;
+    }
+    
+    @media(max-width: 900px){
+        width:60vw;
+    }
+    
+    @media(max-width: 420px){
+        width: 87vw;
+    }
 `;
 const A = styled.div`
     margin: 0 10%;
+    @media(max-width: 1250px){
+        margin: 5px 5%;
+    }
 `;
 
 export default function Rentabilidad(props){
@@ -37,12 +52,16 @@ export default function Rentabilidad(props){
                         x.name === props.share+"/CLP" ? (
                             <>
                                 <A>
-                                    <h4>Par Acción</h4>
+                                    <h4>Par acción</h4>
                                     <p>{x.name}</p>
                                 </A>
                                 <A>
+                                    <h4>Valor actual</h4>
+                                    <p>${x.market_val}</p>
+                                </A>
+                                <A>
                                     <h4>Variación diaria</h4>
-                                    <p>{x.diary_rent}</p>
+                                    <p>{x.diary_rent}%</p>
                                 </A>
                             </>
                         ) :     null

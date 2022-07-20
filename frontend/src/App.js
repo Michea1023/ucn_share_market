@@ -15,6 +15,7 @@ import ForgotRegister from "./Pages/ForgotRegister";
 
 
 export default function App(){
+    document.body.style.backgroundColor = '#FBFCFC'; //color de fondo
     return (
             <Router>
                 <AuthProvider>

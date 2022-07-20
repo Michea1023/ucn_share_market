@@ -13,6 +13,11 @@ const GridPrincipal = styled.div`
     grid-template-areas: 
     "nav nav"
     "Barra Contenido";
+    @media(max-width:950px){
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
 `;
 const Grid1 = styled.div`
     grid-area: nav;
@@ -29,11 +34,23 @@ const Grid2 = styled.div`
   
     padding-top: 60px;
     height: calc(100vh - 120px);
+    @media(max-width: 950px){
+        flex-direction:row;
+        height:60px;
+        width:100vw;
+        align-items:center;
+        padding:0;
+    }
 `;
 const Grid3 = styled.div`
     grid-area: Contenido;   
     justify-self:center;
     margin-top: 20px;
+    @media(max-width:950px){
+        display:flex;
+        flex-direction:column;
+        
+    }
     
 `;
 const H2 = styled.button`

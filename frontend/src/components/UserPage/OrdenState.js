@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import styled from "styled-components";
 import {Button} from "../Styled";
-import {deleteRequest, postRequestCer} from "../../context/Request";
-import {updadeUser, updateUser} from "../../utils/Updade";
+import {deleteRequest} from "../../context/Request";
+import {updateUser} from "../../utils/Updade";
 
-const H4 = styled.h4`
+const H4 = styled.p`
     display:table-cell;
     margin: 10px;
     text-align:center;
@@ -13,6 +13,18 @@ const H4 = styled.h4`
 const ButtonRojo = styled(Button)`
     background-color:#FF0000;
     padding:8px 16px;
+    :hover{
+        cursor: pointer;
+    }
+    :active{
+     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.262);
+    }
+    
+    @media(max-width: 420px){
+        padding:5px 9px;
+        margin:2px;
+    }
+    
 `;
 
 

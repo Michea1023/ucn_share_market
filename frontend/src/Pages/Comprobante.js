@@ -24,6 +24,10 @@ const GridComprobante = styled.div`
     margin-left:20px;
   }
   
+  @media(max-width: 420px){
+        width:87vw;
+    }
+  
 
 `;
 

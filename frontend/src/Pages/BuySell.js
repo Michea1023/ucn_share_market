@@ -20,40 +20,105 @@ const GridPrincipal = styled.div`
     "nav2 nav2"
     "Area1 Area2"
     "Area3 Area4";
+    
+    @media(max-width: 900px){
+        display: flex;
+        flex-direction: column;
+    }
+    
+    
 `;
 const Grid1 = styled.div`
+
     grid-area: nav;
+    
+    @media(max-width: 900px){
+        order:1;
+    }
 `;
 const Grid2 = styled.div`
+
     grid-area: nav2;
+    
+    @media(max-width: 900px){
+        order:2;
+    }
 `;
 const Grid3 = styled.div`
+
+    padding: 20px 0;
+
     grid-area: Area1;   
     justify-self:center;
     align-self:center;
+    
+    @media(max-width: 900px){
+        order:3;
+        align-self:center;
+    }
+    
 `;
 const Grid4 = styled.div`
+
+    padding: 20px 0;
+
     grid-area: Area2;
     justify-self:center;
     align-self:center;
+    
+    @media(max-width: 900px){
+        order:4;
+        align-self:center;
+    }
+    
 `;
 const Grid5 = styled.div`
+
+    padding: 20px 0;
+
     grid-area: Area3;
     justify-self:center;
     
+    @media(max-width: 900px){
+        order:5;
+        align-self:center;
+    }
+    
+    
 `;
 const Grid6 = styled.div`
+
+    padding: 20px 0;
+
     grid-area: Area4;
     justify-self:center;
+    
+    @media(max-width: 900px){
+        order:6;
+        align-self:center;
+    }
+    
 `;
 
 
 //Buscador
 const GridBuscador = styled.div`
     width: 35vw;   
+    
+    @media(max-width: 900px){
+        width:60vw;
+    }
+    
+    @media(max-width: 420px){
+        width:87vw;
+        
+    }
 `;
 const T1 = styled.div`
     height:35px;  
+    @media(max-width: 420px){
+        align-content:center;
+    }
 `;
 const T2 = styled.div`   
     display:table-row;
@@ -70,6 +135,10 @@ const Input = styled.input`
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
     border:0;
     background-image: url(../../../static/images/1086933.png)  scroll 7px 7px;
+    @media(max-width: 900px){
+        padding-left:0px;
+
+    }
 `;
 const Option = styled.option`
     width: 50px;
@@ -124,7 +193,7 @@ export default function BuySell() {
                 <Grid3>
                             <GridBuscador>
                                 <T1>
-                                    <h2>Buscardor de acciones</h2>
+                                    <h2>Buscador de acciones</h2>
                                 </T1>
                                 <T2>
                                     <B>

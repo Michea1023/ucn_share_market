@@ -1,7 +1,6 @@
-import React, {Component, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
-import {Button} from "../Styled";
-import {getRequest, postRequestCer} from "../../context/Request";
+import {getRequest} from "../../context/Request";
 import User from "./User";
 
 
@@ -12,6 +11,9 @@ const GridUsuarios = styled.div`
     box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.252);
     display:grid;
     padding:10px;
+    @media(max-width:950px){
+        width:95vw;
+    }
     
 `;
 
@@ -24,6 +26,11 @@ const Tabla= styled.div`
     width:58vw;
 
     justify-self:center;
+    
+    @media(max-width:950px){
+        width:94vw;
+        padding:1px;
+    }
     
 `;
 
@@ -82,13 +89,14 @@ export default function Users(){
                         <H4>Nombre</H4>
                         <H4>Rut</H4>
                         <H4>Carrera</H4>
+                        <H4>Correo</H4>
                         <H4>Estado</H4>
 
                     </B>
                    {
                        listUser.map(x=>(
                            <B>
-                                <User full_name={x.full_name} rut={x.rut} career={x.career} active={x.active}/>
+                                <User full_name={x.full_name} rut={x.rut} career={x.career} email={x.email} active={x.active}/>
                            </B>
                        ))
                    }

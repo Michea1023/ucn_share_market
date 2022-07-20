@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {Form,A,Label,Input,Button} from "../Styled";
 import {getRequest, postRequest} from "../../context/Request";
 import Comprobante from "../../Pages/Comprobante";
-import {updadeUser, updateUser} from "../../utils/Updade";
+import {updateUser} from "../../utils/Updade";
 
 
 const ButtonVerde = styled(Button)`
@@ -142,11 +142,12 @@ export default function Compra(props) {
                             </A>
 
 
+
+
                         </Form>
+
                     )
             }
-
-
 
         </>
     )

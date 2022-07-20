@@ -1,15 +1,27 @@
 import React, {Component, useEffect, useState} from "react";
 import styled from "styled-components";
-import {A, Button, Input, Label} from "../Styled";
+import {A, Button, Form, Input, Label} from "../Styled";
 import {getRequest, postRequestCer} from "../../context/Request";
 
 const GridPrincipal = styled.div`
-    width: 60vw;   
+    width: 60vw; 
+    display:grid;
+    @media(max-width:950px){
+        width:80vw;
+        
+    }  
 `;
 
 const Separacion = styled.div`
     height:90px; 
-    text-indent: 150px;
+    text-indent:150px;
+    @media(max-width:950px){
+        justify-self:center;
+        text-indent:0;
+        
+    }
+    
+    
 `;
 const ButtonVerde = styled(Button)`
     background-color:#27E709;
@@ -68,7 +80,7 @@ export default function Settings(){
     return(
              <GridPrincipal>
                 <Separacion>
-                        <h2>Buscador</h2>
+                        <h2>Configuraciones</h2>
                 </Separacion>
                  <form onSubmit={(e) => handleSubmit(e)}>
                      <A>
@@ -86,7 +98,9 @@ export default function Settings(){
                      <A>
                         <Label>Comisión variable:</Label>
                         <Input  onChange={handleChangeVa} value={variableComission}/>
-                        <ButtonVerde type="submit">Actualizar</ButtonVerde>
+                     </A>
+                     <A>
+                         <ButtonVerde type="submit">Actualizar</ButtonVerde>
                      </A>
                  </form>
 

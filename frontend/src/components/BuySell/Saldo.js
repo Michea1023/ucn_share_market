@@ -9,10 +9,28 @@ const GridSaldos = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-content:center;
+    
+    @media(max-width: 1250px){
+        width:45vw;
+    }
+    
+    @media(max-width: 900px){
+        width:60vw;
+    }
+    
+    @media(max-width: 420px){
+        width: 87vw;
+    }
 `;
 
 const A = styled.div`
-    margin: 0 10%;
+    margin: 10px 10%;
+    
+    @media(max-width: 1250px){
+        margin: 5px 5%;
+
+    }
 `;
 
 

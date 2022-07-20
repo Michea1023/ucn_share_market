@@ -25,8 +25,17 @@ const GridActivos = styled.div`
     box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.252);
     display:grid;
     padding:10px;
+    
     justify-content:center;
-    margin:50px;
+   
+   @media(max-width: 500px){
+    width: 70vw;
+  }
+   
+    @media(max-width: 420px){
+        width: 87vw;
+        margin-button:10px;
+    }
     
     
     
@@ -40,8 +49,12 @@ const Tabla= styled.div`
     background-color: #E1F1F9;
     border-radius:20px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
-    
-   
+    @media(max-width: 500px){
+        width: 65vw;
+    }
+    @media(max-width: 420px){
+        width: 82vw;
+    }
     
 `;
 

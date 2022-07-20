@@ -8,6 +8,7 @@ const Navbarsecundario = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  background-color:#FDFDFD;
 
 `;
 const Navbarbutton = styled.div`
@@ -23,14 +24,8 @@ const Buttonnavbar = styled(Link)`
   text-decoration: none;
 `;
 
-const Button = styled.button `
-    
-`;
-
 
 export default function BarraSecundaria(){
-    const history = useHistory();
-    //<Buttonna onClick={() => history.push('/buysell/buy')}>Compra</Buttonna>
     return(
             <Navbarsecundario>
                 <Navbarbutton>

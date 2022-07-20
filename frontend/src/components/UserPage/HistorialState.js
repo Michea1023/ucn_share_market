@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import styled from "styled-components";
 
-const H4 = styled.h4`
+const H4 = styled.p`
     display:table-cell;
     margin: 10px;
     text-align:center;
