@@ -8,29 +8,73 @@ import styled from "styled-components";
 import PageNotFound from "./PageNotFound";
 
 const GridPrincipal = styled.div`
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: 60px 60px 80vh;
-    grid-template-areas: 
-    "nav nav"
-    "nav2 nav2"
-    "Acciones1 Resumen2"
+    @media(min-width: 420px){
+        display: grid;
+        grid-template-columns: 45vw 55vw;
+        grid-template-rows: 60px 60px 80vh;
+        grid-template-areas: 
+        "nav nav"
+        "nav2 nav2"
+        "Resumen2 Acciones1"
+    }
+    
+    @media(max-width: 650px){
+        display: flex;
+        flex-direction:column;
+    }
     
 `;
 const Grid1 = styled.div`
-    grid-area: nav;
+    @media(min-width: 650px){
+        grid-area: nav;
+    }
+    @media(max-width: 650px){
+        order:1;
+    }
+    
+    
 `;
 const Grid2 = styled.div`
-    grid-area: nav2;
+    @media(min-width: 650px){
+        grid-area: nav2;
+    }
+    @media(max-width: 650px){
+        order:2;
+    }
 `;
 const Grid3 = styled.div`
-    grid-area: Acciones1;   
-    justify-self:center;
+    padding: 20px 0;
+    
+        margin-top:30px;
 
+    
+    @media(min-width: 650px){
+        grid-area: Acciones1;   
+        justify-self:center;
+    }
+    @media(max-width: 650px){
+        order:4;
+        align-self:center;
+        
+    }
+    
 `;
 const Grid4 = styled.div`
-    grid-area: Resumen2;
-    justify-self:center;
+    
+    padding: 20px 0;
+    margin-top:30px;
+    
+    @media(min-width: 650px){
+        grid-area: Resumen2;
+        justify-self:center;
+        
+    }
+    @media(max-width: 650px){
+        order:3;
+        align-self:center;
+    }
+    
+    
    
 `;
 

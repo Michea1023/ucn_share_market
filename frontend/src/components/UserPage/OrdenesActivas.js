@@ -9,12 +9,16 @@ import {getRequest} from "../../context/Request";
  const B = styled.div`
     display: table-row;
     margin: 10px;
-    background-color: #E1F1F9;
     border-top-right-radius: 80px;
     padding-left: 10px;
     padding-right: 10px;
     height: 50px;
     width: 22vw;
+    
+    @media(max-width: 420px){
+        padding:0;
+        margin:5px;
+    }
     
 `;
 
@@ -27,6 +31,18 @@ const GridActivos = styled.div`
     box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.252);
     display:grid;
     
+    @media(max-width: 1250px){
+        width:45vw;
+    }
+    
+    @media(max-width: 900px){
+        width:75vw;
+    }
+    
+    @media(max-width: 426px){
+        width:87vw;
+    }
+    
 `;
 
 const Tabla= styled.div`
@@ -37,6 +53,19 @@ const Tabla= styled.div`
     background-color: #E1F1F9;
     border-radius:20px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
+    
+    @media(max-width: 1250px){
+        width:42vw;
+    }
+    
+    @media(max-width: 900px){
+        width:70vw;
+    }
+    
+    @media(max-width: 426px){
+        width:87vw;
+        padding:1px;
+    }
     
 `;
 
@@ -65,7 +94,7 @@ export default function OrdenesActivas(){
             <Tabla>
                 <B>
                     <H4>ID</H4>
-                    <H4>Accion</H4>
+                    <H4>Acción</H4>
                     <H4>Cantidad</H4>
                     <H4>Precio</H4>
                     <H4>Tipo</H4>

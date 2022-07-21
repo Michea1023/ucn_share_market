@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const Titulo = styled.h4`
+export const Titulo = styled.h3`
     justify-self: center;
 `;
 
@@ -65,5 +65,8 @@ export const Submit1 = styled.input`
   }
   &:active{
      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.262);
+  }
+  @media(max-width: 420px){
+        margin-bottom: 5px;
   }
 `;

@@ -21,9 +21,9 @@ const Gridlogin1 = styled.div`
   "a2"
   "a3";
   
-  
+  margin-top:20px;
+  margin-bottom:20px;
   justify-self: center;
-  margin:40px;
   padding: 70px 30px ;
   border-radius: 20px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
@@ -34,9 +34,9 @@ const Gridlogin1 = styled.div`
   line-height: 20px;
   color: blue;
   }
-  
-  a:hover{
-  color: aquamarine;
+  @media(max-width: 900px){
+        width:80vw;
+        height:500px;
   }
   
   
@@ -46,7 +46,9 @@ const Gridlogin = styled.div`
   display:grid;
   grid-template-columns: 1fr;
   grid-templates-rows: 60px auto;
-  width: 100%;
+  width:100vw;
+  
+  
 
 `;
 const Form = styled.form`
@@ -67,15 +69,15 @@ const Password1= styled.input`
   color: black;
   font-size:16px ;
 `;
-const A1 = styled.a`
+const A2 = styled.a`
   text-decoration: none;
   font-size: 12px;
   line-height: 20px;
   color: black;
-  
   :hover{
-  color: black;
-}
+    color:black;
+  }
+  
 `;
 const Text1 = styled.input`
   width: 100%;
@@ -105,7 +107,12 @@ const H1 = styled.h1`
   grid-area: a1;
 
 `;
-export default function ForgotRegister(){
+
+const GridBarra = styled.div`
+   width:100vw; 
+`;
+
+export default function Forgot(){
 
     const history = useHistory()
 
@@ -132,9 +139,11 @@ export default function ForgotRegister(){
 
     return(
         <Gridlogin>
-            <div>
-                <BarraPrincipal></BarraPrincipal>
-            </div>
+            <GridBarra>
+                <BarraPrincipal/>
+            </GridBarra>
+
+
 
             <Gridlogin1>
                 <H1>Recuperación de cuenta</H1>
@@ -143,7 +152,7 @@ export default function ForgotRegister(){
                     <Text1 placeholder ="Ingrese rut usuario" id="rut"></Text1>
 
                     <Label1>Ingrese la contraseña</Label1>
-                    <Password1 type ="password" placeholder="Ingrese contraseña" id="password1"></Password1>
+                    <Password1 type ="password" placeholder="Ingrese nueva contraseña" id="password1"></Password1>
 
                     <Label1>Repita la contraseña</Label1>
                     <Password1 type ="password" placeholder="Repita la contraseña" id="password2"></Password1>
@@ -152,7 +161,7 @@ export default function ForgotRegister(){
 
                 </Form>
                 <B>
-                    <A1 href ="/">Volver al inicio</A1>
+                    <A2 href ="/">Volver al inicio</A2>
                 </B>
 
             </Gridlogin1>

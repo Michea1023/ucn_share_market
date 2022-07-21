@@ -1,8 +1,5 @@
-import React, {Component, useContext} from "react";
+import React, {useContext} from "react";
 import BarraPrincipal from "../components/NavBar/BarraPrincipal";
-//import logoucn from "../../static/images/logo-ucn.png";
-// iba en la linea 24
-//<!--<img className="avatar" src={logoucn} /*src="/img/logo-ucn.png"*/ alt="Logo de ucn"/>-->
 import styled from "styled-components";
 import {Submit1} from "../components/Styled";
 import AuthContext from "../context/AuthContext";
@@ -15,46 +12,60 @@ const Gridlogin = styled.div`
 
 `;
 
-const avatar  = styled.div`
-  display:flex;
-  flex-direction: column;
-  
-  
-  width: 100vw;
-
-`;
-
 const Gridlogin1 = styled.div`
-  grid-row: 2;
-  width: 30vw;
-  height: 50vh;
-  background:#E1F1F9 ;
+
+    @media(min-width: 420px){
+      grid-row: 2;
+      width: 30vw;
+      height: 50vh;
+      background:#E1F1F9 ;
+      
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 70px auto;
+      grid-template-areas:
+      "a1"
+      "a2"
+      "a3";
+      
+      
+      justify-self: center;
+      margin:40px;
+      padding: 70px 30px ;
+      border-radius: 20px;
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
+      
+      a{
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 20px;
+      color: blue;
+      }
+    }
+    
+    @media(max-width: 426px){
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 70px 300px;
+      grid-template-areas:
+      "a1"
+      "a2"
+      "a3";
+      
+      grid-row: 2;
+      width: 85vw;
+      max-height:400px;
+      height: 60vh;
+      background:#E1F1F9 ;
+      
+      justify-self: center;
+      margin:40px 0;
+      padding: 70px 10px ;
+      border-radius: 20px;
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
+    }
+
   
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 70px auto;
-  grid-template-areas:
-  "a1"
-  "a2"
-  "a3";
-  
-  
-  justify-self: center;
-  margin:40px;
-  padding: 70px 30px ;
-  border-radius: 20px;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.252);
-  
-  a{
-  text-decoration: none;
-  font-size: 12px;
-  line-height: 20px;
-  color: blue;
-  }
-  
-  a:hover{
-  color: aquamarine;
-  }
   
   
 `;
@@ -73,12 +84,6 @@ const Label1 = styled.label`
   padding: 0;
   font-weight: bold;
   display: block;
-
-`;
-
-const Input1 = styled.input`
-  width: 100%;
-  margin-bottom: 50px;
 
 `;
 

@@ -7,7 +7,7 @@ import {Submit1} from "../components/Styled";
 const GridPrincipal = styled.div`
     display:grid;
     grid-template-columns: 100vw;
-    grid-template-rows:60px 80vh;
+    grid-template-rows:60px auto;
     grid-template-areas: 
     "nav"
     "registro";
@@ -15,7 +15,7 @@ const GridPrincipal = styled.div`
 
 const Gridregister = styled.div`
   width: 40vw;
-  height: 70vh;
+  
   background:#E1F1F9 ;
   grid-area: registro;
   justify-self: center;
@@ -27,6 +27,14 @@ const Gridregister = styled.div`
   text-decoration: none;
   display:flex;
   flex-direction: column;
+  }
+  
+  @media(max-width: 900px){
+        width:80vw;
+  }
+  
+  @media(max-width: 420px){
+        width 87vw;
   }
 `;
 

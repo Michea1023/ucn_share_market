@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import {Button} from "../components/Styled";
-import {updadeUser} from "../utils/Updade";
+import {Button} from "../Styled";
+import {updadeUser} from "../../utils/Updade";
 
 
 const GridComprobante = styled.div`
@@ -23,6 +23,10 @@ const GridComprobante = styled.div`
     margin:5px;
     margin-left:20px;
   }
+  
+  @media(max-width: 420px){
+        width:87vw;
+    }
   
 
 `;

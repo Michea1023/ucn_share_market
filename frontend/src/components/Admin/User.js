@@ -13,12 +13,20 @@ export default function (props){
     const ButtonVerde = styled(Button)`
     background-color:#27E709;
     margin-left:30%;
+    @media(max-width:950px){
+        margin: 0;
+        padding:8px 15px;
+    }
 
 `;
 
 const ButtonRojo = styled(Button)`
     background-color:#FF0000;
     margin-left:30%;
+    @media(max-width:950px){
+        margin: 0;
+        padding:8px 15px;
+    }
     
 `;
 
@@ -39,12 +47,13 @@ const ButtonRojo = styled(Button)`
     return(
         <>
 
-        <H4>{props.full_name}</H4>
-        <H4>{props.rut}</H4>
-        <H4>{props.career}</H4>
-        {
-            props.active == true ? (<ButtonRojo onClick={block}>Bloquear</ButtonRojo>) : (<ButtonVerde onClick={block}>Desbloquear</ButtonVerde>)
-        }
+            <H4>{props.full_name}</H4>
+            <H4>{props.rut}</H4>
+            <H4>{props.career}</H4>
+            <H4>{props.email}</H4>
+            {
+                props.active == true ? (<ButtonRojo onClick={block}>Bloquear</ButtonRojo>) : (<ButtonVerde onClick={block}>Desbloquear</ButtonVerde>)
+            }
         </>
     )
 }
