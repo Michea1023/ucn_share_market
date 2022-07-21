@@ -4,6 +4,7 @@ from .models import *
 
 
 # Model Serializer
+# Cada serializador tiene su formato y su modelo correspondiente
 class RegisterSerializer(serializers.ModelSerializer):
     password2   = serializers.CharField(style={'input_type': 'password'}, write_only=True)
 

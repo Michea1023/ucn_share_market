@@ -1,6 +1,7 @@
 from django.urls import path, include
 from .views import *
 
+# Redirige a las vistas que vengan a /api/
 urlpatterns = [
     path('share', ShareView.as_view()),
     path('create-user', RegisterView.as_view()),
