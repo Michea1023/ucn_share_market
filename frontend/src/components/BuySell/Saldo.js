@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import addCommas from "../../utils/util";
 
 const GridSaldos = styled.div`
     background-color: #E1F1F9;
@@ -46,11 +47,11 @@ export default  function Saldos(props){
 
                 <A>
                     <h4>Saldo total:</h4>
-                    <p>${user.share.map(elem => elem.code === "CLP" ? elem.amount : null)}</p>
+                    <p>${user.share.map(elem => elem.code === "CLP" ? addCommas(parseInt(elem.amount)) : null)}</p>
                 </A>
                 <A>
                     <h4>Acciones disponible:</h4>
-                    <p>{props.share != undefined ? (user.share.map(elem => elem.code === props.share ? elem.amount : null)): "Seleccione una acción"}</p>
+                    <p>{props.share != undefined ? (user.share.map(elem => elem.code === props.share ? addCommas(elem.amount) : null)): "Seleccione una acción"}</p>
                 </A>
 
 

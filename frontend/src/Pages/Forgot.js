@@ -112,7 +112,7 @@ const GridBarra = styled.div`
    width:100vw; 
 `;
 
-export default function ForgotRegister(){
+export default function Forgot(){
 
     const history = useHistory()
 

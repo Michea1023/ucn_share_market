@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {Button} from "../Styled";
 import {deleteRequest} from "../../context/Request";
 import {updateUser} from "../../utils/Updade";
+import addCommas from "../../utils/util";
 
 const H4 = styled.p`
     display:table-cell;
@@ -35,7 +36,7 @@ export default function OrdenState(props){
     const deleteOrder = async (e) => {
         const id = props.id
         const resp = await deleteRequest("http://127.0.0.1:8000/api/transaction/"+id)
-        if(resp.status == 200){
+        if(resp.status === 200){
             await updateUser()
             location.reload(true)
         }else{
@@ -47,8 +48,8 @@ export default function OrdenState(props){
             <>
                 <H4>{props.id}</H4>
                 <H4>{props.share}</H4>
-                <H4>{props.amount}</H4>
-                <H4>{props.price}</H4>
+                <H4>{addCommas(props.amount)}</H4>
+                <H4>${addCommas(props.price)}</H4>
                 <H4>{props.type_order == "B"? "Compra":"Venta"}</H4>
                 <ButtonRojo onClick={deleteOrder}>Cancelar</ButtonRojo>
 

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {useEffect, useState} from "react";
 import {getRequest} from "../../context/Request";
 import {Titulo} from "../Styled";
+import addCommas from "../../utils/util";
 
  const B = styled.li`
     display: table-row;
@@ -106,7 +107,7 @@ export default function AccionesPrecios() {
 
                         arrShare.map(x=> (
                             <B>
-                           <CompAccionesPrecios name ={x.name}   market_val={x.market_val}   diary_rent = {x.diary_rent}/>
+                           <CompAccionesPrecios name ={x.name}   market_val={"$"+ addCommas(x.market_val)}   diary_rent = {x.diary_rent}/>
                             </B>
                         ))
                     }

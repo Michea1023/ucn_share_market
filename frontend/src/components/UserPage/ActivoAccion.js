@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import addCommas from "../../utils/util";
 
 
 
@@ -15,8 +16,8 @@ export default function ActivoAccion(props){
     return(
         <>
             <H4>{props.share}</H4>
-            <H4>{props.amount}</H4>
-            <H4>${props.price}</H4>
+            <H4>{addCommas(props.amount)}</H4>
+            <H4>${addCommas(props.price)}</H4>
         </>
     )
 

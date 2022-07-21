@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import addCommas from "../../utils/util";
 
 const Accionesprecios = styled.div`
  
@@ -78,7 +79,7 @@ export default function ResumenUsuario(){
                 </A>
                 <A>
                     <H4>Monto disponible:</H4>
-                    <P> ${user.share.map(e => e.code === 'CLP' ? e.amount : null)}</P>
+                    <P> ${user.share.map(e => e.code === 'CLP' ? addCommas(parseInt(e.amount)) : null)}</P>
                 </A>
 
             </Resumemusuario1>

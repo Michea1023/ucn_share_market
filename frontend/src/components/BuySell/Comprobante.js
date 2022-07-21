@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import {Button} from "../components/Styled";
-import {updadeUser} from "../utils/Updade";
+import {Button} from "../Styled";
+import {updadeUser} from "../../utils/Updade";
 
 
 const GridComprobante = styled.div`

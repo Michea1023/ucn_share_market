@@ -1,5 +1,4 @@
-
-import React, { Component } from "react";
+import React from "react";
 import { render } from "react-dom";
 import {BrowserRouter as Router, Switch, Route, Link, Redirect, BrowserRouter} from "react-router-dom";
 import Login from './Pages/Login';
@@ -10,7 +9,7 @@ import Admin from "./Pages/Admin";
 import UserProfile from "./Pages/UserProfile";
 import {AuthProvider} from "./context/AuthContext";
 import PageNotFound from "./Pages/PageNotFound";
-import ForgotRegister from "./Pages/ForgotRegister";
+import Forgot from "./Pages/Forgot";
 
 
 
@@ -22,7 +21,7 @@ export default function App(){
                     <Switch>
                         <Route exact path="/" component={Login} />
                         <Route exact path="/register" component={Register} />
-                        <Route exact path="/forgot" component={ForgotRegister} />
+                        <Route exact path="/forgot" component={Forgot} />
 
                         <Route exect path="/buysell/:type" component={BuySell}/>
                         <Route component ={HomePage} exact path="/home" />

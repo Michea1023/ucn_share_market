@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {Form,A,Label,Input,Button} from "../Styled";
 import {getRequest, postRequest} from "../../context/Request";
-import Comprobante from "../../Pages/Comprobante";
+import Comprobante from "./Comprobante";
 import {updateUser} from "../../utils/Updade";
 
 
@@ -12,16 +12,14 @@ const ButtonRojo = styled(Button)`
 
 export default function Venta(props){
 
+    const [monto,setMonto] = useState(0)
     const [cantidad, setCantidad] = useState(0) //con request
-
     const [precio, setPrecio] = useState(0) // con request en precio mercado
     const [date, setDate] = useState(null)
     const [comprobante,setComprobante] =useState(false)
     const [comV, setComV] = useState(0)
     const [comF, setComF] = useState(0)
 
-
-    let monto = cantidad*precio
 
     const headers = {'Content-Type': 'application/json'}
 
@@ -49,11 +47,39 @@ export default function Venta(props){
         let va = event.target.value
         setPrecio(va)
     }
+    function change_cantidad(){
+        var monto1 = (document.getElementById("monto").value);
+        setMonto(monto1)
+        var cantidad1 = document.getElementById("cantidad_acciones").value = monto1/precio;
+        setCantidad(cantidad1)
+    }
+    function change_monto(){
+        var cantidad1 = (document.getElementById("cantidad_acciones").value);
+        setCantidad(cantidad1)
+        var monto1 = document.getElementById("monto").value = cantidad1*precio;
+        setMonto(monto1)
+    }
+
+    function disable_precio(){ //desactivar input de precio compra en mercado
+        let price_input = document.getElementById("precio_compra")
+        if(price_input.disabled == false) {
+            price_input.disabled = true;
+        }
+    }
+    function enable_precio(){ //desactivar input de precio compra en mercado
+        let price_input = document.getElementById("precio_compra")
+        if(price_input.disabled == true) {
+            price_input.disabled = false;
+        }
+    }
 
     async function typeBuy(e, event) {
         if (event === "mercado" && props.share !== null) {
+            enable_precio()
             const resp = await getRequest("http://127.0.0.1:8000/api/transaction-table").then(data => data.map(x => x.name === props.share+"/CLP" ? setPrecio(x.market_val) : null))
+            disable_precio()
         } else if (event === "limite") {
+            enable_precio();
             setPrecio(precio)
         }
         e.preventDefault();
@@ -109,11 +135,11 @@ export default function Venta(props){
                                     </A>
                                     <A>
                                         <Label>Monto:</Label>
-                                        <Input type="number" onChange={handleChangeMonto}/>
+                                        <Input type="number" id={"monto"} onKeyUp={change_cantidad} step="any"/>
                                     </A>
                                     <A>
                                         <Label>Cantidad de acciones:</Label>
-                                        <Input type="number" onChange={handleChangeCantidad}/>
+                                        <Input type="number" id={"cantidad_acciones"} onKeyUp={change_monto} step="any"/>
                                     </A>
                                     <A>
                                         <Label>Precio venta:</Label>
