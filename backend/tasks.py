@@ -96,7 +96,7 @@ def delete_trash_data():
 def start():
     scheduler = BackgroundScheduler()
     scheduler.add_job(canceler, 'interval', hours=6)
+    scheduler.add_job(update_transtable, 'interval', days=1)
     scheduler.add_job(delete_trash_data, 'interval', days=3)
     scheduler.add_job(generate_false_data, 'interval', days=1)
-    scheduler.add_job(update_transtable, 'interval', days=1)
     scheduler.start()

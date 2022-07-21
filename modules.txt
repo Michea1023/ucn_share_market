@@ -1,4 +1,3 @@
 djangorestframework
 django-cors-headers
 psycopg2
-bolsa-stgo

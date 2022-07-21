@@ -254,6 +254,7 @@ class LoginView(APIView):
         else:
             return Response(exception("User not authenticated"), status=status.HTTP_404_NOT_FOUND)
 
+
 class UpdateUserView(APIView):
     def post(self, request, format=None):
         data = request.data
@@ -271,6 +272,7 @@ class UpdateUserView(APIView):
                 return Response(exception("the passwords are not the same"))
         else:
             return Response(exception("user not registered"), status=status.HTTP_404_NOT_FOUND)
+
 
 class TransactionView(APIView):
     serializer_class = TransactionSerializer
