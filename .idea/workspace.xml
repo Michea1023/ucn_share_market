@@ -2,29 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad4ee528-cf28-4b40-9467-e4dd32976075" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/utils/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Comprobante.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Comprobante.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/ForgotRegister.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Forgot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Style/Breakpoints.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Compra.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Compra.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Saldo.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Saldo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Venta.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Venta.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePage/AccionesPrecios.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePage/AccionesPrecios.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/HomePage/ResumenUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HomePage/ResumenUsuario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/ActivoAccion.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/ActivoAccion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialState.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/HistorialState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenState.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPage/OrdenState.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/frontend/main.js.LICENSE.txt" afterDir="false" />
     </list>
     <list id="75f1d58d-9092-4226-86bd-d5c6f256c9ad" name="Changes by gasri" comment="" />
-    <list id="223c103c-4d2c-44cf-9e15-baeb59936be2" name="Changes by ignac" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Compra.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Compra.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/BuySell/Venta.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BuySell/Venta.js" afterDir="false" />
-    </list>
+    <list id="223c103c-4d2c-44cf-9e15-baeb59936be2" name="Changes by ignac" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,42 +34,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/frontend/src/components/BuySell/Compra.js">
-      <ranges>
-        <range start1="0" end1="1" start2="0" end2="1" changelist="ad4ee528-cf28-4b40-9467-e4dd32976075" />
-        <range start1="4" end1="5" start2="4" end2="5" changelist="ad4ee528-cf28-4b40-9467-e4dd32976075" />
-        <range start1="14" end1="15" start2="14" end2="15" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="23" end1="25" start2="23" end2="23" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="53" end1="53" start2="51" end2="76" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="56" end1="57" start2="79" end2="79" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="58" end1="58" start2="80" end2="81" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="59" end1="59" start2="82" end2="84" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="61" end1="61" start2="86" end2="87" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="103" end1="104" start2="129" end2="130" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="113" end1="114" start2="139" end2="140" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="117" end1="118" start2="143" end2="144" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="121" end1="122" start2="147" end2="148" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="144" end1="146" start2="170" end2="170" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="147" end1="148" start2="171" end2="171" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="150" end1="150" start2="173" end2="175" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/frontend/src/components/BuySell/Venta.js">
-      <ranges>
-        <range start1="4" end1="5" start2="4" end2="5" changelist="ad4ee528-cf28-4b40-9467-e4dd32976075" />
-        <range start1="14" end1="14" start2="14" end2="15" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="15" end1="16" start2="16" end2="16" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="23" end1="25" start2="23" end2="23" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="51" end1="51" start2="49" end2="74" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="54" end1="54" start2="77" end2="78" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="55" end1="55" start2="79" end2="80" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="56" end1="56" start2="81" end2="82" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="111" end1="112" start2="137" end2="138" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-        <range start1="115" end1="116" start2="141" end2="142" changelist="223c103c-4d2c-44cf-9e15-baeb59936be2" />
-      </ranges>
-    </file>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -92,12 +43,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "codeWithMe.voiceChat.enabledByDefault": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\gasri\Documents\ucn_share_market\frontend\src\components\BuySell" />
@@ -161,6 +112,7 @@
       <workItem from="1658284847751" duration="347000" />
       <workItem from="1658357780804" duration="546000" />
       <workItem from="1658365665347" duration="7232000" />
+      <workItem from="1658431611490" duration="596000" />
     </task>
     <servers />
   </component>

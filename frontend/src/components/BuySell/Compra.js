@@ -74,6 +74,15 @@ export default function Compra(props) {
         var monto1 = document.getElementById("monto").value = cantidad1*precio;
         setMonto(monto1)
     }
+    function change_precio(event){
+        if(event === "limite"){
+            let precio1 = document.getElementById("precio_compra");
+            precio1.disabled = false;
+            precio1.removeAttribute("value");
+            precio1.removeAttribute("onchange");
+            setPrecio(precio1.value)
+        }
+    }
 
     async function typeBuy(e, event) {
         e.preventDefault();
@@ -85,6 +94,7 @@ export default function Compra(props) {
         } else if (event === "limite") {
             setPrecio(precio)
             enable_precio()
+            change_precio(event)
         }
 
     }
@@ -161,7 +171,7 @@ export default function Compra(props) {
                             </A>
                             <A>
                                 <Label>Monto total:</Label>
-                                <Input disabled value={parseInt(monto) + monto *comV + comF}/>
+                                <Input disabled value={monto + monto *comV + comF}/>
                             </A>
                             <A>
                                 <ButtonVerde type="submit">Comprar</ButtonVerde>

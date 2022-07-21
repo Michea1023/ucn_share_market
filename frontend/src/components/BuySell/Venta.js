@@ -72,6 +72,15 @@ export default function Venta(props){
             price_input.disabled = false;
         }
     }
+    function change_precio(event){
+        if(event === "limite"){
+            let precio1 = document.getElementById("precio_compra");
+            precio1.disabled = false;
+            precio1.removeAttribute("value");
+            precio1.removeAttribute("onchange");
+            setPrecio(precio1.value)
+        }
+    }
 
     async function typeBuy(e, event) {
         if (event === "mercado" && props.share !== null) {
@@ -81,6 +90,7 @@ export default function Venta(props){
         } else if (event === "limite") {
             enable_precio();
             setPrecio(precio)
+            change_precio(event);
         }
         e.preventDefault();
     }
@@ -135,15 +145,15 @@ export default function Venta(props){
                                     </A>
                                     <A>
                                         <Label>Monto:</Label>
-                                        <Input type="number" id={"monto"} onKeyUp={change_cantidad} step="any"/>
+                                        <Input id="monto" type="number" id={"monto"} onKeyUp={change_cantidad} step="any"/>
                                     </A>
                                     <A>
                                         <Label>Cantidad de acciones:</Label>
-                                        <Input type="number" id={"cantidad_acciones"} onKeyUp={change_monto} step="any"/>
+                                        <Input id="cantidad_acciones" type="number" id={"cantidad_acciones"} onKeyUp={change_monto} step="any"/>
                                     </A>
                                     <A>
                                         <Label>Precio venta:</Label>
-                                        <Input type="number" value={precio} onChange={handleChangePrecio}/>
+                                        <Input id="precio_compra" type="number" value={precio} onChange={handleChangePrecio}/>
                                     </A>
                                     <A>
                                         <Label>Vigencia:</Label>
