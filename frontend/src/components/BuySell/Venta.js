@@ -83,6 +83,7 @@ export default function Venta(props){
     }
 
     async function typeBuy(e, event) {
+        e.preventDefault();
         if (event === "mercado" && props.share !== null) {
             enable_precio()
             const resp = await getRequest("http://127.0.0.1:8000/api/transaction-table").then(data => data.map(x => x.name === props.share+"/CLP" ? setPrecio(x.market_val) : null))
@@ -92,7 +93,7 @@ export default function Venta(props){
             setPrecio(precio)
             change_precio(event);
         }
-        e.preventDefault();
+
     }
 
     async function handleSubmit(e, date) {
