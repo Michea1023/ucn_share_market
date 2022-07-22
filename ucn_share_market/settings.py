@@ -60,14 +60,14 @@ ROOT_URLCONF = 'ucn_share_market.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'frontend/template']
+        'BACKEND': 'django.public.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'frontend/public']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                'django.public.context_processors.debug',
+                'django.public.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
