@@ -25,7 +25,7 @@ def get_transaction_API():
     :return:
     """
     # cargar la api key desde las variables de entorno del sistma
-    api_key = '0F2A8BD687B242A29B785285FACC0ED6'  # os.environ['API_BS']
+    api_key = 'CC50A4DF46274CE79682FEA8A1A5B0F3'  # os.environ['API_BS']
     # Creación de la instancia que manipulara las solicitudes a la API
     con_bs = ConsultasAPI(token=api_key)
     resp = con_bs.get_puntas_rv()
@@ -99,7 +99,7 @@ def generate_false_data():
     :return:
     """
     # Consulta a la API
-    api_key = '0F2A8BD687B242A29B785285FACC0ED6'
+    api_key = 'CC50A4DF46274CE79682FEA8A1A5B0F3'
     con_bs = ConsultasAPI(token=api_key)
     resp1 = con_bs.get_transacciones_rv()
 

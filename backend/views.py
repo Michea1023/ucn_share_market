@@ -625,30 +625,6 @@ class ShareView(APIView):
                 out.append(data)
         return Response(out, status=status.HTTP_200_OK)
 
-    def post(self, request, format=None):
-        """
-        Añade una nueva accion
-        :param request: peticion
-        :param format:
-        :return: Response
-        """
-        # Comprueba si la peticion es valida
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            # Obtiene los datos necesarios
-            code = serializer.data.get('code')
-            name = serializer.data.get('name')
-            # Comprueba si existe la accion
-            queryset = Share.objects.filter(code=code)
-            if not queryset.exists():
-                share = Share(code=code, name=name)
-                share.save()
-            else:
-                share = queryset[0]
-                share.name = name
-                share.save(update_fields=['name'])
-            return Response(ShareSerializer(share).data, status=status.HTTP_200_OK)
-
 
 class TransTableView(APIView):
     """
@@ -656,33 +632,6 @@ class TransTableView(APIView):
     """
     serializer_class = TransTableSerializer
     queryset = TransactionTable.objects.exclude(active=False)
-
-    def post(self, request, format=None):
-        """
-        Crea una nueva relacion entre acciones
-        :param request: peticion
-        :param format:
-        :return: Response
-        """
-        # Comprueba si la peticion es valida
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            # Obtiene los datos necesarios
-            share_buy = serializer.data.get('share_buy')
-            share_sell = serializer.data.get('share_sell')
-            market_value = serializer.data.get('market_val')
-            # Comprueba si la relacion entre acciones es valida
-            queryset = TransactionTable.objects.filter(share_buy=share_buy, share_sell=share_sell)
-            qs_shb = Share.objects.filter(code=share_buy)  # queryset_share_buy
-            qs_shs = Share.objects.filter(code=share_sell)  # queryset_share_sell
-            if not queryset.exists() and qs_shb.exists() and qs_shs.exists():
-                trans_table = TransactionTable(share_buy=share_buy, share_sell=share_sell, market_val=market_value)
-                trans_table.save()
-            elif not qs_shb.exists() or not qs_shb.exists():
-                return Response(exception("No existe esa Accion"), status=status.HTTP_400_BAD_REQUEST)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(exception("Envio mal su consulta"), status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, format=None):
         """

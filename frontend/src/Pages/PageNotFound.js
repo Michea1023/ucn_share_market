@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
+import BarraPrincipal from "../components/NavBar/BarraPrincipal";
 
 const H1 = styled.h1`
     letter-spacing:6px;
@@ -15,9 +16,10 @@ const H1 = styled.h1`
 const PageNotFound = () => (
 
   <>
+      <BarraPrincipal/>
 		{/* Mensaje cuando llegue a página incorrecta */}
-    <H1>Uy, llegaste a un mundo desconocido. Mejor regresa al inicio.</H1>
-      <p>Recuerda logearte para utilizar la pagina.</p>
+    <H1>Recuerda logearte para utilizar la pagina.</H1>
+      <p></p>
       <Link to="/">Iniciar sesion</Link>
   </>
 )
