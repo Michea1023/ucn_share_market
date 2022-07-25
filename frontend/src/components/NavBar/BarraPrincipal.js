@@ -117,7 +117,7 @@ export default function BarraPrincipal() {
                     <Img src={logo}/>
             </Griditem1>
             <Griditem2>
-                <Navbartitle>Bolsa de Santiago</Navbartitle>
+                <Navbartitle>Simulador Mercado de Acciones</Navbartitle>
             </Griditem2>
                 {
                   user ? (

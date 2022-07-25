@@ -110,9 +110,10 @@ def make_transaction(buyer, seller, type_order):
             transfer(buyer, seller.share_id, buyer.amount)
             transfer(seller, buyer.share_id, seller.price - seller.fixed_com - seller.variabl_com)
         # Actualiza el valor de mercado
-        trans_table = TransactionTable.objects.get(id=buyer.trans_table_id)
-        trans_table.market_val = buyer.price if type_order == 'B' else seller.price
-        trans_table.save(update_fields=['market_val'])
+        # Modificable
+        # trans_table = TransactionTable.objects.get(id=buyer.trans_table_id)
+        # trans_table.market_val = buyer.price if type_order == 'B' else seller.price
+        # trans_table.save(update_fields=['market_val'])
         return True
     else:
         return False
